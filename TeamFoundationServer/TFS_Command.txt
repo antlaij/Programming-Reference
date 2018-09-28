@@ -1,0 +1,223 @@
+
+
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+
+/*------------------------------     Folder      ------------------------------*/
+
+
+/*---------------     OmniDB     ---------------*/
+
+$/OMNI/OmniDB
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDB\
+
+
+/*---------------     OmniDB_3.3.0.0     ---------------*/
+
+$/OMNI/OmniBranches/OmniDB_3.3.0.0
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\
+
+
+/*---------------     OmniDB_4.0.0.0     ---------------*/
+
+$/OMNI/OmniBranches/OmniDB_4.0.0.0
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_4.0.0.0\
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------     Team Foundation Server VS Command Line      ------------------------------*/
+
+/*--------------------     Command Line: 2012-08-15     --------------------*/
+/*----------     Connect to Server     -----------*/
+tf workspaces /s:http://tmrv001012:8080
+
+
+/*---------------     @ Mode     ---------------*/
+tf @ >> C:\Anthony\Temp\TFS_Process.txt
+
+
+/*---------------     Status     ---------------*/
+
+# List all checked out file from current user and write to DosOut.txt
+call tf status > "C:\Anthony\Temp\TFS_Status.txt"
+
+# List all checked out file from all user and write to DosOut.txt
+call tf status /user:* > "C:\Anthony\Temp\TFS_Status.txt"
+call tf status /user:ny72720d > "C:\Anthony\Temp\TFS_Status.txt"
+
+
+call tf @ "C:\Anthony\Temp\TFS_Status.txt"
+status
+# List Status for Jie
+status /user:ny72720d
+
+# List Status for Vlah Alexandra - Toronto-MROC - external
+status /user:ny93290d
+
+# List Status for Zelewski Peter - Toronto-MROC - external
+status /user:ny55185d
+
+# List Status for Chau Dexter - Toronto-MROC
+status /user:n954382d
+
+# List Status for $/MLMC/Claims from all users
+status $/MLMC/Claims/* /user:* /recursive
+
+# List Status for $/MLMC/PLSQL from all users
+status $/MLMC/PLSQL/* /user:* /recursive
+
+# List Status for $/MLMC/TIMS from all users
+status $/MLMC/TIMS/* /user:* /recursive
+
+
+/*---------------     view     ---------------*/
+
+# View
+tf view /version
+
+
+/*---------------     get     ---------------*/
+
+tf get >> "C:\Anthony\Temp\TFS_Get.txt"
+
+
+
+/*---------------     checkin     ---------------*/
+
+call tf checkin $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01046970_20100602.sql  /noprompt
+
+tf checkin C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql  /noprompt
+
+/*---------------     checkout     ---------------*/
+
+tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/
+tf checkout $/OMNI/OmniDB/
+tf checkout $/OMNI/OmniBranches/OmniDB_3.3.0.0/
+tf checkout $/OMNI/OmniBranches/OmniDB_4.0.0.0/
+
+tf checkout C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
+tf checkout $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
+
+tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01046970_20100602.sql
+tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01106341_20100607.sql
+tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/Update_ED_20100602.sql
+
+
+/*---------------     add     ---------------*/
+
+tf add
+tf add $/OMNI/OmniBranches/OmniDB_3.3.0.0/StructuralAndDataChanges/upgrad_to_2008DD_ICT.sql
+tf add C:\Anthony\Document\Mroc\Team_Foundation_Server\EDI\OMNI_EDI_DB\StructuralAndDataChanges\IM01106341_20100706.sql
+
+
+/*---------------     history     ---------------*/
+
+tf history $/OMNI/OmniBranches/OmniDB_3.3.0.0/StructuralAndDataChanges/upgrad_to_2008DD_ICT.sql
+
+
+/*---------------     changeset     ---------------*/
+
+tf changeset 34098
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------     Update Patches      ------------------------------*/
+
+
+
+
+/*---------------     Update Patches Doc for 3.3     ---------------*/
+
+tf history $/OMNI/OmniDocs/Patches_3.3/Whats_new_3.3.txt
+tf checkout $/OMNI/OmniDocs/Patches_3.3/Whats_new_3.3.txt
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
+
+
+tf history $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
+tf checkout $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
+
+
+
+
+/*---------------     Update Patches Doc for 4.0     ---------------*/
+
+tf checkout $/OMNI/OmniDocs/Patches_4_0/Whats_new_4_0.txt
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_4_0\Whats_new_4_0.txt
+
+
+tf checkout $/OMNI/OmniDocs/Patches_4_0/Patches_OMNI_4_0.xls
+C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_4_0\Patches_OMNI_4_0.xls
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+tf checkin $/OMNI/OmniDB/PG_ICT_ACORD_FNC.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_DSIGNS_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_EDI_FNC.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_ERROR_HANDLER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_FAB_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_FPP_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_PREMIUM_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_PROCESS_MESSAGE.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_SETTLEMENT_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_TABLE_FNC.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_WSETT_TRANSFER.pck /noprompt
+tf checkin $/OMNI/OmniDB/PG_ICT_XML_UPLOAD.pck /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_DSIGNS_BASIC_INFO.sql /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_DSIGNS_DATA.sql /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_FAB_01_FAC_O_C_I.sql /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_MSG_INFO.SQL /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_WSETT_INS_CASH_ITEM.sql /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_WSETT_INS_CASH_RECEIPT.sql /noprompt
+tf checkin $/OMNI/OmniDB/VW_ICT_WSETT_INS_DATA.sql /noprompt
+tf checkin $/OMNI/OmniDB/vw_ict_definition_mapping.sql /noprompt
+tf checkin $/OMNI/OmniDB/vw_ict_fac_address_fpp_01.sql /noprompt
+tf checkin $/OMNI/OmniDB/vw_ict_fac_location_fpp_01.sql /noprompt
+tf checkin $/OMNI/OmniDB/vw_ict_msg_info.sql /noprompt
+
+
+
+
+
+
+
+
+
+
+
+
