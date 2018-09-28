@@ -200,17 +200,17 @@ git log --author="Anthony Lai" --since="2016-05-30" --pretty=format:"[%ci] %an (
 git log --author="Anthony Lai" --since="2016-05-30" --pretty=format:"[ %cD ] %an - %s %N %n"
 git log --author="Anthony Lai" --since="2016-09-01" --pretty=format:"[ %cD ] %an%n - %s %N %n"
 
-git log --author="Anthony Lai" --since="2015-06-27" --pretty=format:"- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/ute-janrain-verification-service/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
-git log --since="2016-06-01" --pretty=format:"- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/ute-rogers-setpassword/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
-git log --since="2016-06-01" --pretty=format:"- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/ute-janrain-verification-service/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
-git log --since="2016-06-01" --pretty=format:"- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/ute-common-label/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --author="Anthony Lai" --since="2015-06-27" --pretty=format:"- [[%h](http://mydomain.com/ute-client-modules/ute-janrain-verification-service/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --since="2016-06-01" --pretty=format:"- [[%h](http://mydomain.com/ute-client-modules/ute-rogers-setpassword/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --since="2016-06-01" --pretty=format:"- [[%h](http://mydomain.com/ute-client-modules/ute-janrain-verification-service/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --since="2016-06-01" --pretty=format:"- [[%h](http://mydomain.com/ute-client-modules/ute-common-label/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 
-git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/ute-profile-edit-username-and-password/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
-git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/ute-profile-edit-username-and-password/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 
 # For MAC
-git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
-git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://totes-gitlab01.rogers.com/ute-client-modules/${PWD##*/}/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
+git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
+git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/${PWD##*/}/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
 
 
 
@@ -387,8 +387,8 @@ The key's randomart image is:
 2. Copy-paste the key to the 'My SSH Keys' section under the 'SSH' tab in your user profile. Please copy the complete key starting with ssh- and ending with your username and host.
 
 3. Add or set ssh url
-Add - git remote add origin git@totes-gitlab01.rogers.com:apollo/apollo.git
-set - git remote set-url origin git@totes-gitlab01.rogers.com:apollo/apollo.git
+Add - git remote add origin git@mydomain.com:apollo/apollo.git
+set - git remote set-url origin git@mydomain.com:apollo/apollo.git
 
 4. Goto your user directory (/c/Users/Anthony/)
 5. create a file call ".bashrc"
@@ -447,7 +447,7 @@ git init
 touch README
 git add README
 git commit -m 'first commit'
-git remote add origin git@totes-gitlab01.rogers.com:ute-client-modules/ute-reset-voicemail-password.git
+git remote add origin git@mydomain.com:ute-client-modules/ute-reset-voicemail-password.git
 git push -u origin master
 
 
@@ -455,7 +455,7 @@ git push -u origin master
 # Existing Git Repo?
 
 cd existing_git_repo
-git remote add origin git@totes-gitlab01.rogers.com:ute-client-modules/ute-reset-voicemail-password.git
+git remote add origin git@mydomain.com:ute-client-modules/ute-reset-voicemail-password.git
 git push -u origin master
 
 
@@ -467,17 +467,17 @@ git push -u origin master
 $ git branch -r
 
 git remote -v
-origin  git@totes-gitlab01.rogers.com:ute-client-modules/search-typeahead.git (fetch)
-origin  git@totes-gitlab01.rogers.com:ute-client-modules/search-typeahead.git (push)
+origin  git@mydomain.com:ute-client-modules/search-typeahead.git (fetch)
+origin  git@mydomain.com:ute-client-modules/search-typeahead.git (push)
 
 git remote remove origin
-git remote add origin git@totes-gitlab01.rogers.com:anthony.lai/ute-common-search-bar.git
-git remote add origin git@totes-gitlab01.rogers.com:ute-client-modules/search-typeahead.git
-git remote add upstream git@totes-gitlab01.rogers.com:ute-client-modules/search-typeahead.git
+git remote add origin git@mydomain.com:anthony.lai/ute-common-search-bar.git
+git remote add origin git@mydomain.com:ute-client-modules/search-typeahead.git
+git remote add upstream git@mydomain.com:ute-client-modules/search-typeahead.git
 
 
-git remote add origin git@totes-gitlab01.rogers.com:anthony.lai/foundation-search-and-support.git
-git remote add upstream git@totes-gitlab01.rogers.com:ute-rogers/foundation-search-and-support.git
+git remote add origin git@mydomain.com:anthony.lai/foundation-search-and-support.git
+git remote add upstream git@mydomain.com:ute-rogers/foundation-search-and-support.git
 
 
 
@@ -503,7 +503,7 @@ git config --system core.longpaths true
 cd D:\CIM\Rogers
 d:
 git init
-git remote add origin http://192.168.222.80:7999/Rogers.git
+git remote add origin http://1.1.1.1.80:7999/Rogers.git
 touch .gitignore
 git add -A -- .
 git commit -m "initial commit"
