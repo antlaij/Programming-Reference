@@ -39,4 +39,53 @@ constructor(
 }
 ```
 
+---
+> ### Put Condition in the switch case
+>> Set ngSwitch to true
+>> put expression in ngSwitchCase
+```html
+<ng-container [ngSwitch]="true">
+  <ng-container *ngSwitchCase="expression_1">
+    Content 1
+  </ng-container>
+  <ng-container *ngSwitchCase="expression_2">
+    Content 2
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    Default Content
+  </ng-container>
+</ng-container>
+  ```
+
+---
+> ### Pass context with ngTemplateOutlet
+```html
+<ng-container *ngTemplateOutlet="templateOutleName; context: {item: variableName}"></ng-container>
+
+<ng-template let-variableNameUseInTemplate="item" #templateOutleName>
+</ng-template>
+
+
+
+<ng-template
+  [ngTemplateOutlet]="templateOutleName"
+  [ngTemplateOutletContent]="{
+    $implicit: 'String from $implicit',
+    myNextProperty: 'Next Property'
+  }"
+>
+</ng-template>
+
+<ng-template #templateOutleName let-implicit let-variableNameUseInTemplate="myNextProperty">
+  <div>{{implicit}}</div>
+  <div>{{variableNameUseInTemplate}}</div>
+</ng-template>
+  ```
+
+---
+> ### Pass context with ngTemplateOutlet
+```ts
+```
+
+
 
