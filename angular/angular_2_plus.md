@@ -87,5 +87,17 @@ constructor(
 ```ts
 ```
 
+---
+> ### Declare function pointer
+```ts
+myFunction: (arg: number) => string;
+
+constructor(
+  private myService: MService
+) {
+  this.myFunction = this.myService.myFuntion;
+}
+```
+
 
 

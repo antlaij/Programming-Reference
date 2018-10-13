@@ -510,3 +510,23 @@ git commit -m "initial commit"
 git push -u origin master
 
 
+
+
+
+# Git config file
+[http]
+[gui]
+    recentrepo = c:/pim/me
+[user]
+    email = anthony.lai@laianthony.com
+    name = Lai, Anthony
+[color "branch"]
+    current = green
+    local = normal
+    remote = yellow
+    plain = normal
+[color "status"]
+    added = green
+    changed = red bold
+    untracked = magenta bold
+

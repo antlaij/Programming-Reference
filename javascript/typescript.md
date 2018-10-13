@@ -29,3 +29,19 @@ var data = {
 };
 destructuring(data);
 ```
+
+```ts
+enum AccessRights {
+  None = 0,
+  ReadOnly = 1,
+  Delete = ReadOnly << 1,
+  Update = Delete << 1,
+  Add = Update << 1,
+  Full = (Add << 1) -1
+}
+
+let isRightsGranted = (currentMode: AccessRigths, tagetMode: AccessRights): boolean => {
+    return ((currentMode & targetMode) === targetMode || (currentMode & AccessRights.Full) === AccessRights.Full);
+}
+
+```
