@@ -394,9 +394,11 @@ git tag -a 0.0.1 -m "Release 0.0.1"
 git tag
 git push  origin --tags
 ```
+
 # Generat ssh key (from git bash):
 
 1.
+<pre>
 $ ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/Anthony/.ssh/id_rsa):
@@ -418,8 +420,9 @@ The key's randomart image is:
 |                 |
 |                 |
 +-----------------+
+</pre>
 
-> 2. Copy-paste the key to the 'My SSH Keys' section under the 'SSH' tab in your user profile. Please copy the complete key starting with ssh- and ending with your username and host.
+2. Copy-paste the key to the 'My SSH Keys' section under the 'SSH' tab in your user profile. Please copy the complete key starting with ssh- and ending with your username and host.
 
 > 3. Add or set ssh url
 >> - Add - git remote add origin git@mydomain.com:apollo/apollo.git
@@ -428,10 +431,13 @@ The key's randomart image is:
 > 4. Goto your user directory (/c/Users/Anthony/)
 > 5. create a file call ".bashrc"
 > 6. save the following text to it
->>>>>  Text Start  <<<<<
+
+
 SSH_ENV=$HOME/.ssh/environment
 
 # start the ssh-agent
+
+```git
 function start_agent {
     echo "Initializing new SSH agent..."
     # spawn ssh-agent
@@ -450,7 +456,7 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
->>>>>  Text End  <<<<<
+```
 
 7. Close GitBash then Reopen GitBash
 
@@ -511,20 +517,8 @@ git remote add upstream git@mydomain.com:ute-rogers/foundation-search-and-suppor
 
 # for long filename
 
+```git
 git config --system core.longpaths true
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Repository setup
 
@@ -536,12 +530,11 @@ touch .gitignore
 git add -A -- .
 git commit -m "initial commit"
 git push -u origin master
-
-
-
-
+```
 
 # Git config file
+
+```git
 [http]
 [gui]
     recentrepo = c:/pim/me
@@ -557,4 +550,4 @@ git push -u origin master
     added = green
     changed = red bold
     untracked = magenta bold
-
+```
