@@ -1,4 +1,7 @@
+# Javascript
+
 ## Convert Array of object to entity
+
 ```js
 [
   { id: 1, name: 'a' },
@@ -13,8 +16,10 @@
   }, {});
 ```
 
+---
 
 ## Convert entity array back to Array
+
 ```js
 var entities = {
   "1": { "id": 1, "name": "a" },
@@ -25,12 +30,16 @@ var entities = {
 var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 ```
 
+---
 
 ## Remove duplicate from Array
-## Using new ES6 Set Data structure
-## Set only allow unique value in the set
+
+Using new ES6 Set Data structure
+
+Set only allow unique value in the set
+
 ```js
 var myArray = [1,2,3,3,4,4,5,5];
-var uniqueArray = new Set([...tt]);
+var uniqueArray = new Set([...myArray]);
 ```
 

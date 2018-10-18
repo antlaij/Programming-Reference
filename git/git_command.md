@@ -1,75 +1,112 @@
 
 # list config
+
+```git
 git config --list
+```
 
-
-
+***
 
 # Branch
+
 ## List all branch
+
+```git
 git branch --all
 git branch -a
+```
 
 ## List remote branch
+
+```git
 git branch --remotes
+```
 
 ## List local branch
+
+```git
 git branch --local
 git branch -l
+```
 
 ## Delete local branch
 
+```git
 git branch -d my-rogers-al
-## or
-git branch -D my-rogers-al
+```
 
+## or
+
+```git
+git branch -D my-rogers-al
+```
 
 ## Delete remote branch
 
-git push origin --delete <branchName>
-
+```git
+git push origin --delete [branchName]
+```
 
 ## push the deleted branch to the server
+
+```git
 git push origin --delete MYR-1939-Go-Paperless-button-on-French-is-not-in-right-format-once-you-click-on-Learn-More-button
 
 git branch -dr origin/MYR-1694-Go-Paperless-in-English-and-French-are-not-Sentence-Case
 Deleted remote branch origin/MYR-1694-Go-Paperless-in-English-and-French-are-not
 -Sentence-Case (was 10f3e02).
+```
+
+***
 
 # List Branches on a given commit
+
+```git
 git branch --contains fe1991496e0975901dc628c7fee60fe2795deaa4
-
-
-
+```
 
 ## set default push to current
+
+```git
 git config --global push.default current
+```
 
-
+---
 
 ## Delete/undo last commit
-## If you have committed junk but not pushed,
+
+```git
+If you have committed junk but not pushed,
+```
+
+```git
 git reset --soft HEAD~1
 
 git show -s --format=%H
 %B HEAD
 git reset HEAD~
+```
 
 ## Now if you already pushed and someone pulled which is usually my case, you can't use git reset.
+
 You can however do a git revert,
 git revert HEAD
 
-
-
 ## push changes to the master:updates
-git push -u origin master:updates
 
+```git
+git push -u origin master:updates
+```
 
 ## Run from Server
-git merge updates
 
+```git
+git merge updates
+```
 
 ## sych files to the remote location
+
+```git
 cd /e/Temp/VC/Batch
 git status
 git add --all
@@ -80,34 +117,48 @@ git merge updates
 git status
 cd /e/Temp/VC/Batch
 git status
-
+```
 
 ## add, delete whole working tree
-git add -u :/
 
+```git
+git add -u :/
+```
 
 ## Remove file from repository
+
+```git
 git rm --cached mylogfile.log
+```
 
 
 ## Remove a directory from repository:
-git rm --cached -r mydirectory
 
+```git
+git rm --cached -r mydirectory
+```
 
 ## get remote url
-git config --get remote.origin.url
 
+```git
+git config --get remote.origin.url
+```
 
 ## set remote url
-git remote set-url origin Y:\Development\SourceControl\Git\SH_VS2013
 
+```git
+git remote set-url origin Y:\Development\SourceControl\Git\SH_VS2013
+```
 
 ## add new remote repo
-git remote add origin Y:\Development\SourceControl\Git\vs.net_2013
 
+```git
+git remote add origin Y:\Development\SourceControl\Git\vs.net_2013
+```
 
 ## firstly setup the remote repository:
 
+```git
 ssh git@example.com
 cd Y:\Development\SourceControl\Git\web
 y:
@@ -115,18 +166,20 @@ mkdir angular-karma.git
 cd angular-karma.git
 git init --bare
 git update-server-info # If planning to serve via HTTP
-
+```
 
 ## setup remote machine:
 
+```git
 md Y:\Development\SourceControl\Git\web\local.git
 cd Y:\Development\SourceControl\Git\web\local.git
 y:
 git init --bare
-
+```
 
 ## On local machine:
 
+```git
 cd D:\PIM\Me\Software_Development\command-line
 d:
 git init
@@ -138,39 +191,38 @@ md Y:\Development\SourceControl\Git\command-line.git
 cd Y:\Development\SourceControl\Git\web\laianthony.com_ag2.git
 git init --bare
 git push -u origin master
-
-
+```
 
 ## On other local machine:
 
+```git
 cd D:\PIM\Me\Software_Development\WEB
 d:
 git clone Y:\Development\SourceControl\Git\local.git
 git clone Y:\Development\SourceControl\Git\local.git
-
-
-
+```
 
 ## Clone from remote:
 
+```git
 git clone Y:\Development\SourceControl\Git\web\local.git
+```
 
 
 ## Force Git to overwrite local files on pull
 
+```git
 git fetch --all
 git reset --hard
 git reset --hard HEAD
 git reset --hard origin/my-rogers-al
-
-
-
-
+```
 
 ## Git command
 
 # list all config
 
+```git
 git config --list
 
 
@@ -182,14 +234,15 @@ git checkout master
 git checkout development
 git checkout apolloApril1
 git checkout origin/april8Production
-
+```
 
 if you got this message:
 Updates were rejected because the tip of your current branch is behind
 
 try to use this command
-git push -f origin internetcalculator
 
+```git
+git push -f origin internetcalculator
 
 git log --author="Jonathan Speevak" --since="2013-01-30" --pretty -- test
 git log --author="Anthony Lai" --since="2013-01-30" --pretty -- test
@@ -207,41 +260,42 @@ git log --since="2016-06-01" --pretty=format:"- [[%h](http://mydomain.com/ute-cl
 
 git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/ute-profile-edit-username-and-password/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
+```
 
 # For MAC
+
+```git
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/${PWD##*/}/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
 
 
-
 git log --since="2017-03-19" --author="Jonathan Speevak"
-
+```
 
 # git log for change.md
 
+```git
 git log --author="Anthony Lai" --since="2016-06-28 00:00:00" --pretty=format:"- [ %ci ] %s %N"
-
-
-
+```
 
 # Search commited code
 
+```git
 git log -S '/forgotPassword' --source --all
 git log -S 'securityToken' --source --all
-
-
+```
 
 #git compare branch
 
+```git
 git branch
 git diff internetcalculator..master
 git diff internetcalculator..april8Production
-
-
-
+```
 
 # git merge (development) to master
 
+```git
 git pull origin development
 git push origin development
 git checkout master
@@ -250,24 +304,22 @@ git merge development
 git push origin master
 
 git merge --abort
-
-
-
+```
 
 # git merge pulloutbar to internetcalculator
 
+```git
 git checkout pulloutbar
 git pull origin pulloutbar
 git checkout internetcalculator
 git pull origin internetcalculator
 git merge pulloutbar
 git push origin internetcalculator
+```
 
+# git rebase
 
-
-
-#git rebase
-
+```git
 git checkout internetcalculator
 git push origin internetcalculator
 git checkout master
@@ -278,61 +330,60 @@ git pull origin internetcalculator
 
 git rebase master
 git push origin internetcalculator
+```
 
+# switch back to development
 
-
-
-#switch back to development
-
+```git
 git checkout development
 git status
 
 git pull origin development
 git push origin development
+```
 
+# switch back to internetcalculator
 
-
-
-#switch back to internetcalculator
-
+```git
 git checkout internetcalculator
 git status
 
 git pull origin internetcalculator
 git push origin internetcalculator
+```
 
+# switch back to april8Production
 
-
-
-#switch back to april8Production
-
+```git
 git checkout april8Production
 git status
 
 git push origin april8Production
 git pull origin april8Production
-
-
+```
 
 # Create and switch to a new branch
 
+```git
 git checkout -b newBranchName
-
-
+```
 
 # switch to a new branch
 
+```git
 git checkout pulloutbar
-
+```
 
 # Removing a Tag
 
+```git
 git tag -d removetag
 git push origin :refs/tags/removetag
-
+```
 
 # Create Tag for Module
 
+```git
 rimraf bower_components/
 bower cache clean
 bower install
@@ -342,24 +393,8 @@ git tag
 git tag -a 0.0.1 -m "Release 0.0.1"
 git tag
 git push  origin --tags
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Generat ssh key (from git bash):
+```
+# Generat ssh key (from git bash):
 
 1.
 $ ssh-keygen
@@ -384,15 +419,15 @@ The key's randomart image is:
 |                 |
 +-----------------+
 
-2. Copy-paste the key to the 'My SSH Keys' section under the 'SSH' tab in your user profile. Please copy the complete key starting with ssh- and ending with your username and host.
+> 2. Copy-paste the key to the 'My SSH Keys' section under the 'SSH' tab in your user profile. Please copy the complete key starting with ssh- and ending with your username and host.
 
-3. Add or set ssh url
-Add - git remote add origin git@mydomain.com:apollo/apollo.git
-set - git remote set-url origin git@mydomain.com:apollo/apollo.git
+> 3. Add or set ssh url
+>> - Add - git remote add origin git@mydomain.com:apollo/apollo.git
+>> - set - git remote set-url origin git@mydomain.com:apollo/apollo.git
 
-4. Goto your user directory (/c/Users/Anthony/)
-5. create a file call ".bashrc"
-6. save the following text to it
+> 4. Goto your user directory (/c/Users/Anthony/)
+> 5. create a file call ".bashrc"
+> 6. save the following text to it
 >>>>>  Text Start  <<<<<
 SSH_ENV=$HOME/.ssh/environment
 
@@ -419,28 +454,16 @@ fi
 
 7. Close GitBash then Reopen GitBash
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Git global setup:
 
+```git
 git config --global user.name "Anthony Lai"
 git config --global user.email "anthony.lai@mobilelive.ca"
-
-
+```
 
 # Create new Repository
 
+```git
 mkdir ute-reset-voicemail-password
 cd ute-reset-voicemail-password
 git init
@@ -449,14 +472,17 @@ git add README
 git commit -m 'first commit'
 git remote add origin git@mydomain.com:ute-client-modules/ute-reset-voicemail-password.git
 git push -u origin master
+```
 
 
 
 # Existing Git Repo?
 
+```git
 cd existing_git_repo
 git remote add origin git@mydomain.com:ute-client-modules/ute-reset-voicemail-password.git
 git push -u origin master
+```
 
 
 
@@ -464,7 +490,8 @@ git push -u origin master
 
 # Work on your fork
 
-$ git branch -r
+```git
+git branch -r
 
 git remote -v
 origin  git@mydomain.com:ute-client-modules/search-typeahead.git (fetch)
@@ -478,6 +505,7 @@ git remote add upstream git@mydomain.com:ute-client-modules/search-typeahead.git
 
 git remote add origin git@mydomain.com:anthony.lai/foundation-search-and-support.git
 git remote add upstream git@mydomain.com:ute-rogers/foundation-search-and-support.git
+```
 
 
 
