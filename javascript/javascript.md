@@ -32,8 +32,7 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 
 ## Group By Key on an Array of object
 
-```js
-[
+```js[
   { id: 1, name: 'a' },
   { id: 2, name: 'b' },
   { id: 3, name: 'c' },
@@ -43,14 +42,12 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
   { id: 3, name: 'g' }
 ].reduce((accumulator, currentValue) => {
   let groupKey = currentValue.id;
-  if(accumulator.hasOwnProperty(groupKey)){
-    accumulator[groupKey].push(currentValue);
-  } else {
-    accumulator[groupKey] = [currentValue];
+  if(!accumulator.hasOwnProperty(groupKey)){
+    accumulator[groupKey] = [];
   }
+    accumulator[groupKey].push(currentValue);
   return {
-    ...accumulator,
-    [currentValue.id]: currentValue
+    ...accumulator
   };
   }, {});
 ```
