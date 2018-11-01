@@ -32,7 +32,8 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 
 ## Group By Key on an Array of object
 
-```js[
+```js
+[
   { id: 1, name: 'a' },
   { id: 2, name: 'b' },
   { id: 3, name: 'c' },
