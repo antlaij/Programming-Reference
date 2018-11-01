@@ -1,3 +1,5 @@
+# Destructuring with types
+
 ```ts
 let destructuring = ({
   proA,
@@ -27,8 +29,11 @@ var data = {
   proC: { ChildC1 123, ChildC2: { grandchildren: 456}},
   proD: { childD1: 789 }
 };
+
 destructuring(data);
 ```
+
+## Bitwise
 
 ```ts
 enum AccessRights {
