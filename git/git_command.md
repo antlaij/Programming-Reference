@@ -1,7 +1,7 @@
 
 # list config
 
-```git
+```bash
 git config --list
 ```
 
@@ -11,7 +11,7 @@ git config --list
 
 ## List all branch
 
-```git
+```bash
 git branch --all
 git branch -a
 ```
