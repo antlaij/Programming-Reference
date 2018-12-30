@@ -527,6 +527,7 @@ d:
 git init
 git remote add origin http://1.1.1.1.80:7999/Rogers.git
 touch .gitignore
+// For Windows use: echo.> .gitignore
 git add -A -- .
 git commit -m "initial commit"
 git push -u origin master
