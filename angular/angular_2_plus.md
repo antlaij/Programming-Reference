@@ -88,7 +88,20 @@ constructor(
   <div>{{implicit}}</div>
   <div>{{variableNameUseInTemplate}}</div>
 </ng-template>
-  ```
+```
+
+---
+> ### Use ngTemplateOutlet to select template based on condition
+
+```html
+<ng-container *ngTemplateOutlet="conditionGoseHere ? trueTemplate : falseTemplate; context: { $implicit: myVariable }">
+</ng-container>
+
+<ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
+
+<ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
+
+```
 
 ---
 > ### Declare function pointer
