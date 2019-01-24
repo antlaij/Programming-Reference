@@ -5,32 +5,34 @@ let destructuring = ({
   proA,
   proB,
   proC: {
-    Child_C1,
-    Child_C2: {grandChildren}
+    ChildC1,
+    ChildC2: {grandchildren}
   },
-  proD: { child_D1 }
+  proD: { childD1 }
 }: {
   proA: string;
   proB: string;
-  proC: { childC1: number; childC2: {grandchildren: number}};
-  proD: {ChildD1: number};
+  proC: { ChildC1: number; ChildC2: {grandchildren: number}};
+  proD: { childD1: number};
 }) => {
   console.log( '(proA, proB, ChildC1, grandchildren, ChildD1) => ',
   proA,
   proB,
   ChildC1,
   grandchildren,
-  ChildD1);
+  childD1);
 };
 
 var data = {
   proA: 'property A',
   proB: 'property B',
-  proC: { ChildC1 123, ChildC2: { grandchildren: 456}},
+  proC: { ChildC1: 123, ChildC2: { grandchildren: 456}},
   proD: { childD1: 789 }
 };
 
-destructuring(data);
+/* Output:
+(proA, proB, ChildC1, grandchildren, ChildD1) =>  property A property B 123 456 789
+*/
 ```
 
 ## Bitwise
@@ -45,8 +47,22 @@ enum AccessRights {
   Full = (Add << 1) -1
 }
 
-let isRightsGranted = (currentMode: AccessRigths, tagetMode: AccessRights): boolean => {
-    return ((currentMode & targetMode) === targetMode || (currentMode & AccessRights.Full) === AccessRights.Full);
+let isRightsGranted = (currentMode: AccessRights, targetMode: AccessRights): boolean => {
+  return ((currentMode & targetMode) === targetMode || (currentMode & AccessRights.Full) === AccessRights.Full);
 }
+
+let myRights = AccessRights.Add | AccessRights.ReadOnly | AccessRights.Delete;
+
+console.log('Has Granted Add        : ', isRightsGranted(myRights, AccessRights.Add));
+console.log('Has Granted Delete     : ', isRightsGranted(myRights, AccessRights.Delete));
+console.log('Has Granted Update     : ', isRightsGranted(myRights, AccessRights.Update));
+console.log('Has Granted ReadOnly   : ', isRightsGranted(myRights, AccessRights.ReadOnly));
+
+/* Output:
+Has Granted Add        :  true
+Has Granted Delete     :  true
+Has Granted Update     :  false
+Has Granted ReadOnly   :  true
+*/
 
 ```
