@@ -100,7 +100,6 @@ constructor(
 <ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
 
 <ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
-
 ```
 
 ---

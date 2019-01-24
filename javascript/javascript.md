@@ -53,6 +53,29 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
   }, {});
 ```
 
+## Concatinate the value from Array of objects to Key value pair
+
+```js
+[
+  { id: 1, name: 'a' },
+  { id: 2, name: 'b' },
+  { id: 3, name: 'c' },
+  { id: 4, name: 'd' },
+  { id: 1, name: 'e' },
+  { id: 2, name: 'f' },
+  { id: 3, name: 'g' }
+].reduce((accumulator, currentValue) => {
+  let groupKey = currentValue.id;
+  let foundObject = accumulator.find(x => x.key === groupKey);
+  if (foundObject) {
+    foundObject.value = `${foundObject.value}, ${currentValue.name}`;
+  } else {
+    accumulator.push({ key: groupKey, value: currentValue.name });
+  }
+  return accumulator;
+}, []);
+```
+
 ---
 
 ## Remove duplicate from Array
