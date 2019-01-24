@@ -48,6 +48,8 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 */
 ```
 
+---
+
 ## Group By Key on an Array of object
 
 ```js
@@ -79,6 +81,8 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 }
   */
 ```
+
+---
 
 ## Concatinate the value from Array of objects to Key value pair
 
