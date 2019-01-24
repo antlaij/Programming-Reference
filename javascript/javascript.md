@@ -120,11 +120,14 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 ## Remove duplicate from Array
 
 Using new ES6 Set Data structure
-
-Set only allow unique value in the set
+Set only allow unique value
 
 ```js
 var myArray = [1,2,3,3,4,4,5,5];
 var uniqueArray = new Set([...myArray]);
+
+/* Output:
+Set { 1, 2, 3, 4, 5 }
+*/
 ```
 
