@@ -14,6 +14,15 @@
     [currentValue.id]: currentValue
   };
   }, {});
+
+/* Output:
+{
+  '1': { id: 1, name: 'a' },
+  '2': { id: 2, name: 'b' },
+  '3': { id: 3, name: 'c' },
+  '4': { id: 4, name: 'd' }
+}
+*/
 ```
 
 ---
@@ -28,6 +37,15 @@ var entities = {
   "4": { "id": 4, "name": "d" }
 };
 var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
+
+/* Output:
+[
+  { id: 1, name: 'a' },
+  { id: 2, name: 'b' },
+  { id: 3, name: 'c' },
+  { id: 4, name: 'd' }
+]
+*/
 ```
 
 ## Group By Key on an Array of object
@@ -51,6 +69,15 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
     ...accumulator
   };
   }, {});
+
+/* Output:
+{
+  '1': [ { id: 1, name: 'a' }, { id: 1, name: 'e' } ],
+  '2': [ { id: 2, name: 'b' }, { id: 2, name: 'f' } ],
+  '3': [ { id: 3, name: 'c' }, { id: 3, name: 'g' } ],
+  '4': [ { id: 4, name: 'd' } ]
+}
+  */
 ```
 
 ## Concatinate the value from Array of objects to Key value pair
@@ -74,6 +101,14 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
   }
   return accumulator;
 }, []);
+
+/* Output:
+[ { key: 1, value: 'a, e' },
+  { key: 2, value: 'b, f' },
+  { key: 3, value: 'c, g' },
+  { key: 4, value: 'd' }
+]
+*/
 ```
 
 ---
