@@ -35,12 +35,10 @@ ngOnChanges(changes: SimpleChanges) {
 > ### Create Function Mapping from service for component
 
 ```ts
-mappedFunctionName: (arg_01: string) => boolean;
+mappedFunctionName: (arg_01: string, arg: number) => boolean;
 
 // Setup mapping in constructor
-constructor(
-  private myService: MyService,
-) {
+constructor( private myService: MyService ) {
   this.mappedFunctionName = myService.targetFunctionName;
 }
 ```
@@ -100,39 +98,6 @@ constructor(
 <ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
 
 <ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
-```
-
----
-> ### Declare function pointer
-
-```ts
-myFunction: (arg: number) => string;
-
-constructor(
-  private myService: MService
-) {
-  this.myFunction = this.myService.myFuntion;
-}
-```
-
----
-> ### Get Store data from effect
-
-```ts
-myData$ = this.action$.ofType( myAction.Type )
-.pipe(
-  map((action: store.action) => action.payload),
-  withLatestFrom(this.store.select(getData))
-  switchMap(([lastSelected, allData]) => {
-    return of(new store.action)
-  })
-);
-
-constructor(
-  private myService: MService
-) {
-  this.myFunction = this.myService.myFuntion;
-}
 ```
 
 ---
