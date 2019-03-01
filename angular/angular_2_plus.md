@@ -136,9 +136,15 @@ constructor(
 ```
 
 ---
-> ### Reactive Form Control
+> ### Track By Async Element
 
+```html
+  <div *ngFor="let item of items | async; trackby: trackByUniqueKey " ></div>
+```
 
 ```ts
+class MyComponent {
+  trackByUniqueKey = (idx, element) => element.uniqueKey;
+}
 ```
 
