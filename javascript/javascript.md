@@ -124,10 +124,12 @@ Set only allow unique value
 
 ```js
 var myArray = [1,2,3,3,4,4,5,5];
-var uniqueArray = new Set([...myArray]);
+var uniqueSet = new Set([...myArray]);
+var uniqueArray = Array.from(uniqueSet);
 
 /* Output:
 Set { 1, 2, 3, 4, 5 }
+[1, 2, 3, 4, 5]
 */
 ```
 
