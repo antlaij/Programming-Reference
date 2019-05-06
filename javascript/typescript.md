@@ -66,3 +66,16 @@ Has Granted ReadOnly   :  true
 */
 
 ```
+
+## Create Function syntax
+
+```ts
+
+let findDuplicate = (key: string): number => {
+  return 0;
+}
+
+let findDuplicate = (key: string): number => {
+  return 0;
+}
+```
