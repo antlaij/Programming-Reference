@@ -90,6 +90,7 @@ run$ next => [----- combineLatest End   -----]
  * It is a one to one match in sequence
  * when any observable emit a value
  * then subscriber will gets the latest combined value in an Array [first, second] for the sam sequence
+ * Output is always return any array of all the zip observables
  */
 const zip$ = zip(alphabets$, numbers$).pipe(catchError(error => of(error)));
 const zipTestCase$ = concatAll$('zip', zip$);
