@@ -133,3 +133,61 @@ Set { 1, 2, 3, 4, 5 }
 */
 ```
 
+
+## Count Multipule distinct object from an Array
+```js
+var counterObject = [
+  { name: 'name 1', prop01Name: 'a', prop02Name: 'a' },
+  { name: 'name 1', prop01Name: 'e', prop02Name: 'b' },
+  { name: 'name 1', prop01Name: 'e', prop02Name: 'c' },
+  { name: 'name 1', prop01Name: 'b', prop02Name: 'c' },
+  { name: 'name 2', prop01Name: 'b', prop02Name: 'a' },
+  { name: 'name 2', prop01Name: 'f', prop02Name: 'a' },
+  { name: 'name 3', prop01Name: 'c', prop02Name: 'b' },
+  { name: 'name 3', prop01Name: 'c', prop02Name: 'b' },
+  { name: 'name 3', prop01Name: 'g', prop02Name: 'c' },
+  { name: 'name 3', prop01Name: 'g', prop02Name: 'c' },
+  { name: 'name 3', prop01Name: 'g', prop02Name: 'e' },
+  { name: 'name 4', prop01Name: 'd', prop02Name: 'a' }
+].reduce((accumulator, currentValue) => {
+  let groupKey = currentValue.name;
+  let prop01NameCountKey = currentValue.name + currentValue.prop01Name;
+  let prop02NameCountKey = currentValue.name + currentValue.prop02Name;
+  if(!accumulator.hasOwnProperty(groupKey)){
+    accumulator[groupKey] = {name: groupKey, securityKeys: new Set([]), portfolioKeys: new Set([])};
+  }
+	accumulator[groupKey].securityKeys.add(prop01NameCountKey);
+	accumulator[groupKey].securityKeyCount = accumulator[groupKey].securityKeys.size;
+	accumulator[groupKey].portfolioKeys.add(prop02NameCountKey);
+	accumulator[groupKey].portfolioKeyCount = accumulator[groupKey].portfolioKeys.size;
+  return { ...accumulator };
+	}, {});
+var finalOutput = Object.keys(counterObject).map(x => ({name: x, securityCount: counterObject[x].securityKeys.size, portfolioCount: counterObject[x].portfolioKeys.size}));
+console.log(JSON.stringify(counterObject, null, 2));
+console.log(JSON.stringify(finalOutput, null, 2));
+/* Output
+[
+  {
+    "name": "name 1",
+    "securityCount": 3,
+    "portfolioCount": 3
+  },
+  {
+    "name": "name 2",
+    "securityCount": 2,
+    "portfolioCount": 1
+  },
+  {
+    "name": "name 3",
+    "securityCount": 2,
+    "portfolioCount": 3
+  },
+  {
+    "name": "name 4",
+    "securityCount": 1,
+    "portfolioCount": 1
+  }
+]
+*/
+```
+
