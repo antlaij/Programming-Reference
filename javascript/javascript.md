@@ -154,15 +154,15 @@ var counterObject = [
   let prop01NameCountKey = currentValue.name + currentValue.prop01Name;
   let prop02NameCountKey = currentValue.name + currentValue.prop02Name;
   if(!accumulator.hasOwnProperty(groupKey)){
-    accumulator[groupKey] = {name: groupKey, securityKeys: new Set([]), portfolioKeys: new Set([])};
+    accumulator[groupKey] = {name: groupKey, prop01Keys: new Set([]), prop02Keys: new Set([])};
   }
-	accumulator[groupKey].securityKeys.add(prop01NameCountKey);
-	accumulator[groupKey].securityKeyCount = accumulator[groupKey].securityKeys.size;
-	accumulator[groupKey].portfolioKeys.add(prop02NameCountKey);
-	accumulator[groupKey].portfolioKeyCount = accumulator[groupKey].portfolioKeys.size;
+	accumulator[groupKey].prop01Keys.add(prop01NameCountKey);
+	accumulator[groupKey].securityKeyCount = accumulator[groupKey].prop01Keys.size;
+	accumulator[groupKey].prop02Keys.add(prop02NameCountKey);
+	accumulator[groupKey].portfolioKeyCount = accumulator[groupKey].prop02Keys.size;
   return { ...accumulator };
 	}, {});
-var finalOutput = Object.keys(counterObject).map(x => ({name: x, securityCount: counterObject[x].securityKeys.size, portfolioCount: counterObject[x].portfolioKeys.size}));
+var finalOutput = Object.keys(counterObject).map(x => ({name: x, securityCount: counterObject[x].prop01Keys.size, portfolioCount: counterObject[x].prop02Keys.size}));
 console.log(JSON.stringify(counterObject, null, 2));
 console.log(JSON.stringify(finalOutput, null, 2));
 /* Output
