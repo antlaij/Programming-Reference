@@ -1,4 +1,4 @@
-# Angular 4 Reference
+# Angular 2+ Reference
 
 ---
 > ### Debug angular 2+
