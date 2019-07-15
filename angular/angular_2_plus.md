@@ -123,3 +123,47 @@ onResize(event) {
 }
 ```
 
+
+> ### Component State Handle
+
+```html
+<ng-container [ngSwitch]="componentState">
+  <ng-container *ngSwitchCase="componentStateEnum.standby">
+    <ng-container *ngTemplateOutlet="componentInProgress"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="componentStateEnum.inProgress">
+    <ng-container *ngTemplateOutlet="componentInProgress"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="componentStateEnum.completed">
+    <ng-container *ngTemplateOutlet="componentCompleted"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="componentStateEnum.error">
+    <ng-container *ngTemplateOutlet="componentError"></ng-container>
+  </ng-container>
+</ng-container>
+
+
+<ng-template #componentInProgress>
+  <div>
+    {{statusMessage}}
+  </div>
+</ng-template>
+
+<ng-template #componentError>
+  <div>No data found</div>
+</ng-template>
+
+<ng-template #componentCompleted>
+</ng-template>
+```
+
+```ts
+export enum componentStateEnum {
+  standby,
+  confirming,
+  inProgress,
+  error,
+  completed
+}
+```
+
