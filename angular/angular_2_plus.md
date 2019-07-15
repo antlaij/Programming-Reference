@@ -113,3 +113,13 @@ class MyComponent {
 }
 ```
 
+---
+> ### Detect window resize
+
+```ts
+@HostListener('window:resize', ['$event'])
+onResize(event) {
+  let screenWidth = document.getElementById("header").offsetWidth;
+}
+```
+
