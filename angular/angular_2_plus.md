@@ -123,7 +123,7 @@ onResize(event) {
 }
 ```
 
-
+---
 > ### Component State Handle
 
 ```html
@@ -165,5 +165,20 @@ export enum componentStateEnum {
   error,
   completed
 }
+```
+
+---
+> ### Rxjs - throw Error within the pipe
+
+```ts
+myObservable$
+.pipe(
+  // If saving with error then throw an error
+  mergeMap((data: any) => (data === 'is not right') ? throwError(data) : of(data))
+)
+.subscribe(
+  this.whenSuccessful,
+  this.whenFailed
+);
 ```
 
