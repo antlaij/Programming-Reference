@@ -227,3 +227,29 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
   }
 }
 ```
+
+---
+> ### AgGrid - Boolean Cell editor
+
+```ts
+import { Component } from '@angular/core';
+import { INoRowsOverlayAngularComp } from "ag-grid-angular";
+
+@Component({
+  selector: 'app-gender-renderer',
+  template: `<input type='checkbox'  [checked]="params.value" (change)="onChange($event)" />`
+})
+export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
+
+  params: any;
+
+  agInit(params): void {
+    this.params = params;
+  }
+
+  public onChange(event) {
+    this.params.data[this.params.colDef.field] = event.currentTarget.checked;
+  }
+}
+```
+
