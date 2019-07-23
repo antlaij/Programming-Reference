@@ -133,7 +133,7 @@ Set { 1, 2, 3, 4, 5 }
 */
 ```
 
-
+---
 ## Count Multipule distinct object from an Array
 ```js
 var counterObject = [
@@ -191,6 +191,7 @@ console.log(JSON.stringify(finalOutput, null, 2));
 */
 
 
+---
 ## Check object is empty or not
 ```js
   isEmpty(inputObject) {
