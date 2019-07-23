@@ -189,5 +189,32 @@ console.log(JSON.stringify(finalOutput, null, 2));
   }
 ]
 */
+
+
+## Check object is empty or not
+```js
+  isEmpty(inputObject) {
+    if (inputObject === null || inputObject === undefined) {
+      return true;
+    }
+    // Check of empty string
+    if (typeof inputObject === 'string' && inputObject.length <= 0) {
+      return true;
+    }
+    // Check of empty array
+    if (Array.isArray(inputObject) && inputObject.length <= 0) {
+      return true;
+    }
+    // Check of Date object
+    if (inputObject instanceof Date) {
+      return false;
+    }
+    // Check of empty object
+    if (typeof inputObject === 'object' && Object.keys(inputObject).length <= 0) {
+      return true;
+    }
+    return false;
+  }
+```
 ```
 
