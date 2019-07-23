@@ -168,7 +168,7 @@ export enum componentStateEnum {
 ```
 
 ---
-> ### AgGrid - Boolean Cell editor
+> ### Rxjs - throw Error within the pipe
 
 ```ts
 myObservable$
@@ -183,7 +183,7 @@ myObservable$
 ```
 
 ---
-> ### Rxjs - throw Error within the pipe
+> ### AgGrid - Boolean Cell editor
 
 ```ts
 import { Component, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
