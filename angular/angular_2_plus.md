@@ -168,7 +168,7 @@ export enum componentStateEnum {
 ```
 
 ---
-> ### Rxjs - throw Error within the pipe
+> ### AgGrid - Boolean Cell editor
 
 ```ts
 myObservable$
@@ -182,3 +182,48 @@ myObservable$
 );
 ```
 
+---
+> ### Rxjs - throw Error within the pipe
+
+```ts
+import { Component, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { INoRowsOverlayAngularComp, ICellEditorAngularComp } from "ag-grid-angular";
+import { ICellEditorParams } from 'ag-grid-community';
+
+@Component({
+  selector: 'app-gender-renderer',
+  template: `<input #container type='checkbox' [checked]="params.value" (change)="onChange($event)" />`
+})
+export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterViewInit {
+
+  params: any;
+  returnValue: boolean;
+
+  private localData: any;
+
+  @ViewChild('container', { read: ViewContainerRef }) container: any;
+
+  // dont use afterGuiAttached for post gui events - hook into ngAfterViewInit instead for this
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.container.element.nativeElement.focus();
+      this.container.element.nativeElement.click();
+    });
+  }
+
+  agInit(params): void {
+    this.params = params;
+    this.localData = params.node.data;
+    this.returnValue = this.localData[params.key];
+  }
+
+  getValue(): any {
+    return this.returnValue;
+  }
+
+  public onChange(event) {
+    this.returnValue = !this.returnValue;
+    this.params.api.stopEditing();
+  }
+}
+```
