@@ -229,7 +229,7 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
 ```
 
 ---
-> ### AgGrid - Boolean Cell editor
+> ### AgGrid - Boolean Cell Renderer
 
 ```ts
 import { Component } from '@angular/core';
