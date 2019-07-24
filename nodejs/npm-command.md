@@ -5,12 +5,14 @@ npm install imagemin-optipng
 npm install imagemin-pngquant
 ```
 
+---
 # Install jshint to check js file with problem
 
 ```npm
 npm install jshint -g
 ```
 
+---
 # check npm install location
 
 ```npm
