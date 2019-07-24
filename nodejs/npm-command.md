@@ -21,8 +21,15 @@ npm install xml2json --save
 npm install xml2js --save
 ```
 
+---
 ## Check where is npm package installed for global
 
 ```npm
 npm root -g
+```
+
+---
+## Git Version update
+```npm
+npm version patch -m "upgrade to version"
 ```
