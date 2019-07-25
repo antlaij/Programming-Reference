@@ -12,11 +12,5 @@ myData$ = this.action$.ofType( myAction.Type )
     return of(new store.action)
   })
 );
-
-constructor(
-  private myService: MService
-) {
-  this.myFunction = this.myService.myFuntion;
-}
 ```
 
