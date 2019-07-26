@@ -1,4 +1,4 @@
-# Angular 2+ Reference
+# Angular ag Grid
 
 ---
 > ### AgGrid - Boolean Cell editor
