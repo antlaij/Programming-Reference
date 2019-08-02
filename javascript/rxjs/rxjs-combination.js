@@ -1,6 +1,6 @@
 
 const { forkJoin, interval, of, concat, combineLatest, zip, merge, fromArray } = require('rxjs');
-const { map, take, concatAll, catchError, groupBy, concatMap } = require('rxjs/operators');
+const { map, take, concatAll, catchError, groupBy, concatMap, combineAll } = require('rxjs/operators');
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -51,6 +51,65 @@ run$ next => [----- forkJoin End   -----]
 
 /**
  * Work like 'OR'
+ * When any observable emit a value
+ * then subscriber will gets the  latest combined value in an Array [first, second]
+ */
+const combineAll$ = of(alphabets$, numbers$, alphabetsUpper$).pipe(combineAll());
+const combineAllTestCase$ = concatAll$('combineAll', combineAll$);
+/*
+Marble Diagram:
+alphabets$       => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
+numbers$         => |--0--1--2--3--4--5--6--7--8--9|
+alphabetsUpper$  => |----A----B----C----D----E----F----G----H----I----J----K----L----M|
+output           => |----bc-dde-f-ggh-i-jjk-llmm--m----m----m----m----m----m----m----m|
+                         00 122 2 244 4 566 6778  9    9    9    9    9    9    9    9
+                         AA AAA B BBB B DDD DEEE  E    G    H    H    J    K    L    M
+Same Time:
+                          c   e f  g  i j   l     m                       
+                          1   2 3  4  5 5   7     9                       
+                          A   B B  C  C D   D     f                       
+*/
+/*
+Output
+run$ next => [----- combineAll Start   -----]
+run$ next => b,0,A
+run$ next => c,0,A
+run$ next => c,1,A
+run$ next => d,1,A
+run$ next => d,2,A
+run$ next => d,2,B
+run$ next => e,2,B
+run$ next => e,3,B
+run$ next => f,3,B
+run$ next => f,3,C
+run$ next => g,3,C
+run$ next => g,4,C
+run$ next => h,4,C
+run$ next => h,5,C
+run$ next => i,5,C
+run$ next => i,5,D
+run$ next => j,5,D
+run$ next => j,6,D
+run$ next => k,6,D
+run$ next => k,7,D
+run$ next => k,7,E
+run$ next => l,7,E
+run$ next => m,7,E
+run$ next => m,8,E
+run$ next => m,8,F
+run$ next => m,9,F
+run$ next => m,9,G
+run$ next => m,9,H
+run$ next => m,9,I
+run$ next => m,9,J
+run$ next => m,9,K
+run$ next => m,9,L
+run$ next => m,9,M
+run$ next => [----- combineAll End   -----]
+*/
+
+/**
+ * Source Obserable has to compleate. Work like 'OR'
  * When any observable emit a value
  * then subscriber will gets the  latest combined value in an Array [first, second]
  */
@@ -225,6 +284,7 @@ run$ next => [----- merge End   -----]
 const run$ = concat(
   forkJoinTestCase$,
   combineLatestTestCase$,
+  combineAllTestCase$,
   zipTestCase$,
   concatTestCase$,
   mergeTestCase$,
