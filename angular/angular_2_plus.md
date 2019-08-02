@@ -212,7 +212,7 @@ npm pack
 ```
 #### Install Library from tgz file
 ```cmd
-npm install ./dist/module-lib/util-lib-0.0.1.tgz
+npm install ./dist/module-lib/module-lib-0.0.1.tgz
 ```
 
 
