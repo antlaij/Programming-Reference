@@ -182,3 +182,37 @@ myObservable$
 );
 ```
 
+---
+> ### Setup Angular Library with testing application
+
+#### Create Empty Workspace
+```cmd
+ng new ng-module-lib --create-application=false
+```
+
+#### Generate library
+```cmd
+cd ng-module-lib
+ng generate library module-lib --prefix=lib
+```
+#### Generate Test Application
+```cmd
+ng generate application module-lib-tester
+```
+
+#### Building, Serving, and Testing
+```cmd
+ng build module-lib
+ng build module-lib-tester --prod
+```
+#### Packaging Our Library 
+```cmd
+cd dist/module-lib
+npm pack
+```
+#### Install Library from tgz file
+```cmd
+npm install ./dist/module-lib/util-lib-0.0.1.tgz
+```
+
+
