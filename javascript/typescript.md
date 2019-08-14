@@ -79,3 +79,19 @@ let findDuplicate = (key: string): number => {
   return 0;
 }
 ```
+
+## Check if object in an ENUM
+
+```ts
+
+export enum myEnum {
+  one = 'one',
+  two = 'two',
+  three = 'three',
+  four = 'four',
+}
+
+if('three' in myEnum) {
+}
+
+```
