@@ -273,9 +273,19 @@ git log --since="2017-03-19" --author="Jonathan Speevak"
 ```
 
 # git log for change.md
-
+### Color options
+normal
+black
+red
+green
+yellow
+blue
+magenta
+cyan
+white
 ```git
 git log --author="Anthony Lai" --since="2016-06-28 00:00:00" --pretty=format:"- [ %ci ] %s %N"
+git log --since="2019-08-20 00:00:00" --pretty=format:"* %Cgreen[ %ci ]%Creset **core** - %s %N ([%h](https://github.com/%H)) by %C(yellow)( %an )" | grep -v  -e "Merge pull request" -e "Merge branch"
 ```
 
 # Search commited code
