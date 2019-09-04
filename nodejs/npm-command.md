@@ -35,3 +35,10 @@ npm root -g
 ```npm
 npm version patch -m "upgrade to version"
 ```
+
+---
+## List existing package
+```npm
+npm list
+npm list --depth=0
+```
