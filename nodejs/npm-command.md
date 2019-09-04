@@ -24,6 +24,13 @@ npm install xml2js --save
 ```
 
 ---
+# install version between
+
+```npm
+npm install typescript@">=3.1.1 <3.2"
+```
+
+---
 ## Check where is npm package installed for global
 
 ```npm
