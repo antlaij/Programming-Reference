@@ -169,3 +169,11 @@ import * as ProcessSelector from '../selectors/my.selector';
     );
 ```
 
+
+---
+> ### When dispatch an action then got the following error in console
+ERROR TypeError: app_subscriber_shared_stores_subscription_process_store__WEBPACK_IMPORTED_MODULE_9__.UpdateSubscrpitions is not a constructor
+
+Solution: just need to restart ng serve then the error will goes away
+
+
