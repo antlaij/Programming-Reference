@@ -1,3 +1,10 @@
+# List the current npm configuration
+
+```npm
+npm config ls -l
+```
+
+
 ```npm
 npm install imagemin-gifsicle
 npm install imagemin-jpegtran
