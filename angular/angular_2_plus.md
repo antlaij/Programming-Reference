@@ -289,5 +289,25 @@ export const libraryRoutes: Routes = [
 export class LibraryRoutingModule {}
 ```
 
+#### Create Unknown number of observable for one subscription
+```ts
 
+    let listOfObservables: Observable<any>[] = [];
+    listOfObservables.push(this.http.get<any>('url1'));
+    listOfObservables.push(this.http.get<any>('url2'));
+    listOfObservables.push(this.http.get<any>('url3'));
+    listOfObservables.push(this.http.get<any>('url4'));
+    listOfObservables.push(this.http.get<any>('url5'));
+
+    let allObservable$ = Observable.forkJoin(...listOfObservables);
+    allObservable$
+    .pipe(
+      takeUntil(this.ngUnsubscribe)
+    )
+    .subscribe(
+      this.whenAllObservablesSuccessful,
+      this.whenAllObservablesFail,
+      this.whenAllObservablesCompleted
+    );
+```
 
