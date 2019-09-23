@@ -311,3 +311,19 @@ export class LibraryRoutingModule {}
     );
 ```
 
+#### Access multiple html elements within ngFor
+```html
+<div *ngFor="let item of items">
+  <div #itemList>{{item}}</div>
+</div>
+```
+```ts
+@ViewChildren('itemList') itemList: QueryList<ElementRef>;
+
+ngAfterViewChecked() {
+  this.itemList.forEach(ele => {
+    ele.nativeElement.scrollTop = ele.nativeElement.scrollHeight;
+  });
+  }
+```
+
