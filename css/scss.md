@@ -25,3 +25,45 @@ $hover-color: #f0f1bb;
   --custom-box-shadow: #{$custom-box-shadow};
 }
 ```
+
+
+# Use css variable in scss with media query
+
+```css
+// The Sass Way
+:root {
+  --fs-b-lrg: 1rem;
+  --fs-h1-lrg: 3rem;
+  --fs-h2-lrg: 1.5rem;  
+  
+  --fs-b-sm: .8rem;
+  --fs-h1-sm: 2rem;
+  --fs-h2-sm: 1.2rem;
+}
+
+h1 {
+  font-size: var(--fs-h1-sm);
+}
+
+h2 {
+  font-size: var(--fs-h2-sm);
+}
+
+body {
+  font-size: var(--fs-b-sm);
+}
+
+@media (min-width: 800px) {
+  h1 {
+    font-size: var(--fs-h1-lrg);
+  }
+
+  h2 {
+    font-size: var(--fs-h2-lrg);
+  }
+
+  body {
+    font-size: var(--fs-b-lrg);
+  }
+}
+```
