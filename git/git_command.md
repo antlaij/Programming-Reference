@@ -218,9 +218,9 @@ git reset --hard HEAD
 git reset --hard origin/my-rogers-al
 ```
 
-## Git command
+# Git command
 
-# list all config
+## list all config
 
 ```git
 git config --list
@@ -262,7 +262,7 @@ git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/u
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 ```
 
-# For MAC
+## For MAC
 
 ```git
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
@@ -272,7 +272,7 @@ git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/u
 git log --since="2017-03-19" --author="Jonathan Speevak"
 ```
 
-# git log for change.md
+## git log for change.md
 ### Color options
 normal
 black
@@ -288,14 +288,14 @@ git log --author="Anthony Lai" --since="2016-06-28 00:00:00" --pretty=format:"- 
 git log --since="2019-08-20 00:00:00" --pretty=format:"* %Cgreen[ %ci ]%Creset **core** - %s %N ([%h](https://github.com/%H)) by %C(yellow)( %an )" | grep -v  -e "Merge pull request" -e "Merge branch"
 ```
 
-# Search commited code
+## Search commited code
 
 ```git
 git log -S '/forgotPassword' --source --all
 git log -S 'securityToken' --source --all
 ```
 
-#git compare branch
+## git compare branch
 
 ```git
 git branch
@@ -303,7 +303,7 @@ git diff internetcalculator..master
 git diff internetcalculator..april8Production
 ```
 
-# git merge (development) to master
+## git merge (development) to master
 
 ```git
 git pull origin development
@@ -316,7 +316,7 @@ git push origin master
 git merge --abort
 ```
 
-# git merge pulloutbar to internetcalculator
+## git merge pulloutbar to internetcalculator
 
 ```git
 git checkout pulloutbar
@@ -327,7 +327,7 @@ git merge pulloutbar
 git push origin internetcalculator
 ```
 
-# git rebase
+## git rebase
 
 ```git
 git checkout internetcalculator
@@ -342,7 +342,7 @@ git rebase master
 git push origin internetcalculator
 ```
 
-# switch back to development
+## switch back to development
 
 ```git
 git checkout development
@@ -352,7 +352,7 @@ git pull origin development
 git push origin development
 ```
 
-# switch back to internetcalculator
+## switch back to internetcalculator
 
 ```git
 git checkout internetcalculator
@@ -362,7 +362,7 @@ git pull origin internetcalculator
 git push origin internetcalculator
 ```
 
-# switch back to april8Production
+## switch back to april8Production
 
 ```git
 git checkout april8Production
@@ -372,26 +372,26 @@ git push origin april8Production
 git pull origin april8Production
 ```
 
-# Create and switch to a new branch
+## Create and switch to a new branch
 
 ```git
 git checkout -b newBranchName
 ```
 
-# switch to a new branch
+## switch to a new branch
 
 ```git
 git checkout pulloutbar
 ```
 
-# Removing a Tag
+## Removing a Tag
 
 ```git
 git tag -d removetag
 git push origin :refs/tags/removetag
 ```
 
-# Create Tag for Module
+## Create Tag for Module
 
 ```git
 rimraf bower_components/
@@ -405,7 +405,7 @@ git tag
 git push  origin --tags
 ```
 
-# Generat ssh key (from git bash):
+## Generat ssh key (from git bash):
 
 1.
 <pre>
@@ -445,7 +445,7 @@ The key's randomart image is:
 
 SSH_ENV=$HOME/.ssh/environment
 
-# start the ssh-agent
+## start the ssh-agent
 
 ```git
 function start_agent {
@@ -470,14 +470,14 @@ fi
 
 7. Close GitBash then Reopen GitBash
 
-# Git global setup:
+## Git global setup:
 
 ```git
 git config --global user.name "Anthony Lai"
 git config --global user.email "anthony.lai@mobilelive.ca"
 ```
 
-# Create new Repository
+## Create new Repository
 
 ```git
 mkdir ute-reset-voicemail-password
@@ -492,7 +492,7 @@ git push -u origin master
 
 
 
-# Existing Git Repo?
+## Existing Git Repo?
 
 ```git
 cd existing_git_repo
@@ -504,7 +504,7 @@ git push -u origin master
 
 
 
-# Work on your fork
+## Work on your fork
 
 ```git
 git branch -r
@@ -525,7 +525,7 @@ git remote add upstream git@mydomain.com:ute-rogers/foundation-search-and-suppor
 
 
 
-# for long filename
+## for long filename
 
 ```git
 git config --system core.longpaths true
@@ -543,7 +543,7 @@ git commit -m "initial commit"
 git push -u origin master
 ```
 
-# Git config file
+## Git config file
 
 ```git
 [http]
@@ -565,7 +565,7 @@ git push -u origin master
 
 ---
 
-# Create a new branch and tracking develop branch
+## Create a new branch and tracking develop branch
 
 ```bash
 git checkout -b new-branch-name --track origin/develop
