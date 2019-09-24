@@ -562,3 +562,11 @@ git push -u origin master
     changed = red bold
     untracked = magenta bold
 ```
+
+---
+
+# Create a new branch and tracking develop branch
+
+```bash
+git checkout -b new-branch-name --track origin/develop
+```
