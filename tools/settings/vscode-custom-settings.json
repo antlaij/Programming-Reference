@@ -61,8 +61,14 @@
   "editor.minimap.enabled": true,
   "editor.wordWrap": "on",
   "workbench.colorCustomizations": {
-    "editor.findMatchHighlightBackground": "#7700ff"
+    "editor.lineHighlightBackground": "#00423d",
+    "editor.findMatchHighlightBackground": "#7700ff",
+    "editor.findMatchHighlightBackground":"#5222aa",
+    "editor.findRangeHighlightBackground":"#ff00ff",
+    "editorBracketMatch.background":"#4e0dbe",
+    "editorBracketMatch.border":"#00a81c"
   },
+  "editor.renderWhitespace": "all",
   "[typescript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
