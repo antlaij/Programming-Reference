@@ -572,7 +572,7 @@ git checkout -b new-branch-name --track origin/develop
 ```
 
 ---
-# Create a new remote branch on push --set-upstream
+## Create a new remote branch on push --set-upstream
 ```bash
 git push -u origin localBranch:remoteBranchToBeCreated
 ```
