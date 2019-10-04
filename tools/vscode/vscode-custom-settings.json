@@ -62,8 +62,7 @@
   "editor.wordWrap": "on",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#00423d",
-    "editor.findMatchHighlightBackground": "#7700ff",
-    "editor.findMatchHighlightBackground":"#5222aa",
+    "editor.findMatchHighlightBackground":"#7700ff",
     "editor.findRangeHighlightBackground":"#ff00ff",
     "editorBracketMatch.background":"#4e0dbe",
     "editorBracketMatch.border":"#00a81c"
