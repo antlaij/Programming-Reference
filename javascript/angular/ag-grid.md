@@ -71,3 +71,10 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 }
 ```
 
+---
+> ### Reset Server Side data
+
+```ts
+this.gridApi.purgeServerSideCache(route);
+```
+
