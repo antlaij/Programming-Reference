@@ -576,3 +576,10 @@ git checkout -b new-branch-name --track origin/develop
 ```bash
 git push -u origin localBranch:remoteBranchToBeCreated
 ```
+## Filename too long
+## Error Message: error: unable to create file src/123.ts: Filename too long
+```bash
+git config --system core.longpaths true
+git config core.longpaths true
+```
+
