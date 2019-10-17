@@ -78,3 +78,12 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 this.gridApi.purgeServerSideCache(route);
 ```
 
+---
+> ### Get Row Count
+
+```ts
+  get totalNumberOfRows(): number {
+    return this.gridApi ? this.gridApi.getDisplayedRowCount() : 0;
+  }
+```
+
