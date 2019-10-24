@@ -38,6 +38,7 @@ npm install ./dist/module-lib/module-lib-0.0.1.tgz
 ```ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LibModule } from '@mylibraryreference/nameOfThePackage';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -48,9 +49,15 @@ const appRoutes: Routes = [
                 path: 'landing',
                 loadChildren: '../app.module#LandingModule'
             },
+            // This works in dev
             {
                 path: 'eqs',
                 loadChildren: () => LibModule
+            },
+            // This for AOT build
+            {
+                path: 'mylibraryroute',
+                loadChildren: '@mylibraryreference/nameOfThePackage#libraryModule'
             },
         ]
     },
