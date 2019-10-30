@@ -39,7 +39,7 @@ const forkJoinTestCase$ = concatAll$('forkJoin', forkJoin$);
 Marble Diagram:
 alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$   => |--0--1--2--3--4--5--6--7--8--9|
----
+
 output     => |-----------------------------m|
                                             9
 */
@@ -62,7 +62,7 @@ Marble Diagram:
 alphabets$       => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$         => |--0--1--2--3--4--5--6--7--8--9|
 alphabetsUpper$  => |----A----B----C----D----E----F----G----H----I----J----K----L----M|
----
+
 output           => |----bc-dde-f-ggh-i-jjk-llmm--m----m----m----m----m----m----m----m|
                          00 122 2 244 4 566 6778  9    9    9    9    9    9    9    9
                          AA AAA B BBB B DDD DEEE  E    G    H    H    J    K    L    M
@@ -122,6 +122,7 @@ Marble Diagram:
 alphabets$       => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$         => |--0--1--2--3--4--5--6--7--8--9|
 alphabetsUpper$  => |----A----B----C----D----E----F----G----H----I----J----K----L----M|
+
 output           => |----bb-dde-f-ggh-i-jjk-llmm--m----m----m----m----m----m----m----m|
                          01 122 3 344 4 566 6778  9    9    9    9    9    9    9    9
                          AA AAA B BBB B DDD DEEE  E    G    H    H    J    K    L    M
@@ -184,6 +185,7 @@ Marble Diagram:
 alphabets$       => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$         => |--0--1--2--3--4--5--6--7--8--9|
 alphabetsUpper$  => |----A----B----C----D----E----F----G----H----I----J----K----L----M|
+
 output           => |----a----b----c----d----e----f----g----h----i----j|
                          0    1    2    3    4    5    6    7    8    9
                     |----A----B----C----D----E----F----G----H----I-   J|
@@ -213,6 +215,7 @@ const concatTestCase$ = concatAll$('concat', concat$);
 Marble Diagram:
 alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$   => |--0--1--2--3--4--5--6--7--8--9|
+
 output     => |-a-b-c-d-e-f-g-h-i-j-k-l-m0123456789|
 */
 /*
@@ -250,6 +253,7 @@ const mergeTestCase$ = concatAll$('merge', merge$);
 Marble Diagram:
 alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$   => |--0--1--2--3--4--5--6--7--8--9|
+
 output     => |-a0b-c-d2e-f-g4h-i-j6k-l-m8--9|
                     1     3     5     7
 */
