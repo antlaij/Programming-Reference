@@ -6,19 +6,19 @@ const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', '
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const alphabetsUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-const alphabets$ = interval(20).pipe(map(x => alphabets[x]),take(13));
+const alphabets$ = interval(2000).pipe(map(x => alphabets[x]),take(13));
 /*
 Marble Diagram:
 |-a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t-u-v-w-x-y-z|
 */
 
-const numbers$ = interval(30).pipe(map(x => numbers[x]),take(10));
+const numbers$ = interval(3000).pipe(map(x => numbers[x]),take(10));
 /*
 Marble Diagram:
 |--0--1--2--3--4--5--6--7--8--9|
 */
 
-const alphabetsUpper$ = interval(50).pipe(map(x => alphabetsUpper[x]),take(13));
+const alphabetsUpper$ = interval(5000).pipe(map(x => alphabetsUpper[x]),take(13));
 /*
 Marble Diagram:
 |----A----B----C----D----E----F----G----H----I----J----K----L----M----N----O----P----Q----R----S----T----U----V----W----X----Y----Z|
@@ -79,20 +79,20 @@ run$ next => d,1,A
 run$ next => d,2,A
 run$ next => d,2,B
 run$ next => e,2,B
-run$ next => e,3,B
+run$ next => f,2,B
 run$ next => f,3,B
-run$ next => f,3,C
+run$ next => g,3,B
 run$ next => g,3,C
 run$ next => g,4,C
 run$ next => h,4,C
-run$ next => h,5,C
+run$ next => i,4,C
 run$ next => i,5,C
 run$ next => i,5,D
 run$ next => j,5,D
 run$ next => j,6,D
 run$ next => k,6,D
-run$ next => k,7,D
-run$ next => k,7,E
+run$ next => l,6,D
+run$ next => l,7,D
 run$ next => l,7,E
 run$ next => m,7,E
 run$ next => m,8,E
@@ -121,7 +121,7 @@ alphabets$       => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
 numbers$         => |--0--1--2--3--4--5--6--7--8--9|
 alphabetsUpper$  => |----A----B----C----D----E----F----G----H----I----J----K----L----M|
 output           => |----bb-dde-f-ggh-i-jjk-llmm--m----m----m----m----m----m----m----m|
-                         01 122 2 244 4 566 6778  9    9    9    9    9    9    9    9
+                         01 122 3 344 4 566 6778  9    9    9    9    9    9    9    9
                          AA AAA B BBB B DDD DEEE  E    G    H    H    J    K    L    M
 Same Time:
                           c   e f  g  i j   l     m                       
@@ -135,25 +135,25 @@ run$ next => b,0,A
 run$ next => b,1,A
 run$ next => c,1,A
 run$ next => d,1,A
-run$ next => d,1,B
+run$ next => d,2,A
 run$ next => d,2,B
 run$ next => e,2,B
 run$ next => e,3,B
 run$ next => f,3,B
-run$ next => f,3,C
-run$ next => g,3,C
+run$ next => g,3,B
+run$ next => g,4,B
 run$ next => g,4,C
 run$ next => h,4,C
 run$ next => h,5,C
 run$ next => i,5,C
 run$ next => i,5,D
-run$ next => i,6,D
+run$ next => j,5,D
 run$ next => j,6,D
 run$ next => k,6,D
-run$ next => k,6,E
-run$ next => k,7,E
+run$ next => k,7,D
+run$ next => l,7,D
 run$ next => l,7,E
-run$ next => l,8,E
+run$ next => m,7,E
 run$ next => m,8,E
 run$ next => m,8,F
 run$ next => m,9,F
@@ -283,8 +283,8 @@ run$ next => [----- merge End   -----]
 
 const run$ = concat(
   forkJoinTestCase$,
-  combineLatestTestCase$,
   combineAllTestCase$,
+  combineLatestTestCase$,
   zipTestCase$,
   concatTestCase$,
   mergeTestCase$,
