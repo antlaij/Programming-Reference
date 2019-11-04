@@ -1,24 +1,24 @@
 
 const { forkJoin, interval, of, concat, combineLatest, zip, merge, fromArray } = require('rxjs');
-const { map, take, concatAll, catchError, groupBy, concatMap, combineAll } = require('rxjs/operators');
+const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll } = require('rxjs/operators');
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const alphabetsUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-const alphabets$ = interval(2000).pipe(map(x => alphabets[x]),take(13));
+const alphabets$ = interval(200).pipe(map(x => alphabets[x]),take(13));
 /*
 Marble Diagram:
 |-a-b-c-d-e-f-g-h-i-j-k-l-m-n-o-p-q-r-s-t-u-v-w-x-y-z|
 */
 
-const numbers$ = interval(3000).pipe(map(x => numbers[x]),take(10));
+const numbers$ = interval(300).pipe(map(x => numbers[x]),take(10));
 /*
 Marble Diagram:
 |--0--1--2--3--4--5--6--7--8--9|
 */
 
-const alphabetsUpper$ = interval(5000).pipe(map(x => alphabetsUpper[x]),take(13));
+const alphabetsUpper$ = interval(500).pipe(map(x => alphabetsUpper[x]),take(13));
 /*
 Marble Diagram:
 |----A----B----C----D----E----F----G----H----I----J----K----L----M----N----O----P----Q----R----S----T----U----V----W----X----Y----Z|
@@ -286,14 +286,85 @@ run$ next => 9
 run$ next => [----- merge End   -----]
 */
 
+const mergeAll$ = alphabets$.pipe(map(x => numbers$),mergeAll(),catchError(error => of(error)));
+const mergeAllTestCase$ = concatAll$('mergeAll', mergeAll$);
+/*
+Marble Diagram:
+alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
+numbers$   => |--0--1--2--3--4--5--6--7--8--9|
+
+output     => |-a0b-c-d2e-f-g4h-i-j6k-l-m8--9|
+                    1     3     5     7
+*/
+/*
+Output
+run$ next => [----- merge Start   -----]
+run$ next => a
+run$ next => 0
+run$ next => b
+run$ next => 1
+run$ next => c
+run$ next => d
+run$ next => 2
+run$ next => e
+run$ next => 3
+run$ next => f
+run$ next => g
+run$ next => 4
+run$ next => h
+run$ next => 5
+run$ next => i
+run$ next => j
+run$ next => 6
+run$ next => k
+run$ next => 7
+run$ next => l
+run$ next => m
+run$ next => 8
+run$ next => 9
+run$ next => [----- merge End   -----]
+*/
+
+const endWith$ = alphabets$.pipe(endWith(numbers), catchError(error => of(error)));
+const endWithTestCase$ = concatAll$('endWith', endWith$);
+/*
+Marble Diagram:
+alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
+numbers$   => |--0--1--2--3--4--5--6--7--8--9|
+
+output     => |-a0b-c-d2e-f-g4h-i-j6k-l-m8--9|
+                    1     3     5     7
+*/
+/*
+Output
+run$ next => [----- endWith Start   -----]
+run$ next => a
+run$ next => b
+run$ next => c
+run$ next => d
+run$ next => e
+run$ next => f
+run$ next => g
+run$ next => h
+run$ next => i
+run$ next => j
+run$ next => k
+run$ next => l
+run$ next => m
+run$ next => 0,1,2,3,4,5,6,7,8,9
+run$ next => [----- endWith End   -----]
+*/
+
 
 const run$ = concat(
-  forkJoinTestCase$,
-  combineAllTestCase$,
-  combineLatestTestCase$,
-  zipTestCase$,
-  concatTestCase$,
-  mergeTestCase$,
+  // forkJoinTestCase$,
+  // combineAllTestCase$,
+  // combineLatestTestCase$,
+  // zipTestCase$,
+  // concatTestCase$,
+  // mergeTestCase$,
+  mergeAllTestCase$,
+  // endWithTestCase$,
 ).pipe(catchError(error => of(error)));
 
 run$.subscribe(
