@@ -220,3 +220,25 @@ ngAfterViewChecked() {
   }
 ```
 
+#### Inject Service to a Model class
+```ts
+import { MyService, AnotherService } from "../services/local.service";
+
+export class MyModelClass {
+
+  private _changeEntities: { [key: string]: ChangeSetType };
+  private myService: MyService;
+  private anotherService: AnotherService;
+
+  constructor() {
+    this._changeEntities = {};
+    const injector = Injector.create([
+      { provide: MyService, deps: [] },
+      { provide: AnotherService, deps: [] }
+    ]);
+    this.myService = injector.get(MyService);
+    this.anotherService = injector.get(AnotherService);
+  }
+}
+```
+
