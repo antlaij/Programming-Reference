@@ -1,27 +1,10 @@
 /**
  * Usage:
-cd C:\Users\zk9wufn\ls\me\development\nodejs\automation\
-call C:\Users\zk9wufn\ls\me\development\batch\dos\cmd-start-node_8_12_0.bat
-
-node unit-test.js ./test-case/hudson-bay.json
-node unit-test.js ./test-case/subscription.json
-node unit-test.js ./test-case/subscription-bulk-edit.json
-node unit-test.js ./test-case/vendor.json
-node unit-test.js ./test-case/EQSSUB-2066.json
-node unit-test.js ./test-case/EQSSUB-2350.json
-node unit-test.js ./test-case/EQSSUB-2540.json
-node unit-test.js ./test-case/EQSSUB-1365.json
-node unit-test.js ./test-case/EQSSUB-3342.json
-node unit-test.js ./test-case/EQSSUB-4919.json
-node unit-test.js ./test-case/EQSSUB-4933.json
-node unit-test.js ./test-case/EQSSUB-4840.json
-
-
-cls && node unit-test.js ./test-case/RT-entitlements-trades-internal.json
-cls && node unit-test.js ./test-case/RT-entitlements-trades-external.json
-cls && node unit-test.js ./test-case/RT-ETF-MLI-APAC.json
-cls && node unit-test.js ./test-case/RT-Add-Report-Group.json
-cls && node unit-test.js ./test-case/RT-Global-search.json
+cls && node puppeteer.js ./test-case/RT-entitlements-trades-internal.json
+cls && node puppeteer.js ./test-case/RT-entitlements-trades-external.json
+cls && node puppeteer.js ./test-case/RT-ETF-MLI-APAC.json
+cls && node puppeteer.js ./test-case/RT-Add-Report-Group.json
+cls && node puppeteer.js ./test-case/RT-Global-search.json
  */
 
 const puppeteer = require('puppeteer');
@@ -158,45 +141,4 @@ async function executeAction(page, settings, actionItem, testName) {
   console.log('');
   return;
 }
-
-{
-  "name": "Global-Search",
-  "goto": "http://url",
-  "settings": {
-    "window": {
-      "width": 1920,
-      "height": 1080
-    },
-    "actionDelayTime": 100,
-    "delayBeforeClose": 3000
-  },
-  "action": [
-    {
-      "id": 0,
-      "groupId": 1234567890123,
-      "action": "click",
-      "waitForSelector": true,
-      "target": "~MainBtnClientManagement",
-      "capture": true,
-      "capturePrefix": "eqsSubscriber"
-    },
-    {
-      "id": 10,
-      "groupId": 1234567890123,
-      "action": "input",
-      "waitForSelector": true,
-      "target": "~MainHeaderSearchTextbox",
-      "inputValue": "hudson bay",
-      "inputDelay": 50,
-      "capture": true,
-      "capturePrefix": "Search for hudson bay"
-    }
-  ]
-}
-
-module.exports = {
-  elementMap: {
-    MainSearchTypeDropdown_User: `//*[@id="role-selection"]/option[text()="User"]`,
-  }
-};
 
