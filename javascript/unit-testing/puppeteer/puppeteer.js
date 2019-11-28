@@ -158,3 +158,45 @@ async function executeAction(page, settings, actionItem, testName) {
   console.log('');
   return;
 }
+
+{
+  "name": "Global-Search",
+  "goto": "http://url",
+  "settings": {
+    "window": {
+      "width": 1920,
+      "height": 1080
+    },
+    "actionDelayTime": 100,
+    "delayBeforeClose": 3000
+  },
+  "action": [
+    {
+      "id": 0,
+      "groupId": 1234567890123,
+      "action": "click",
+      "waitForSelector": true,
+      "target": "~MainBtnClientManagement",
+      "capture": true,
+      "capturePrefix": "eqsSubscriber"
+    },
+    {
+      "id": 10,
+      "groupId": 1234567890123,
+      "action": "input",
+      "waitForSelector": true,
+      "target": "~MainHeaderSearchTextbox",
+      "inputValue": "hudson bay",
+      "inputDelay": 50,
+      "capture": true,
+      "capturePrefix": "Search for hudson bay"
+    }
+  ]
+}
+
+module.exports = {
+  elementMap: {
+    MainSearchTypeDropdown_User: `//*[@id="role-selection"]/option[text()="User"]`,
+  }
+};
+
