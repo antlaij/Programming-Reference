@@ -111,3 +111,15 @@ if(Object.values(myEnum).includes('three'))) {
 }
 
 ```
+
+
+## Model which accept another model
+
+```ts
+export class ApiPagingResponse<TList> {
+  Items: Array<TList>;
+  StartIndex: number;
+  PageSize: number;
+  TotalNumberOfRecords: number;
+}
+```
