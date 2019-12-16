@@ -1,3 +1,8 @@
+## Add path to bash in .bashrc or .bash_profile
+```
+export PATH=$PATH:/c/Users/abcde/bin
+```
+
 ```bash
 # Function to refresh data
 # arg $1: update - will get data from git server
