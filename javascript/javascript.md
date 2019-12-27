@@ -219,3 +219,72 @@ console.log(JSON.stringify(finalOutput, null, 2));
   }
 ```
 
+### Compare all the first level data between 2 objects
+```ts
+  public getUpdatedProperties = <T>(originalObject: any, changedObject: any): Array<{key: string, value: any, state: RecordState}> => {
+    try {
+      let changedKeyValuePairs = [];
+      if(this.isEmpty(originalObject) && this.isEmpty(changedObject)) {
+        return changedKeyValuePairs;
+      }
+      if(this.isEmpty(originalObject)) {
+        Object.keys(changedObject).forEach(key => {
+          changedKeyValuePairs.push({key: key, value: changedObject[key], state: RecordState.new});
+        });
+        return changedKeyValuePairs;
+      }
+      if(!this.isEmpty(originalObject) && this.isEmpty(changedObject)) {
+        Object.keys(originalObject).forEach(key => {
+          changedKeyValuePairs.push({key: key, value: originalObject[key], state: RecordState.deleted});
+        });
+        return changedKeyValuePairs;
+      }
+      // Checking Changed object
+      Object.keys(changedObject).forEach(key => {
+        let keyExistInOriginal = originalObject.hasOwnProperty(key);
+        if( keyExistInOriginal && originalObject[key] !== changedObject[key]) {
+          changedKeyValuePairs.push({key: key, value: changedObject[key], state: RecordState.updated});
+        }
+        if( !keyExistInOriginal ) {
+          changedKeyValuePairs.push({key: key, value: changedObject[key], state: RecordState.new});
+        }
+      });
+      // Checking original object
+      Object.keys(originalObject).forEach(key => {
+        let keyExistInchanged = changedObject.hasOwnProperty(key);
+        if( !keyExistInchanged ) {
+          changedKeyValuePairs.push({key: key, value: originalObject[key], state: RecordState.deleted});
+        }
+
+      });
+      return changedKeyValuePairs;
+    } catch(error) {
+      console.error('Error caught: getUpdatedProperties', error);
+      return [];
+    }
+  }
+```
+```ts
+  fdescribe('getUpdatedProperties', () => {
+    let testCases = [
+      // Positive Test case
+      { originalObject: { first: 111, second: '111' }, changedObject: { first: 222, second: '222' }, expectedResult: [{key: 'first', value: 222, state: RecordState.updated},{key: 'second', value: '222', state: RecordState.updated}], message: `should have 2 updated records` },
+      { originalObject: { first: 123, second: '123' }, changedObject: { first: 122, second: '123' }, expectedResult: [{key: 'first', value: 122, state: RecordState.updated}], message: `should have 1 udpated record` },
+      { originalObject: {}, changedObject: { first: 222, second: '222' }, expectedResult: [{key: 'first', value: 222, state: RecordState.new},{key: 'second', value: '222', state: RecordState.new}], message: `should have all records from changedObject as new` },
+      { originalObject: { first: 111, second: '111' }, changedObject: {}, expectedResult: [{key: 'first', value: 111, state: RecordState.deleted},{key: 'second', value: '111', state: RecordState.deleted}], message: `should have all records from originalObject as deleted` },
+      { originalObject: { first: 111, second: '111', third: '111' }, changedObject: { first: 111, second: '222' }, expectedResult: [{key: 'second', value: '222', state: RecordState.updated},{key: 'third', value: '111', state: RecordState.deleted}], message: `should keep the first record and update second and delete third` },
+      { originalObject: { first: 111 }, changedObject: { first: 111, second: '222', third: '111' }, expectedResult: [{key: 'second', value: '222', state: RecordState.new},{key: 'third', value: '111', state: RecordState.new}], message: `should keep the first record and second and third are new` },
+      // Negative Test Case
+      { originalObject: null, changedObject: { first: 123, second: '123' }, expectedResult:  [{key: 'first', value: 123, state: RecordState.new},{key: 'second', value: '123', state: RecordState.new}], message: `should return null if input is null` },
+      { originalObject: [], changedObject: { first: 123, second: '123' }, expectedResult:  [{key: 'first', value: 123, state: RecordState.new},{key: 'second', value: '123', state: RecordState.new}], message: `should return null if input is an empty array` },
+    ];
+
+    testCases.forEach(testCase => {
+      it( testCase.message, inject([JsUtilitiesService], (service: JsUtilitiesService) => {
+          expect(service.getUpdatedProperties(testCase.originalObject, testCase.changedObject)).toEqual(testCase.expectedResult);
+        })
+      );
+    });
+  });
+```
+
