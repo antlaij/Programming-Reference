@@ -167,6 +167,19 @@ export enum componentStateEnum {
 }
 ```
 
+```ts
+export class testingComponent implements OnInit, OnDestroy {
+  public componentStateEnum: any;
+  public componentState: ComponentStateEnum;
+
+  ngOnInit() {
+    this.componentStateEnum = ComponentStateEnum;
+    this.componentState = ComponentStateEnum.standby;
+ }
+
+}
+```
+
 ---
 > ### Rxjs - throw Error within the pipe
 
