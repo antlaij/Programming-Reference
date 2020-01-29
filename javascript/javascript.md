@@ -288,3 +288,25 @@ console.log(JSON.stringify(finalOutput, null, 2));
   });
 ```
 
+### Add custom style for existing page
+```js
+var pageConfig = {
+  highLight: [
+      {tag: 'a', text: 'targetText1', bgColor: `rgba(${255}, ${255}, ${0}, ${0.8})`},
+      {tag: 'td', text: 'targetText1', bgColor: `rgba(${255}, ${255}, ${0}, ${0.8})`},
+      {tag: 'a', text: 'targetText2', bgColor: '#ff00ff'},
+      {tag: 'td', text: 'targetText2', bgColor: '#ff00ff'},
+  ]
+};
+
+pageConfig.highLight.forEach(highLightConfig => {
+  var allAColl = document.getElementsByTagName(highLightConfig.tag);
+  var aElements = Array.from(allAColl);
+  var targetEles = aElements.filter(e => e.innerText === highLightConfig.text);
+  targetEles.forEach(ele => {
+      ele.parentElement.style.backgroundColor = highLightConfig.bgColor;
+      ele.parentElement.style.opacity = 0.8;
+  });
+});
+```
+
