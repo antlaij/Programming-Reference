@@ -288,7 +288,7 @@ console.log(JSON.stringify(finalOutput, null, 2));
   });
 ```
 
-### Add custom style for existing page
+### Add custom style to existing page
 ```js
 var pageConfig = {
   highLight: [
