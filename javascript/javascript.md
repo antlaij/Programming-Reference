@@ -288,7 +288,7 @@ console.log(JSON.stringify(finalOutput, null, 2));
   });
 ```
 
-### Add custom style to existing page
+### Add custom style to existing page by javascript
 ```js
 var pageConfig = {
   highLight: [
@@ -308,5 +308,14 @@ pageConfig.highLight.forEach(highLightConfig => {
       ele.parentElement.style.opacity = 0.8;
   });
 });
+```
+
+### Add custom style to existing page by css link
+```js
+var script = document.createElement('link');
+script.type = 'text/css';
+script.rel = 'stylesheet';
+script.href = 'http://localhost/custom-css/my.css';
+document.head.appendChild(script);
 ```
 
