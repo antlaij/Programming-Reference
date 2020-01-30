@@ -11,11 +11,29 @@ document.head.appendChild(script);
 
 ### Add custom style to existing page by javascript
 ```js
+var colorCode = {
+  lightOrange: `#EC7063`,
+  orange: `#E74C3C`,
+  puple: `#8E44AD`,
+  blue: `#3498DB`,
+  lightBlue: `#c8f8ff`,
+  green: `#16A085`,
+  lightGreen: `#dcffc8`,
+  yellow: `rgba(${255}, ${255}, ${0}, ${0.8})`,
+  pink: `rgb(${241}, ${144}, ${241})`,
+  grey: `#5D6D7E`,
+  lightGrey: `#85929E`,
+};
 
 var pageConfig = {
   highLight: [
-      { matchText: 'match text 01', bgColor: `rgba(${255}, ${255}, ${0}, ${0.8})`, tags: ['a', 'td'] },
-      { matchText: 'match text 02', bgColor: `rgb(${241}, ${144}, ${241})`, tags: ['a', 'td'] },
+      { matchText: 'EQS-2203', bgColor: colorCode.yellow, tags: ['a', 'td'] },
+      { matchText: 'EQS-1846', bgColor: colorCode.pink, tags: ['a', 'td'] },
+      { matchText: 'EQS-2209', bgColor: colorCode.lightOrange, tags: ['a', 'td'] },
+      { matchText: 'EQS-1996', bgColor: colorCode.lightGreen, tags: ['a', 'td'] },
+      { matchText: 'EQS-2015', bgColor: colorCode.lightBlue, tags: ['a', 'td'] },
+      { matchText: 'EQS-2237', bgColor: colorCode.puple, tags: ['a', 'td'] },
+      { matchText: 'EQS-2377', bgColor: colorCode.lightGrey, tags: ['a', 'td'] },
   ]
 };
 
@@ -43,5 +61,4 @@ Object.keys(styleSettings).forEach(styleKey => {
     });
   });
 });
-
 ```
