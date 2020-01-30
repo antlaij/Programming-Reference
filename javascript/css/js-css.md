@@ -27,13 +27,13 @@ var colorCode = {
 
 var pageConfig = {
   highLight: [
-      { matchText: 'EQS-2203', bgColor: colorCode.yellow, tags: ['a', 'td'] },
-      { matchText: 'EQS-1846', bgColor: colorCode.pink, tags: ['a', 'td'] },
-      { matchText: 'EQS-2209', bgColor: colorCode.lightOrange, tags: ['a', 'td'] },
-      { matchText: 'EQS-1996', bgColor: colorCode.lightGreen, tags: ['a', 'td'] },
-      { matchText: 'EQS-2015', bgColor: colorCode.lightBlue, tags: ['a', 'td'] },
-      { matchText: 'EQS-2237', bgColor: colorCode.puple, tags: ['a', 'td'] },
-      { matchText: 'EQS-2377', bgColor: colorCode.lightGrey, tags: ['a', 'td'] },
+      { matchText: 'target Text', bgColor: colorCode.yellow, tags: ['a', 'td'] },
+      { matchText: 'target Text - 1846', bgColor: colorCode.pink, tags: ['a', 'td'] },
+      { matchText: 'target Text - 2209', bgColor: colorCode.lightOrange, tags: ['a', 'td'] },
+      { matchText: 'target Text - 1996', bgColor: colorCode.lightGreen, tags: ['a', 'td'] },
+      { matchText: 'target Text - 2015', bgColor: colorCode.lightBlue, tags: ['a', 'td'] },
+      { matchText: 'target Text - 2237', bgColor: colorCode.puple, tags: ['a', 'td'] },
+      { matchText: 'target Text - 2377', bgColor: colorCode.lightGrey, tags: ['a', 'td'] },
   ]
 };
 
@@ -61,4 +61,5 @@ Object.keys(styleSettings).forEach(styleKey => {
     });
   });
 });
+
 ```
