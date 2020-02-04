@@ -255,3 +255,50 @@ export class MyModelClass {
 }
 ```
 
+#### Scrolling Check
+```ts
+import { Directive, Output, HostListener, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
+
+@Directive({
+  selector: '[scrollTracker]'
+})
+export class ScrollTrackerDirective implements AfterViewInit {
+
+  /**
+   * Emit data back to parent
+   */
+  @Output() onScrolledToBottom: EventEmitter<boolean> = new EventEmitter();
+
+  /**
+   * Listening to the user scroll event and passing the target element
+   * @param targetElement
+   */
+  @HostListener('scroll', ['$event.target'])
+  onScroll(targetElement: Element) {
+    /**
+     * Calculate the scrollable height on the target element
+     */
+    let scrollableHeight = targetElement.scrollHeight - targetElement.clientHeight;
+    /**
+     * When scrollable height equals scroll top that means user scrolled to the end
+     * then emit true back to the user
+     */
+    if (targetElement.scrollTop >= scrollableHeight) {
+      this.onScrolledToBottom.emit(true);
+    }
+  }
+
+  constructor(private ele: ElementRef) {
+    this.onScrolledToBottom.emit(false);
+   }
+
+   ngAfterViewInit(): void {
+     /**
+      * If scroll height and client height are the same that means there is no scroll bar needed
+      * then return a flag to the parent
+      */
+    this.onScrolledToBottom.emit(this.ele.nativeElement.scrollHeight === this.ele.nativeElement.clientHeight);
+  }
+}
+```
+
