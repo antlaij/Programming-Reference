@@ -63,3 +63,39 @@ Object.keys(styleSettings).forEach(styleKey => {
 });
 
 ```
+
+
+### Add custom style to existing page by searching data attribute in javascript
+```js
+var colorCode = {
+  white: `#FFFFFF`,
+  lightOrange: `#EC7063`,
+  orange: `#E74C3C`,
+  puple: `#8E44AD`,
+  darkPuple: `rgba(${50}, ${0}, ${111}, ${0.8})`,
+  blue: `#3498DB`,
+  lightBlue: `#c8f8ff`,
+  green: `#16A085`,
+  lightGreen: `#dcffc8`,
+  yellow: `rgba(${255}, ${255}, ${0}, ${0.8})`,
+  pink: `rgb(${241}, ${144}, ${241})`,
+  grey: `#5D6D7E`,
+  lightGrey: `#85929E`,
+};
+
+var pageConfig = {
+  highLights: [
+      { querySelector: `[data-tooltip='my matching text']`, bgColor: colorCode.darkPuple, color: colorCode.white, background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,9,121,1) 45%, rgba(0,198,255,1) 100%)' },
+  ]
+};
+
+pageConfig.highLights.forEach(highLight => {
+    var allAColl = document.querySelectorAll(highLight.querySelector);
+    allAColl.forEach(ele => {
+        ele.parentElement.parentElement.style.backgroundColor = highLight.bgColor;
+        ele.parentElement.parentElement.style.color = highLight.color;
+        ele.parentElement.parentElement.style.background = highLight.background;
+        // ele.parentElement.style.opacity = 0.8;
+    });
+  });
+```
