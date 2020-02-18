@@ -289,3 +289,93 @@ console.log(JSON.stringify(finalOutput, null, 2));
   });
 ```
 
+## Console Color Printing
+```js
+export const consoleColor = {
+  Reset: "\x1b[0m",
+  Bright: "\x1b[1m",
+  Dim: "\x1b[2m",
+  Underscore: "\x1b[4m",
+  Blink: "\x1b[5m",
+  Reverse: "\x1b[7m",
+  Hidden: "\x1b[8m",
+  
+  FgBlack: "\x1b[30m",
+  FgRed: "\x1b[31m",
+  FgGreen: "\x1b[32m",
+  FgYellow: "\x1b[33m",
+  FgBlue: "\x1b[34m",
+  FgMagenta: "\x1b[35m",
+  FgCyan: "\x1b[36m",
+  FgWhite: "\x1b[37m",
+  
+  BgBlack: "\x1b[40m",
+  BgRed: "\x1b[41m",
+  BgGreen: "\x1b[42m",
+  BgYellow: "\x1b[43m",
+  BgBlue: "\x1b[44m",
+  BgMagenta: "\x1b[45m",
+  BgCyan: "\x1b[46m",
+  BgWhite: "\x1b[47m",
+};
+
+export class ConsolePrint {
+  private _title: string;
+  private _input: any;
+  private _output: any;
+  private _description: Array<string>;
+
+  constructor(title: string, description: Array<string>){
+    this._title = title;
+    this._description = description;
+    this.printHeader();
+  }
+
+  public set input(value: any) {
+    this._input = value;
+    console.log(`${consoleColor.BgBlack}${consoleColor.FgGreen} Input : `, this._input, consoleColor.Reset);
+  }
+
+  public set output(value: any) {
+    this._output = value;
+    console.log(`${consoleColor.BgBlack}${consoleColor.FgYellow} Output: `, this._output, consoleColor.Reset);
+  }
+
+  public printMessage(message: string) {
+    console.log(`${consoleColor.BgBlack}${consoleColor.FgCyan}// %s${consoleColor.Reset}`, message);
+  }
+
+  public printSource(message: string) {
+    console.log(`${consoleColor.BgBlack}${consoleColor.FgMagenta}%s${consoleColor.Reset}`, message);
+  }
+
+  public printKeyValue(label: string, value: any) {
+    console.log(`${consoleColor.BgGreen}${consoleColor.FgBlack}%s> ${consoleColor.Reset}  ${consoleColor.BgBlack}${consoleColor.FgYellow}%s${consoleColor.Reset}`, label.padEnd(20), value);
+  }
+
+  public end() {
+    this.printFooter();
+  }
+
+  private printHeader() {
+    console.log(`\n`);
+    console.log(`${consoleColor.BgBlue}${consoleColor.FgBlack}[-------------------- %s --------------------]${consoleColor.Reset}`,this._title);
+    // console.log(`\n`);
+    console.log(`${consoleColor.BgBlack}${consoleColor.FgCyan}/**`);
+    this._description.forEach(desc => console.log(` *  ${desc}`));
+    console.log(` */`, consoleColor.Reset);
+    console.log(`\n`);
+  }
+
+  private printFooter() {
+    console.log(`\n`);
+    console.log(`${consoleColor.BgBlue}${consoleColor.FgBlack}[-------------------- %s --------------------]${consoleColor.Reset}`, ' <<--- Ends --->> ');
+    console.log(`\n`);
+  }
+}
+
+```
+
+
+
+
