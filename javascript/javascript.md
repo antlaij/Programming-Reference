@@ -1,5 +1,11 @@
 # Javascript
 
+## Print value for Debug
+```js
+    console.log('key - (value)', value);
+```
+
+
 ## Convert Array of object to entity
 
 ```js
