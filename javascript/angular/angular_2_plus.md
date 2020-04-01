@@ -303,10 +303,52 @@ export class ScrollTrackerDirective implements AfterViewInit {
 ```
 
 #### Custom STRUCTURAL DIRECTIVES
-```html
-
-```
+[Link from Angular Docs](https://v2.angular.io/docs/ts/latest/guide/structural-directives.html)
 ```ts
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
+/**
+ * Add the template content to the DOM unless the condition is true.
+ */
+@Directive({ selector: '[authorize]'})
+export class UnlessDirective {
+  private hasView = false;
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef) { }
+
+  @Input() set myUnless(condition: boolean) {
+    if (!condition && !this.hasView) {
+      this.showComponent();
+    } else if (condition && this.hasView) {
+      this.hideComponent();
+    }
+  }
+
+  /**
+  * If user is not authorized then hide all the component
+  */
+  private hideComponent(): void {
+    this.viewContainer.clear();
+    this.hasView = false;
+  }
+
+  private showComponent(): void {
+    this.viewContainer.createEmbeddedView(this.templateRef);
+    this.hasView = true;
+  }
+
+}
+```
+```html
+<p *authorize="condition">
+  (A) This paragraph is displayed because the condition is false.
+</p>
+
+<p *authorize="!condition">
+  (B) Although the condition is true,
+  this paragraph is displayed because myUnless is set to false.
+</p>
 ```
 
