@@ -255,6 +255,7 @@ export class MyModelClass {
 }
 ```
 
+### Custom DIRECTIVES
 #### Scrolling Check
 ```ts
 import { Directive, Output, HostListener, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
@@ -302,7 +303,9 @@ export class ScrollTrackerDirective implements AfterViewInit {
 }
 ```
 
-#### Custom STRUCTURAL DIRECTIVES
+
+### Custom STRUCTURAL DIRECTIVES
+#### Authorize directive 
 [Link from Angular Docs](https://v2.angular.io/docs/ts/latest/guide/structural-directives.html)
 ```ts
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
