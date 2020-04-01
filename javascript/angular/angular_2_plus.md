@@ -302,3 +302,11 @@ export class ScrollTrackerDirective implements AfterViewInit {
 }
 ```
 
+#### Custom STRUCTURAL DIRECTIVES
+```html
+
+```
+```ts
+
+```
+
