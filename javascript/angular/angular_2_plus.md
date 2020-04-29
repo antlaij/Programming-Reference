@@ -1,7 +1,18 @@
 # Angular 2+ Reference
 
+## Table of Contents
+1. [Debug angular 2 plus](#Debug-angular-2-plus)
+1. [Add disabled to a button or input field](#Add-disabled-to-a-button-or-input-field)
+1. [Template](#Template)
+   1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
+   1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
+1. [Styling](#Styling)
+   1. [ngClass with Condition](#ngClass-with-Condition)
+1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+
+
 ---
-> ### Debug angular 2+
+> ### Debug angular 2 plus
 
 ```js
 var sc = ng.probe($0).componentInstance;
@@ -13,35 +24,7 @@ var sc = ng.probe($0).componentInstance;
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disabled?'disabled':null"></button>
 ```
-
----
-> ### ngClass with Condition
-
-```html
-<div [ngClass]="{'success': response?.Success, 'error': !response?.success}"></div>
-```
-
----
-> ### ngOnChanges from life cycle hook
-
-```ts
-ngOnChanges(changes: SimpleChanges) {
-  if (cahnges.myValue) {
-  }
-}
-```
-
----
-> ### Create Function Mapping from service for component
-
-```ts
-mappedFunctionName: (arg_01: string, arg: number) => boolean;
-
-// Setup mapping in constructor
-constructor( private myService: MyService ) {
-  this.mappedFunctionName = myService.targetFunctionName;
-}
-```
+### Template
 
 ---
 > ### Put Condition in the switch case
@@ -60,7 +43,7 @@ constructor( private myService: MyService ) {
     Default Content
   </ng-container>
 </ng-container>
-  ```
+```
 
 ---
 > ### Pass context with ngTemplateOutlet
@@ -98,6 +81,35 @@ constructor( private myService: MyService ) {
 <ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
 
 <ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
+```
+
+### Styling
+---
+> ### ngClass with Condition
+```html
+<div [ngClass]="{'success': response?.Success, 'error': !response?.success}"></div>
+```
+
+---
+> ### ngOnChanges from life cycle hook
+
+```ts
+ngOnChanges(changes: SimpleChanges) {
+  if (cahnges.myValue) {
+  }
+}
+```
+
+---
+> ### Create Function Mapping from service for component
+
+```ts
+mappedFunctionName: (arg_01: string, arg: number) => boolean;
+
+// Setup mapping in constructor
+constructor( private myService: MyService ) {
+  this.mappedFunctionName = myService.targetFunctionName;
+}
 ```
 
 ---
