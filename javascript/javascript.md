@@ -6,6 +6,42 @@
 ```
 
 
+## Array.Map changed the original array
+
+```js
+const testArray = [{ name: '001' }, { name: '002' }, { name: '003' }, { name: '004' }];
+
+console.log('testArray', testArray);
+console.log();
+
+let mapWithAssign = testArray.map((x) => {
+  return Object.assign({}, x, {
+    name: '111',
+  });
+});
+
+console.log('testArray', testArray);
+console.log('mapWithAssign', mapWithAssign);
+console.log();
+
+let mapWithNewObject = testArray.map((x) => {
+  return { name: '222' };
+});
+
+console.log('testArray', testArray);
+console.log('mapWithNewObject', mapWithNewObject);
+console.log();
+
+let mapWithArrayMap = testArray.map((x) => {
+  x.name = '111';
+  return x;
+});
+
+console.log('testArray', testArray);
+console.log('mapWithArrayMap', mapWithArrayMap);
+```
+
+
 ## Convert Array of object to entity
 
 ```js
