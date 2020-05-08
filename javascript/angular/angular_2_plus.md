@@ -9,6 +9,10 @@
 1. [Styling](#Styling)
    1. [ngClass with Condition](#ngClass-with-Condition)
 1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+1. [Rxjs](#Rxjs)
+   1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
+   1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
+
 
 
 ---
@@ -136,7 +140,7 @@ onResize(event) {
 ```
 
 ---
-> ### Component State Handle
+> ### Component State Handling
 
 ```html
 <ng-container [ngSwitch]="componentState">
@@ -192,8 +196,9 @@ export class testingComponent implements OnInit, OnDestroy {
 }
 ```
 
+> ### Rxjs
 ---
-> ### Rxjs - throw Error within the pipe
+> #### throw Error within rxjs pipe
 
 ```ts
 myObservable$
@@ -245,6 +250,7 @@ ngAfterViewChecked() {
   }
 ```
 
+### Model
 #### Inject Service to a Model class
 ```ts
 import { MyService, AnotherService } from "../services/local.service";
