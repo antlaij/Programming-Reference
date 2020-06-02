@@ -6,9 +6,10 @@
 1. [Template](#Template)
    1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
    1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
+   1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
 1. [Styling](#Styling)
    1. [ngClass with Condition](#ngClass-with-Condition)
-1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+   1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
 1. [Rxjs](#Rxjs)
    1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
    1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
@@ -73,6 +74,20 @@ var sc = ng.probe($0).componentInstance;
   <div>{{implicit}}</div>
   <div>{{variableNameUseInTemplate}}</div>
 </ng-template>
+```
+
+---
+> ### Use HTML tag in variable from component and show in html template
+
+```html
+<div [innerHTML]="myHtmlStringWithTag"></div>
+<span [innerHTML]="myHtmlStringWithTag"></span>
+```
+
+```ts
+public myHtmlStringWithTag: string = '<span class="">this is a test</span>';
+public myClass = 'testCss';
+this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</span>`;
 ```
 
 ---
