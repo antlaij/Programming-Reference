@@ -67,3 +67,28 @@ body {
   }
 }
 ```
+
+
+# Generate css class
+
+```scss
+$columns: 12;
+
+%float-styles {
+  float: left;
+}
+
+@mixin col-x-list {
+  @for $i from 1 through $columns {
+      .col-#{$i}-m { @extend %float-styles; }
+  }
+}
+
+@include col-x-list;
+```
+## Output css
+```css
+.col-1-m, .col-2-m, .col-3-m, .col-4-m, .col-5-m, .col-6-m, .col-7-m, .col-8-m, .col-9-m, .col-10-m, .col-11-m, .col-12-m {
+  float: left;
+}
+```
