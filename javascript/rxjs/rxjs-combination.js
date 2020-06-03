@@ -1,6 +1,6 @@
 
-const { forkJoin, interval, of, concat, combineLatest, zip, merge, fromArray } = require('rxjs');
-const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll } = require('rxjs/operators');
+const { forkJoin, interval, of, concat, combineLatest, zip, merge, from, fromArray } = require('rxjs');
+const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll, delay } = require('rxjs/operators');
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -355,6 +355,26 @@ run$ next => 0,1,2,3,4,5,6,7,8,9
 run$ next => [----- endWith End   -----]
 */
 
+/**
+ * User combineAll Like forkjoin in sequence
+ * Combine All Obserables in sequence and return an array of values
+ */
+const combineObservables$ = from([of(1).pipe(delay(500)),of(2),of(3),of(4)]).pipe(combineAll());
+const combineObservablesTestCase$ = concatAll$('endWith', combineObservables$);
+/*
+  output:
+  [1,2,3,4]
+*/
+
+/*
+Marble Diagram:
+alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
+numbers$   => |--0--1--2--3--4--5--6--7--8--9|
+
+output     => |-a0b-c-d2e-f-g4h-i-j6k-l-m8--9|
+                    1     3     5     7
+*/
+
 
 const run$ = concat(
   // forkJoinTestCase$,
@@ -363,24 +383,13 @@ const run$ = concat(
   // zipTestCase$,
   // concatTestCase$,
   // mergeTestCase$,
-  mergeAllTestCase$,
+  // mergeAllTestCase$,
   // endWithTestCase$,
+  combineObservablesTestCase$,
 ).pipe(catchError(error => of(error)));
 
 run$.subscribe(
   val => console.log(`run$ next => ${val}`),
   error => console.log(`run$ error => ${val}`),
   () => console.log(`run$ completed`)
-);
-
-var source = of([{groupKey: 1, value: 'a'},{groupKey: 2, value: 'b'},{groupKey: 2, value: 'c'}]).pipe(take(10));
-var group = source.pipe(groupBy(i => i.groupKey),
-concatMap(
-  group$ => group$.pipe(
-    map(obj => ({ key: group$.key, value: obj }))
-  )
-));
-group.subscribe(
-grp => console.log("{0} min value = {1}", grp),
-  () => console.log("Completed")
 );
