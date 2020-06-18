@@ -1,6 +1,7 @@
 # NgRx
 
 ---
+
 > ### Get Store data from effect
 
 ```ts
@@ -15,6 +16,7 @@ myData$ = this.action$.ofType( myAction.Type )
 ```
 
 ---
+
 > ### Full Example
 
 ```ts
@@ -25,6 +27,7 @@ import { Action } from '@ngrx/store';
 
 export enum ReduxActionTypes {
   LOAD_DATA = '[Process Namespace] LOAD_DATA',
+  OTHER_ACTION = '[Process Namespace] OTHER_ACTION',
   LOAD_DATA_SUCCESSFUL = '[Process Namespace] LOAD_DATA_SUCCESSFUL',
   LOAD_DATA_FAIL = '[Process Namespace] LOAD_DATA_FAIL',
 }
@@ -32,6 +35,11 @@ export enum ReduxActionTypes {
 
 export class LoadData implements Action {
   readonly type = ReduxActionTypes.LOAD_DATA;
+  constructor(public payload: { processId: number }) {}
+}
+
+export class OtherAction implements Action {
+  readonly type = ReduxActionTypes.OTHER_ACTION;
   constructor(public payload: { processId: number }) {}
 }
 
@@ -47,6 +55,7 @@ export class LoadDataFail implements Action {
 
 
 export type MyProcessActions = LoadData
+  | OtherAction
   | LoadDataSuccessful
   | LoadDataFail;
 
@@ -142,11 +151,13 @@ export const getProcessDataProcessById = createSelector(
  */
 import * as ProcessSelector from '../selectors/my.selector';
   /**
-   * listening to "LOAD_DATA" Action
+   * listening to multiple Action
+   * listening to "LOAD_DATA" and "OTHER_ACTION" Action
    */
   @Effect()
   loadDataFromDb$ = this.actions$.ofType(
-    ReduxStore.ReduxActionTypes.LOAD_DATA
+    ReduxStore.ReduxActionTypes.LOAD_DATA,
+    ReduxStore.ReduxActionTypes.OTHER_ACTION,
     )
     .pipe(
       switchMap((action: any) => this.store.select(ProcessSelector.getProcessDataProcessById, { processId: action.payload.processId })
@@ -167,13 +178,25 @@ import * as ProcessSelector from '../selectors/my.selector';
         return of(new ReduxStore.LoadDataFail(error));
       })
     );
+
+
+/**
+ * Dispatch Action from component
+ */
+  /**
+   * dispatch action by create a new object
+   */
+  this.store.dispatch(new MyProcessActions.LoadData({data: {}}));
+  /**
+   * dispatch action by object of type and payload
+   */
+  this.store.dispatch({ TYPE: ReduxActionTypes.LOAD_DATA, payload: {myData: []}});
 ```
 
-
 ---
+
 > ### When dispatch an action then got the following error in console
-ERROR TypeError: app_subscriber_shared_stores_subscription_process_store__WEBPACK_IMPORTED_MODULE_9__.UpdateSubscrpitions is not a constructor
+>
+> ERROR TypeError: app_subscriber_shared_stores_subscription_process_store**WEBPACK_IMPORTED_MODULE_9**.UpdateSubscrpitions is not a constructor
 
 Solution: just need to restart ng serve then the error will goes away
-
-
