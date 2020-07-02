@@ -366,15 +366,6 @@ const combineObservablesTestCase$ = concatAll$('endWith', combineObservables$);
   [1,2,3,4]
 */
 
-/*
-Marble Diagram:
-alphabets$ => |-a-b-c-d-e-f-g-h-i-j-k-l-m|
-numbers$   => |--0--1--2--3--4--5--6--7--8--9|
-
-output     => |-a0b-c-d2e-f-g4h-i-j6k-l-m8--9|
-                    1     3     5     7
-*/
-
 
 const run$ = concat(
   // forkJoinTestCase$,

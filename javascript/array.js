@@ -5,6 +5,7 @@ const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', '
 const sortedNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const unSortedNumbers = [1, 0, 4, 2, 3, 5, 6, 7, 8, 9];
 const alphabetsUpper = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const unSortedAlphabets = ['Z', 's', 'A', 'D', 'z', 'F', 'a'];
 
 class FunctionTest {
   title;
@@ -47,6 +48,9 @@ sortedArray.push(1000);
 console.log('Execute: sortedArray.push(1000);');
 console.log('unSortedNumbers has also changed -> Print: (unSortedNumbers)', sortedArray);
 console.log('sortedArray picks up the changes too - Print: (sortedArray)', sortedArray);
+console.log('Before Calling sort()', unSortedAlphabets);
+unSortedAlphabets.sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}));
+console.log('After Calling unSortedAlphabets.sort() with case insensitive', unSortedAlphabets);
 testCase.endTest();
 })();
 
