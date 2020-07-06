@@ -56,7 +56,7 @@ testCase.endTest();
 
 /**
  * Testing Array.forEach()
- * Function will mutate the original array
+ * Function will not mutate the original array
  */
 (() => {
   let testCase = new FunctionTest('Array - forEach() Test');
@@ -64,7 +64,6 @@ testCase.endTest();
   console.log('Start -> Print: (sortedNumbers)', sortedNumbers);
   let mutatedArray = sortedNumbers.forEach((n) => {
     n = 0;
-    return n;
   });
   console.log('Execute: sortedNumbers.forEach(n => n = 0); -> Print: (sortedNumbers)', sortedNumbers);
   console.log('Print: (mutatedArray)', mutatedArray);
@@ -73,7 +72,7 @@ testCase.endTest();
 
 /**
  * Testing Array.map()
- * Function will mutate the original array
+ * Function will not mutate the original array
  */
 (() => {
   let testCase = new FunctionTest('Array - map() Test');
@@ -85,5 +84,44 @@ testCase.endTest();
   });
   console.log('Execute: sortedNumbers.map(); -> Print: (sortedNumbers)', sortedNumbers);
   console.log('Print: (assignedArray)', assignedArray);
+  testCase.endTest();
+})();
+
+/**
+ * Testing Changing property within an array in an object by Array.map()
+ * Function will mutate the original array
+ */
+(() => {
+  let testCase = new FunctionTest('Testing Changing property within an array in an object by Array.map()');
+  testCase.startTest();
+  let arrayInObjectProperty = {
+    a: [{b:1},{b:2},{b:3},{b:4},{b:5},{b:6},{b:7},{b:8},{b:9}]
+  };
+  console.log('Start -> Print: (arrayInObjectProperty)', arrayInObjectProperty);
+  let objAfterMap = arrayInObjectProperty.a.map(n => {
+    n.b = 0;
+    return n;
+  });
+  console.log('Execute: arrayInObjectProperty.a.map(); -> Print: (objAfterMap)', objAfterMap);
+  console.log('Print: (arrayInObjectProperty)', arrayInObjectProperty);
+  testCase.endTest();
+})();
+
+/**
+ * Testing Changing property within an array in an object by Array.forEach()
+ * Function will mutate the original array
+ */
+(() => {
+  let testCase = new FunctionTest('Testing Changing property within an array in an object by Array.forEach()');
+  testCase.startTest();
+  let arrayInObjectProperty = {
+    a: [{b:1},{b:2},{b:3},{b:4},{b:5},{b:6},{b:7},{b:8},{b:9}]
+  };
+  console.log('Start -> Print: (arrayInObjectProperty)', arrayInObjectProperty);
+  let objAfterMap = arrayInObjectProperty.a.forEach(n => {
+    n.b = 0;
+  });
+  console.log('Execute: arrayInObjectProperty.a.map(); objAfterMap is undefined because forEach will not return anything -> Print: (objAfterMap)', objAfterMap);
+  console.log('Print: (arrayInObjectProperty)', arrayInObjectProperty);
   testCase.endTest();
 })();
