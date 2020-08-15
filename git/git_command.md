@@ -585,3 +585,45 @@ git config --system core.longpaths true
 git config core.longpaths true
 ```
 
+#### Move old repo to new repo with history
+```batch
+git clone --mirror url_to_git_repo or
+git clone <repo you want to mirror> cd <to the new cloned folder>
+git remote -V
+git remote set-url origin <new repo url>
+git checkout master
+git pull origin master --allow-unrelated-histories
+REM [resolve merge conflict]
+REM [commit the new code and push]
+git push-u origin --all
+```
+
+
+#### Move old repo to new repo with history
+#### Ref: https://www.atlassian.com/git/tutorials/git-move-repository
+```batch
+REM-------   Clone Existing Repository
+git clone <url to ORI repo> temp-dir
+git branch -a 
+git checkout develop 
+git fetch ---tags 
+git tag 
+git branch -a 
+git remote -V 
+git remote rm origin 
+git remote -V
+REM ------------- Remove unused branch
+git branch 
+git branch -d master
+REM ------------- Point git to-new Repository
+git remote add origin <url to NEW repo>, 
+git push origin --all 
+git push--tags
+REM ------------- Merge with existing branch 
+git pull origin
+
+git pull origin branchname --allow-unrelated-histories
+
+```
+
+
