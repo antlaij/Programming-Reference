@@ -5,6 +5,13 @@
     console.log('key - (value)', value);
 ```
 
+## Date to String "YYYY-MM-DDTHH:mm:ss"
+```js
+new Date().
+  toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).
+  replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2').replace(', ','T');
+```
+
 
 ## Array.Map changed the original array
 
