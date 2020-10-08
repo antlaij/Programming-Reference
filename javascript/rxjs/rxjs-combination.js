@@ -1,6 +1,6 @@
 
 const { forkJoin, interval, of, concat, combineLatest, zip, merge, from, fromArray } = require('rxjs');
-const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll, delay } = require('rxjs/operators');
+const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll, delay, switchMap, mergeMap } = require('rxjs/operators');
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -356,7 +356,7 @@ run$ next => [----- endWith End   -----]
 */
 
 /**
- * User combineAll Like forkjoin in sequence
+ * Use combineAll Like forkjoin in sequence
  * Combine All Obserables in sequence and return an array of values
  */
 const combineObservables$ = from([of(1).pipe(delay(500)),of(2),of(3),of(4)]).pipe(combineAll());
@@ -366,17 +366,181 @@ const combineObservablesTestCase$ = concatAll$('endWith', combineObservables$);
   [1,2,3,4]
 */
 
+/**
+ * Use switchMap
+ */
+const switchMap$ = alphabets$.pipe(switchMap(x => numbers$)).pipe(catchError(error => of(error)));
+const switchMapTestCase$ = concatAll$('switchMap', switchMap$);
+/*
+  output:
+run$ next => [----- switchMap Start   -----]
+run$ next => 0
+run$ next => 1
+run$ next => 2
+run$ next => 3
+run$ next => 4
+run$ next => 5
+run$ next => 6
+run$ next => 7
+run$ next => 8
+run$ next => 9
+run$ next => [----- switchMap End   -----]
+*/
+
+/**
+ * Use mergeMap
+ */
+const mergeMap$ = alphabets$.pipe(mergeMap(x => numbers$)).pipe(catchError(error => of(error)));
+const mergeMapTestCase$ = concatAll$('mergeMap', mergeMap$);
+/*
+  output: 130 values
+run$ next => [----- mergeMap Start   -----]
+run$ next => 0
+run$ next => 0
+run$ next => 1
+run$ next => 0
+run$ next => 1
+run$ next => 0
+run$ next => 2
+run$ next => 1
+run$ next => 2
+run$ next => 0
+run$ next => 1
+run$ next => 3
+run$ next => 2
+run$ next => 0
+run$ next => 3
+run$ next => 1
+run$ next => 2
+run$ next => 4
+run$ next => 0
+run$ next => 3
+run$ next => 1
+run$ next => 4
+run$ next => 0
+run$ next => 2
+run$ next => 3
+run$ next => 5
+run$ next => 1
+run$ next => 0
+run$ next => 4
+run$ next => 2
+run$ next => 5
+run$ next => 1
+run$ next => 3
+run$ next => 0
+run$ next => 4
+run$ next => 6
+run$ next => 2
+run$ next => 1
+run$ next => 5
+run$ next => 3
+run$ next => 6
+run$ next => 2
+run$ next => 4
+run$ next => 0
+run$ next => 1
+run$ next => 5
+run$ next => 7
+run$ next => 3
+run$ next => 2
+run$ next => 0
+run$ next => 6
+run$ next => 4
+run$ next => 7
+run$ next => 3
+run$ next => 5
+run$ next => 1
+run$ next => 2
+run$ next => 6
+run$ next => 0
+run$ next => 8
+run$ next => 4
+run$ next => 3
+run$ next => 1
+run$ next => 7
+run$ next => 5
+run$ next => 8
+run$ next => 4
+run$ next => 6
+run$ next => 2
+run$ next => 3
+run$ next => 7
+run$ next => 1
+run$ next => 9
+run$ next => 5
+run$ next => 4
+run$ next => 2
+run$ next => 8
+run$ next => 6
+run$ next => 9
+run$ next => 5
+run$ next => 7
+run$ next => 3
+run$ next => 4
+run$ next => 8
+run$ next => 2
+run$ next => 6
+run$ next => 5
+run$ next => 3
+run$ next => 9
+run$ next => 7
+run$ next => 6
+run$ next => 8
+run$ next => 4
+run$ next => 5
+run$ next => 9
+run$ next => 3
+run$ next => 7
+run$ next => 6
+run$ next => 4
+run$ next => 8
+run$ next => 7
+run$ next => 9
+run$ next => 5
+run$ next => 6
+run$ next => 4
+run$ next => 8
+run$ next => 7
+run$ next => 5
+run$ next => 9
+run$ next => 8
+run$ next => 6
+run$ next => 7
+run$ next => 5
+run$ next => 9
+run$ next => 8
+run$ next => 6
+run$ next => 9
+run$ next => 7
+run$ next => 8
+run$ next => 6
+run$ next => 9
+run$ next => 7
+run$ next => 8
+run$ next => 9
+run$ next => 7
+run$ next => 8
+run$ next => 9
+run$ next => 8
+run$ next => 9
+run$ next => 9
+run$ next => [----- mergeMap End   -----]
+*/
+
 
 const run$ = concat(
   // forkJoinTestCase$,
-  // combineAllTestCase$,
+  combineAllTestCase$,
   // combineLatestTestCase$,
   // zipTestCase$,
   // concatTestCase$,
+  // switchMapTestCase$,
   // mergeTestCase$,
   // mergeAllTestCase$,
+  // mergeMapTestCase$,
   // endWithTestCase$,
-  combineObservablesTestCase$,
+  // combineObservablesTestCase$,
 ).pipe(catchError(error => of(error)));
 
 run$.subscribe(

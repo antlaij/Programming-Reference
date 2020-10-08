@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+
+    .main-container {
+      height: 1000px;
+    }
+
+    .sub-container {
+      margin: 10px;
+      padding: 5px;
+      background-color: #9263e9;
+    }
+
+    .yellow-bg {
+      background-color: rgb(234, 255, 116);
+    }
+
+    .blue-bg {
+      background-color: #03A9F4;
+    }
+
+    .green-bg {
+      background-color: #4CAF50;
+    }
+
+    .child-box {
+      padding: 5px;
+      opacity: 0.8;
+    }
+
+    .orange-bg {
+      background-color: #f39071;
+    }
+
+    .position-absolute {
+      position: absolute;
+    }
+
+    .position-relative {
+      position: relative;
+    }
+
+    .position-fixed {
+      position: fixed;
+    }
+
+    .box-three {}
+  </style>
+</head>
+
+<body>
+
+  <div class=mainheigmain-container">
+
+    <div class="sub-container orange-bg">
+      Main Container 1
+      <div class="yellow-bg child-box">Box One</div>
+      <div class="blue-bg child-box">Box Two</div>
+      <div class="green-bg child-box">Box Three</div>
+    </div>
+
+    <div class="sub-container orange-bg position-relative">
+      Main Container 2
+      <div class="yellow-bg child-box position-absolute" style="left: 500px; top: 0px">
+        Box One - left: 400px; position:absolute;
+        <pre>
+        absolute position will completely remove the element from the document flow
+        Position the element absolute to the relative or absulute parent.
+        If there is no relative or absulute parent element found then use the root html element
+      </pre>
+      </div>
+      <div class="blue-bg child-box position-relative" style="left: 100px; top: 50px">
+        Box Two - left: 100px; position: relative;
+        <pre>
+        relative position will still keep the document original space and move based on the normal document flow
+      </pre>
+      </div>
+      <div class="green-bg child-box">Box Three</div>
+    </div>
+
+    <div class="sub-container orange-bg position-fixed" style="width: 500px; top:500px; left: 600px;">
+      Main Container 3 - fixed position; width: 500px;
+      <div class="yellow-bg child-box" style="left: 0px; top: 50px">
+        Box One - left: 400px;
+      </div>
+      <div class="blue-bg child-box" style="left: 100px; top: 50px">
+        Box Two - left: 100px;
+      </div>
+      <div class="green-bg child-box">Box Three</div>
+    </div>
+
+    <div class="sub-container orange-bg" style="width: 500px;">
+      Main Container 4 - fixed position; width: 500px;
+      <div class="yellow-bg child-box" style="left: 0px; top: 50px">
+        Box One - left: 400px;
+      </div>
+      <div class="blue-bg child-box" style="left: 100px; top: 50px">
+        Box Two - left: 100px;
+      </div>
+      <div class="green-bg child-box">Box Three</div>
+    </div>
+
+  </div>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-# Angular 2+ Reference
+# Angular 2+ Reactive Form Reference
 
 ## Table of Contents
 1. [Debug angular 2 plus](#Debug-angular-2-plus)
@@ -29,6 +29,17 @@ var sc = ng.probe($0).componentInstance;
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disabled?'disabled':null"></button>
 ```
+```scss
+button {
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}
+```
+
 ### Template
 
 ---

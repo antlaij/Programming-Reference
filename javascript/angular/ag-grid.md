@@ -72,6 +72,35 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
+> ### AgGrid - Router Link Cell Renderer
+
+```ts
+import { Component } from '@angular/core';
+import { INoRowsOverlayAngularComp } from "ag-grid-angular";
+
+@Component({
+  selector: 'router-link-cell-renderer',
+  template: `<a *nfIf="" [routerLink]="urlPath">{{linkText}}</a>`,
+})
+export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
+
+  params: any;
+  linkText: string;
+  urlPath: Array<string>;
+
+  agInit(params): void {
+    this.links = [];
+    this.urlPath = [];
+    this.params = params;
+
+    if(params.data && params.data.myColumnData) {
+      this.urlPath = ['/', params.data.myColumnData, ''];
+    }
+  }
+}
+```
+
+---
 > ### Reset Server Side data
 
 ```ts
