@@ -1,4 +1,4 @@
-# Angular 2+ Reference
+# Angular Element Reference
 
 ## Table of Contents
 1. [Generate new angular application](#Generate_new_angular_application)

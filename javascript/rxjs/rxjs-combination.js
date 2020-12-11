@@ -531,7 +531,7 @@ run$ next => [----- mergeMap End   -----]
 
 const run$ = concat(
   // forkJoinTestCase$,
-  combineAllTestCase$,
+  // combineAllTestCase$,
   // combineLatestTestCase$,
   // zipTestCase$,
   // concatTestCase$,
@@ -540,7 +540,7 @@ const run$ = concat(
   // mergeAllTestCase$,
   // mergeMapTestCase$,
   // endWithTestCase$,
-  // combineObservablesTestCase$,
+  combineObservablesTestCase$,
 ).pipe(catchError(error => of(error)));
 
 run$.subscribe(

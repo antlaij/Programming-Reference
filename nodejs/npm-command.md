@@ -20,6 +20,12 @@ npm install jshint -g
 ```
 
 ---
+# Check which package can update
+```npm
+npm outdated
+```
+
+---
 # check npm install location
 
 ```npm

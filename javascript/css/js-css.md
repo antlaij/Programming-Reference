@@ -9,6 +9,12 @@ document.head.appendChild(script);
 ```
 
 
+### Add custom style to existing page from bookmarklet
+```js
+javascript:(function()(var script = document.createElement('link');script.type = 'text/css';script.rel = 'stylesheet';script.href = 'http://localhost/custom-css/my.css';document.head.appendChild(script);})();
+```
+
+
 ### Add custom style to existing page by javascript
 ```js
 var colorCode = {

@@ -1,5 +1,16 @@
 # Angular 2+ Library
 
+## Table of Contents
+1. [Setup Angular Library with testing application](#Setup-Angular-Library-with-testing-application)
+   1. [Create Empty Workspace](#Create-Empty-Workspace)
+   1. [Generate library](#Generate-library)
+   1. [Generate Test Application](#Generate-Test-Application)
+   1. [Building, Serving, and Testing](#Building,-Serving,-and-Testing)
+   1. [Packaging Our Library](#Packaging-Our-Library)
+   1. [Install Library from tgz file](#Install-Library-from-tgz-file)
+1. [Add routing for a library](#Add-routing-for-a-library)
+
+
 ---
 > ### Setup Angular Library with testing application
 
@@ -23,7 +34,7 @@ ng generate application module-lib-tester
 ng build module-lib
 ng build module-lib-tester --prod
 ```
-#### Packaging Our Library 
+#### Packaging Our Library
 ```cmd
 cd dist/module-lib
 npm pack

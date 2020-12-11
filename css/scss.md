@@ -69,6 +69,22 @@ body {
 ```
 
 
+# Multiple variables in a function
+```scss
+@mixin css-properties {
+  margin: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.use-function {
+  @include css-properties;
+  align-items: center;
+}
+```
+
+
 # Generate css class
 
 ```scss

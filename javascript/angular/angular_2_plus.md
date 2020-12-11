@@ -3,6 +3,14 @@
 ## Table of Contents
 1. [Debug angular 2 plus](#Debug-angular-2-plus)
 1. [Add disabled to a button or input field](#Add-disabled-to-a-button-or-input-field)
+1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
+1. [Directives](#Directives)
+   1. [Custom DIRECTIVES](#Custom-DIRECTIVES)
+   1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
+1. [Pipe](#Rxjs)
+   1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
+1. [Services](#Services)
+   1. [Inject Service to a Const](#Inject-Service-to-a-Const)
 1. [Template](#Template)
    1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
    1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
@@ -21,6 +29,11 @@
 
 ```js
 var sc = ng.probe($0).componentInstance;
+```
+
+> ### Debug angular 2 plus with IVY
+```js
+var com = ng.getComponent($0);
 ```
 
 ---
@@ -290,6 +303,25 @@ export class MyModelClass {
 ```
 
 ---
+> ### Services
+---
+#### Inject Service to a Const
+```ts
+import { Injector } from '@angular/core';
+import { MyService, AnotherService } from "../services/local.service";
+
+const injector = Injector.create([
+  { provide: MyService, deps: [] },
+  { provide: AnotherService, deps: [] }
+]);
+
+let myService = injector.get(MyService);
+let anotherService = injector.get(AnotherService);
+
+```
+
+> ### Directives
+---
 ### Custom DIRECTIVES
 #### Scrolling Check
 ```ts
@@ -392,9 +424,66 @@ export class UnlessDirective {
 
 
 ---
-### Custom STRUCTURAL DIRECTIVES
-#### Authorize directive 
-[Link from Angular Docs](https://v2.angular.io/docs/ts/latest/guide/structural-directives.html)
+### Load Data before application start by APP_INITIALIZER
+#### app.module.ts
 ```ts
+import { APP_INITIALIZER } from '@angular/core';
+
+@NgModule({
+  declarations: [],
+  imports: [],
+  providers: [
+    provide: APP_INITIALIZER,
+    useFactory: (appConfig: AppConigService) => {
+      return () => {
+        return appConfig.loadAppData();
+      }
+    }
+  ],bootstrap: [ AppComponent ]
+})
+export class AppModule {
+}
 ```
+#### AppConig.service.ts
+```ts
+import  { Injectable } form '@angular/core';
+
+private appConfigData = new Map<string, boolean> ();
+
+@Injectable({ providedIn: 'root' })
+export class AppConfigService {
+
+  constructor(private httpClient: HttpClient) {
+    // Set default values
+    this.appConfigData
+    .set('test', false)
+    .set('test_II', true);
+  }
+
+  pulib loadAppData = (): Promise<any> => {
+    return this.httpClient.get<any>('url')
+    .tap(data => {
+      this.appConfigData.set('test_III', false);
+    }),
+  }
+}
+```
+
+### Pipe
+---
+> #### Use default pipe in typescript code
+>> ##### DatePipe
+```ts
+// Create new variable
+private datePipe;
+
+constructor(@Inject(LOCAL_ID)  private locale: string) {
+  this.datePipe = new DatePipe(locale);
+}
+
+public test = (): string => {
+  return this.datePipe.transform(new Date(), 'short'));
+}
+```
+
 

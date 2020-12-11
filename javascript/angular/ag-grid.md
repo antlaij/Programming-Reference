@@ -116,3 +116,21 @@ this.gridApi.purgeServerSideCache(route);
   }
 ```
 
+---
+> ### Turning On Infinite Scrolling without ag-Grid Enterprise
+[Link from Ag Grid pagination](https://www.ag-grid.com/javascript-grid-infinite-scrolling/#pagination)
+
+```ts
+  get totalNumberOfRows(): number {
+    return this.gridApi ? this.gridApi.getDisplayedRowCount() : 0;
+  }
+```
+
+---
+> ### Center Align column with css
+```ts
+  this.columnDefs = [
+    { headerName: 'name', cellStyle: {textAlign: 'center'} }
+  ]
+```
+
