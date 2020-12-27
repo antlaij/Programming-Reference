@@ -108,7 +108,7 @@ this.gridApi.purgeServerSideCache(route);
 ```
 
 ---
-> ### Get Row Count
+> ### Get Displayed Row Count
 
 ```ts
   get totalNumberOfRows(): number {
@@ -117,9 +117,47 @@ this.gridApi.purgeServerSideCache(route);
 ```
 
 ---
+> ### Get Filtered Row Count
+
+```ts
+public get filteredRowCount() {
+  let filteredRowCount = 0;
+  // iterate only nodes that pass the filter
+  if(this.gridApi) {
+    this.gridApi.forEachNodeAfterFilter(function(rowNode, index) {
+        filteredRowCount++;
+    });
+  }
+  return filteredRowCount;
+}
+```
+
+
+---
 > ### Turning On Infinite Scrolling without ag-Grid Enterprise
 [Link from Ag Grid pagination](https://www.ag-grid.com/javascript-grid-infinite-scrolling/#pagination)
 
+```html
+      <ag-grid-angular
+        #agGrid
+        style="width: 100%; height: 100%;"
+        id="myGrid"
+        class="ag-theme-alpine"
+        [columnDefs]="columnDefs"
+        [datasource]="datasource"
+        [components]="components"
+        [defaultColDef]="defaultColDef"
+        rowSelection="multiple"
+        rowModelType="infinite"
+        maxBlocksInCache="2"
+        infiniteInitialRowCount="500"
+        maxConcurrentDatasourceRequests="2"
+        [getRowNodeId]="getRowNodeId"
+        [getRowStyle]="getRowStyle"
+        [rowData]="rowData"
+        (gridReady)="onGridReady($event)"
+      ></ag-grid-angular>
+```
 ```ts
   get totalNumberOfRows(): number {
     return this.gridApi ? this.gridApi.getDisplayedRowCount() : 0;
@@ -132,5 +170,11 @@ this.gridApi.purgeServerSideCache(route);
   this.columnDefs = [
     { headerName: 'name', cellStyle: {textAlign: 'center'} }
   ]
+```
+
+---
+> ### Filter by cellRenderer value instead of column value
+```ts
+{ colId: 'testId', headerName: 'test column', field: 'dataColumn', cellRenderer: 'customRenderer', filterValueGetter: (params) => this.myService.method(params.data.dataColumn) }
 ```
 
