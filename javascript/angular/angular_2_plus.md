@@ -469,6 +469,28 @@ export class AppConfigService {
 }
 ```
 
+### Component
+---
+> #### Return public API to the parent component when child after view init
+```ts
+@Component({selector: 'my-cmp', template: `...`})
+class MyComponent implements AfterViewInit {
+
+  @Output()
+  public onReady = new EventEmitter<apiType>();
+
+  public publicApi: apiType = {
+    componentFunction: this.myFunction.bind(this);
+  }
+
+ngAfterViewInit() {
+    // ...
+    onReady.emit(this.publicApi);
+  }
+}
+
+```
+
 ### Pipe
 ---
 > #### Use default pipe in typescript code
