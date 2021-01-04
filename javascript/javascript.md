@@ -5,6 +5,11 @@
     console.log('key - (value)', value);
 ```
 
+## Print value in Color for Debug
+```js
+    console.log('%c al => text - ()', 'color:yellow; font-size: 16px');
+```
+
 ## Date to String "YYYY-MM-DDTHH:mm:ss"
 ```js
 new Date().
