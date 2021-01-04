@@ -133,6 +133,16 @@ public get filteredRowCount() {
 ```
 
 
+> ### Filter
+---
+#### Hide Filter Icon from floating bar
+```ts
+public DEFAULT_COL_DEF: ColDef = {
+  flotingFilterComponentParams: { suppressFilterButton: true;
+};
+```
+
+
 ---
 > ### Turning On Infinite Scrolling without ag-Grid Enterprise
 [Link from Ag Grid pagination](https://www.ag-grid.com/javascript-grid-infinite-scrolling/#pagination)
