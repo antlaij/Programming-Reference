@@ -169,10 +169,40 @@ public DEFAULT_COL_DEF: ColDef = {
       ></ag-grid-angular>
 ```
 ```ts
-  get totalNumberOfRows(): number {
-    return this.gridApi ? this.gridApi.getDisplayedRowCount() : 0;
-  }
+public onGridReady = (params: AgGridEvent) => {
+  this.gridApi.showLoadlingOverlay();
+
+  combineLatest([this.refreshData$, changes_00, changes_01])
+    .pipe(
+      switchMap(([changes_00, changes_01]) => {
+        this.dataService$(params.startRow, changes_00, changes_01)
+        .pipe(
+          catchError(error => {
+            console.error(error);
+            return of({'default data'});
+          })
+        )
+      })
+    )
+    .subscribe([serverData]) => {
+      this.gridApi.hideOverlay();
+    }
+  );
+
+  this.setAgGridDataSource(0);
+}
+
+private setAgGridDataSource = (start: number = 0) => {
+  let dataSource = {
+    rowCount: null,
+    getRows: (params) => {
+      this.refreshData$.next(params);
+    }
+  };
+  this.gridApi.setDatasource(dataSource);
+}
 ```
+
 
 ---
 > ### Center Align column with css
@@ -181,6 +211,7 @@ public DEFAULT_COL_DEF: ColDef = {
     { headerName: 'name', cellStyle: {textAlign: 'center'} }
   ]
 ```
+
 
 ---
 > ### Filter by cellRenderer value instead of column value
