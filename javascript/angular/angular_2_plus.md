@@ -4,10 +4,12 @@
 1. [Debug angular 2 plus](#Debug-angular-2-plus)
 1. [Add disabled to a button or input field](#Add-disabled-to-a-button-or-input-field)
 1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
+1. [Routing](#Routing)
+   1. [routerLink with queryParams](#routerLink-with-queryParams)
 1. [Directives](#Directives)
    1. [Custom DIRECTIVES](#Custom-DIRECTIVES)
    1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
-1. [Pipe](#Rxjs)
+1. [Pipe](#Pipe)
    1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
 1. [Services](#Services)
    1. [Inject Service to a Const](#Inject-Service-to-a-Const)
@@ -507,5 +509,16 @@ public test = (): string => {
   return this.datePipe.transform(new Date(), 'short'));
 }
 ```
+
+### Routing
+---
+> #### routerLink with queryParams
+```html
+<a [routerLink]="['/order']" [queryParams]="{ orderNumber: 123456}">
+  Products
+</a>
+```
+
+
 
 
