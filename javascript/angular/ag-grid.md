@@ -138,7 +138,7 @@ public get filteredRowCount() {
 #### Hide Filter Icon from floating bar
 ```ts
 public DEFAULT_COL_DEF: ColDef = {
-  flotingFilterComponentParams: { suppressFilterButton: true;
+  floatingFilterComponentParams: { suppressFilterButton: true }
 };
 ```
 
