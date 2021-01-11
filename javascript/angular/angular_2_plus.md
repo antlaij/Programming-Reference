@@ -519,6 +519,35 @@ public test = (): string => {
 </a>
 ```
 
+### Content Projection
+---
+> #### ng-content
+```html
+<my-component>
+  <div>testing</div>
+</my-conponent>
+```
+---
+> #### Multi slot content projection
+##### Parent component
+```html
+<my-component>
+  <div class="class-selector">testing</div>
+  <div class="class-selector-01">testing 01</div>
+  <div >No selector content</div>
+</my-conponent>
+```
+##### my-component component
+```html
+  <div>
+    <ng-content selet=".class-selector"></ng-content>
+    <div>other content in the child</div>
+    <ng-content selet=".class-selector-01"></ng-content>
+    <div>Eventhing not match will show below</div>
+    <ng-content></ng-content>
+  </div>
+```
+
 
 
 
