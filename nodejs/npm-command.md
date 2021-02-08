@@ -62,3 +62,9 @@ npm version patch -m "upgrade to version"
 npm list
 npm list --depth=0
 ```
+
+---
+## Show current info. for a package
+```npm
+npm show vue
+```
