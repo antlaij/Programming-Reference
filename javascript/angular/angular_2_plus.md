@@ -519,6 +519,16 @@ public test = (): string => {
 </a>
 ```
 
+> #### Call a function on every route
+```html
+<router-outlet (activate)="onRouteChanged()"></router-outlet>
+```
+```ts
+onRouteChanged = () => {
+  window.scrollTo(0,0);
+}
+```
+
 ### Content Projection
 ---
 > #### ng-content
