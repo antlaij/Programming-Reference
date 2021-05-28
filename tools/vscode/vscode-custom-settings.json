@@ -66,12 +66,16 @@
         "editor.selectionHighlightBackground": "#12833df3",
         "editor.lineHighlightBackground": "#165ebda6",
         "editor.findMatchBackground":"#ff0080be",
-        "editor.findMatchHighlightBackground":"#ff8800c0",
+        "editor.findMatchHighlightBackground":"#c56900c0",
         "editor.findRangeHighlightBackground":"#ff00ff",
         "editor.wordHighlightBorder":"#ffff00",
         "editor.wordHighlightBackground":"#000000f3",
         "editorBracketMatch.background":"#500581",
         "editorBracketMatch.border":"#3dff02"
+    },
+    "editor.tokenColorCustomizations": {
+        "comments": "#888888",
+        "strings": "#2ac5c5"
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
