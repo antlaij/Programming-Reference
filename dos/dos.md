@@ -31,3 +31,20 @@ set Temp_use=
 set Temp_Hour=
 set Temp_Min=
 ```
+
+## Create zip file by 7-Zip
+### do not zip .git folder
+```batch
+cls
+set Folder_To_Zip=C:\temp
+set Zip_Folder=C:\zip
+
+mkdir %Zip_Folder%
+cd %Folder_To_Zip%
+"C:\Program Files\7-Zip\7z" a -tzip createdZipFile.zip -r *.*  -xr!.git
+move createdZipFile.zip %Zip_Folder%
+)
+
+set Folder_To_Zip=
+set Zip_Folder=
+```
