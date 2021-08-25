@@ -616,7 +616,7 @@ REM ------------- Remove unused branch
 git branch 
 git branch -d master
 REM ------------- Point git to-new Repository
-git remote add origin <url to NEW repo>, 
+git remote add origin <url to NEW repo> 
 git push origin --all 
 git push--tags
 REM ------------- Merge with existing branch 
@@ -625,5 +625,18 @@ git pull origin
 git pull origin branchname --allow-unrelated-histories
 
 ```
+
+
+#### How to Migrate Git Repository with Branches and Commit History
+#### Ref: https://blog.datanextsolutions.com/how-to-migrate-git-repository-with-branches-and-commit-history-dd129fd36dca
+```batch
+git clone --mirror <url-to-source-repo>
+cd to-your-git-repo-folder.git   
+git remote set-url --push origin <url-of-the-destination-git-repo>
+git push --mirror
+```
+
+
+
 
 
