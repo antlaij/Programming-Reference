@@ -430,6 +430,19 @@ export class ConsolePrint {
 
 ```
 
+# HTML Form
+
+## Get all forms
+```js
+var forms = document.getElementsByTagName('form');for(form of forms){console.log( `Form Name: '${form.name}'` )}
+```
+
+
+## Print all form values for debug
+```js
+var formData = new FormData(document.calculator);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
+```
+
 
 
 
