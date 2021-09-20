@@ -262,6 +262,11 @@ git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/u
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 ```
 
+### Show graph in log
+```git
+git log --all --decorate --oneline --graph
+```
+
 ## For MAC
 
 ```git
@@ -293,6 +298,9 @@ git log --since="2019-08-20 00:00:00" --pretty=format:"* %Cgreen[ %ci ]%Creset *
 ```git
 git log -S '/forgotPassword' --source --all
 git log -S 'securityToken' --source --all
+
+git log --all -S"if(!result || !result.statusCode"
+git grep "if(!result || !result.statusCode" $(git rev-list --all)
 ```
 
 ## git compare branch
@@ -616,7 +624,7 @@ REM ------------- Remove unused branch
 git branch 
 git branch -d master
 REM ------------- Point git to-new Repository
-git remote add origin <url to NEW repo>, 
+git remote add origin <url to NEW repo> 
 git push origin --all 
 git push--tags
 REM ------------- Merge with existing branch 
@@ -625,5 +633,18 @@ git pull origin
 git pull origin branchname --allow-unrelated-histories
 
 ```
+
+
+#### How to Migrate Git Repository with Branches and Commit History
+#### Ref: https://blog.datanextsolutions.com/how-to-migrate-git-repository-with-branches-and-commit-history-dd129fd36dca
+```batch
+git clone --mirror <url-to-source-repo>
+cd to-your-git-repo-folder.git   
+git remote set-url --push origin <url-of-the-destination-git-repo>
+git push --mirror
+```
+
+
+
 
 
