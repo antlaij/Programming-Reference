@@ -887,7 +887,7 @@ SELECT
     ALL_TAB_COMMENTS
     WHERE
       TABLE_NAME LIKE 'FAC_%'
-      AND OWNER = 'OMNI_MROC'
+      AND OWNER = 'DB_OWNER_NAME'
       ORDER BY TABLE_NAME;
 
 
@@ -899,7 +899,7 @@ SELECT
   FROM
     ALL_COL_COMMENTS
     WHERE
-      OWNER = 'OMNI_MROC'
+      OWNER = 'DB_OWNER_NAME'
       AND TABLE_NAME LIKE 'FAC_COMMON'
       ORDER BY
         TABLE_NAME,
@@ -1993,7 +1993,6 @@ SELECT INSTR('', '1 XS', 1) FROM DUAL;
 SELECT INSTR('ABAC - 3', '3', 1) FROM DUAL;
 SELECT INSTR('1055807.', '.', 1) FROM DUAL;
 SELECT INSTR('1055807', '.', 1) FROM DUAL;
-SELECT INSTR('Toi Mary-Ann - Vancouver-MROC', ' - ', 1) FROM DUAL;
 SELECT INSTR(RP_COMMENTS, chr(10), 1) FROM VW_ICT_FAC_COMMON_VALIDATE WHERE ARD_EDI_MESSAGE_ID = '5EF57AF5CA71475585252E7FA7007C20';
 SELECT INSTR('ABCD#EFG', '#', 1) FROM DUAL;
 SELECT INSTR('9509: Office and residential buildings, housing estate without shops, up to 7 floors', ':', 1) FROM DUAL;
@@ -2171,7 +2170,7 @@ set sqlprompt "sql>"
 SELECT SUBSTR('0123456789',2) FROM DUAL;
 SELECT SUBSTR('0123456789',2,3) FROM DUAL;
 SELECT SUBSTR('ABCDEFGHIJKLMNOPQRSTUVW',2,3) FROM DUAL;
-SELECT SUBSTR('C:\Anthony\Document\Mroc\Team_Foundation_Server\OMNI_EDI\OMNI_EDI\log\FAB70020100114_13_56_54.csv', INSTR('C:\Anthony\Document\Mroc\Team_Foundation_Server\OMNI_EDI\OMNI_EDI\log\FAB70020100114_13_56_54.csv', '\', -1)+1) FROM DUAL;
+SELECT SUBSTR('C:\Document\MyWorkspace\Team_Foundation_Server\OMNI_EDI\OMNI_EDI\log\FAB70020100114_13_56_54.csv', INSTR('C:\Document\MyWorkspace\Team_Foundation_Server\OMNI_EDI\OMNI_EDI\log\FAB70020100114_13_56_54.csv', '\', -1)+1) FROM DUAL;
 SELECT SUBSTR('09QA0862/QA077109/A/X', INSTR('09QA0862/QA077109/A/X', '/', 1)+1) FROM DUAL;
 SELECT SUBSTR('ICT_ACCOUNTTRANSACTION.ACCOUNTTRANSACTIONTYPE', INSTR('ICT_ACCOUNTTRANSACTION.ACCOUNTTRANSACTIONTYPE', '.', 1)+1) FROM DUAL;
 
@@ -2844,7 +2843,7 @@ print :X1;
 
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 
-/*------------------------------     MROC      ------------------------------*/
+/*------------------------------     OFFICE      ------------------------------*/
 
 /*---------------     @shcon     ---------------*/
 SQL>@shcon

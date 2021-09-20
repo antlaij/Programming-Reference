@@ -9,19 +9,19 @@
 /*---------------     OmniDB     ---------------*/
 
 $/OMNI/OmniDB
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDB\
+C:\Document\MyTeam\Team_Foundation_Server\OmniDB\
 
 
 /*---------------     OmniDB_3.3.0.0     ---------------*/
 
 $/OMNI/OmniBranches/OmniDB_3.3.0.0
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\
+C:\Document\MyTeam\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\
 
 
 /*---------------     OmniDB_4.0.0.0     ---------------*/
 
 $/OMNI/OmniBranches/OmniDB_4.0.0.0
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_4.0.0.0\
+C:\Document\MyTeam\Team_Foundation_Server\OmniBranches\OmniDB_4.0.0.0\
 
 
 
@@ -41,32 +41,23 @@ tf workspaces /s:http://tmrv001012:8080
 
 
 /*---------------     @ Mode     ---------------*/
-tf @ >> C:\Anthony\Temp\TFS_Process.txt
+tf @ >> C:\MyWorkspace\Temp\TFS_Process.txt
 
 
 /*---------------     Status     ---------------*/
 
 # List all checked out file from current user and write to DosOut.txt
-call tf status > "C:\Anthony\Temp\TFS_Status.txt"
+call tf status > "C:\MyWorkspace\Temp\TFS_Status.txt"
 
 # List all checked out file from all user and write to DosOut.txt
-call tf status /user:* > "C:\Anthony\Temp\TFS_Status.txt"
-call tf status /user:ny72720d > "C:\Anthony\Temp\TFS_Status.txt"
+call tf status /user:* > "C:\MyWorkspace\Temp\TFS_Status.txt"
+call tf status /user:userId > "C:\MyWorkspace\Temp\TFS_Status.txt"
 
 
-call tf @ "C:\Anthony\Temp\TFS_Status.txt"
+call tf @ "C:\MyWorkspace\Temp\TFS_Status.txt"
 status
-# List Status for Jie
-status /user:ny72720d
-
-# List Status for Vlah Alexandra - Toronto-MROC - external
-status /user:ny93290d
-
-# List Status for Zelewski Peter - Toronto-MROC - external
-status /user:ny55185d
-
-# List Status for Chau Dexter - Toronto-MROC
-status /user:n954382d
+# List Status for a User
+status /user:userId
 
 # List Status for $/MLMC/Claims from all users
 status $/MLMC/Claims/* /user:* /recursive
@@ -86,7 +77,7 @@ tf view /version
 
 /*---------------     get     ---------------*/
 
-tf get >> "C:\Anthony\Temp\TFS_Get.txt"
+tf get >> "C:\MyWorkspace\Temp\TFS_Get.txt"
 
 
 
@@ -94,7 +85,7 @@ tf get >> "C:\Anthony\Temp\TFS_Get.txt"
 
 call tf checkin $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01046970_20100602.sql  /noprompt
 
-tf checkin C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql  /noprompt
+tf checkin C:\Document\MyTeam\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql  /noprompt
 
 /*---------------     checkout     ---------------*/
 
@@ -103,10 +94,10 @@ tf checkout $/OMNI/OmniDB/
 tf checkout $/OMNI/OmniBranches/OmniDB_3.3.0.0/
 tf checkout $/OMNI/OmniBranches/OmniDB_4.0.0.0/
 
-tf checkout C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
+tf checkout C:\Document\MyTeam\Team_Foundation_Server\OmniBranches\OmniDB_3.3.0.0\StructuralAndDataChanges\IM01046970_20100602.sql
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
 tf checkout $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
 
 tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01046970_20100602.sql
 tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/IM01106341_20100607.sql
@@ -117,7 +108,7 @@ tf checkout $/OMNI/EDI/OMNI_EDI_DB/StructuralAndDataChanges/Update_ED_20100602.s
 
 tf add
 tf add $/OMNI/OmniBranches/OmniDB_3.3.0.0/StructuralAndDataChanges/upgrad_to_2008DD_ICT.sql
-tf add C:\Anthony\Document\Mroc\Team_Foundation_Server\EDI\OMNI_EDI_DB\StructuralAndDataChanges\IM01106341_20100706.sql
+tf add C:\Document\MyTeam\Team_Foundation_Server\EDI\OMNI_EDI_DB\StructuralAndDataChanges\IM01106341_20100706.sql
 
 
 /*---------------     history     ---------------*/
@@ -148,12 +139,12 @@ tf changeset 34098
 
 tf history $/OMNI/OmniDocs/Patches_3.3/Whats_new_3.3.txt
 tf checkout $/OMNI/OmniDocs/Patches_3.3/Whats_new_3.3.txt
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_3.3\Whats_new_3.3.txt
 
 
 tf history $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
 tf checkout $/OMNI/OmniDocs/Patches_3.3/Patches_OMNI3.3.xls
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMNI3.3.xls
 
 
 
@@ -161,11 +152,11 @@ C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_3.3\Patches_OMN
 /*---------------     Update Patches Doc for 4.0     ---------------*/
 
 tf checkout $/OMNI/OmniDocs/Patches_4_0/Whats_new_4_0.txt
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_4_0\Whats_new_4_0.txt
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_4_0\Whats_new_4_0.txt
 
 
 tf checkout $/OMNI/OmniDocs/Patches_4_0/Patches_OMNI_4_0.xls
-C:\Anthony\Document\Mroc\Team_Foundation_Server\OmniDocs\Patches_4_0\Patches_OMNI_4_0.xls
+C:\Document\MyTeam\Team_Foundation_Server\OmniDocs\Patches_4_0\Patches_OMNI_4_0.xls
 
 
 
