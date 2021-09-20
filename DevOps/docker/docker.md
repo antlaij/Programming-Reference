@@ -76,6 +76,7 @@ docker logs container-name
 #### Sometime if /bin/bash does not work, try use /bin/sh instead
 ```batch
 docker exec -it container-id /bin/bash
+docker exec -it a18464acf4b2 /bin/sh
 docker exec -it new-container-name /bin/bash
 ```
 

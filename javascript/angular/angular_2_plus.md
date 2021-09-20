@@ -135,7 +135,7 @@ ngOnChanges(changes: SimpleChanges) {
 ```
 
 ---
-> ### Create Function Mapping from service for component
+> ### Create Function pointer from component to service
 
 ```ts
 mappedFunctionName: (arg_01: string, arg: number) => boolean;
