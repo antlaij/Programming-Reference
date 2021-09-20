@@ -262,6 +262,11 @@ git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/u
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 ```
 
+### Show graph in log
+```git
+git log --all --decorate --oneline --graph
+```
+
 ## For MAC
 
 ```git
@@ -293,6 +298,9 @@ git log --since="2019-08-20 00:00:00" --pretty=format:"* %Cgreen[ %ci ]%Creset *
 ```git
 git log -S '/forgotPassword' --source --all
 git log -S 'securityToken' --source --all
+
+git log --all -S"if(!result || !result.statusCode"
+git grep "if(!result || !result.statusCode" $(git rev-list --all)
 ```
 
 ## git compare branch
