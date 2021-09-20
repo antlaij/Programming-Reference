@@ -4025,14 +4025,14 @@ MAKE A CONNECTION TO REMOTE DATABASE SERVER AND EXECUTE QUERY
 For SQL Server:
 
 SELECT *
-FROM OPENDATASOURCE( 'SQLOLEDB', 'Data Source=mroc_web1;User ID=sa;Password=mroc*Pass390' ).mroc.dbo.CCI_USER
+FROM OPENDATASOURCE( 'SQLOLEDB', 'Data Source=mroc_web1;User ID=sa;Password=OfficePassword' ).mroc.dbo.CCI_USER
 where EMAIL_FLAG = 0
 
 
 For Oracle Server:
 
 SELECT *
-FROM OPENDATASOURCE( 'MSDAORA', 'Data Source=omni_oracle_beta;User ID=edi_test2;Password=edi_test2' ).edi_test2.fac_common
+FROM OPENDATASOURCE( 'MSDAORA', 'Data Source=omni_oracle_beta;User ID=edi_test2;Password=OfficePassword' ).edi_test2.fac_common
 where EMAIL_FLAG = 0
 
 
