@@ -40,6 +40,7 @@ add_commit_push()
   git push
 }
 ```
+
 ```bash
 source git-source.sh
 
@@ -65,3 +66,50 @@ echo "[ ===  Current Branch   : $(git rev-parse --abbrev-ref HEAD)  === ]"
 echo 
 add_commit_push
 ```
+
+## Defind variables
+
+### Text variable
+```
+myTextVariable='text input'
+gitInitBare='git init --bare'
+```
+
+### Array variable
+```batch
+items=(
+item1
+item2
+item3
+item4
+)
+```
+
+### loop through Array
+```batch
+for Item in ${items[*]} 
+  do
+    echo
+    echo
+    echo
+    testingFunction $Item
+    echo ----- Done!
+  done
+```
+
+
+## Defind Functions
+
+### Function with parameter
+```batch
+testingFunction() {
+  echo arg 01 = [$1]
+  echo arg 02 = [$2]
+}
+```
+
+### Call Function with parameters
+```batch
+    testingFunction Testing01 Testing02
+```
+

@@ -1,3 +1,21 @@
+## Check Parameter is empty or not
+```batch
+IF [%3] == [] (
+  echo Third Arg is empty
+)
+```
+
+## IF, ELSE IF, ELSE
+```batch
+IF %myvariable%==1 (
+   echo myvariable == 1
+) ELSE IF %myvariable%==2 (
+   echo myvariable == 2
+) ELSE (
+    echo In Else block
+)
+```
+
 ## Set current date and time
 ```batch
 @echo off

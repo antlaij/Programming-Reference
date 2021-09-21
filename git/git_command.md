@@ -206,6 +206,7 @@ git clone Y:\Development\SourceControl\Git\local.git
 
 ```git
 git clone Y:\Development\SourceControl\Git\web\local.git
+git clone Y:\Development\SourceControl\Git\web\local.git folderName
 ```
 
 
@@ -618,13 +619,13 @@ git fetch ---tags
 git tag 
 git branch -a 
 git remote -V 
-git remote rm origin 
+git remote rm origin
 git remote -V
 REM ------------- Remove unused branch
 git branch 
 git branch -d master
 REM ------------- Point git to-new Repository
-git remote add origin <url to NEW repo> 
+git remote add origin <url to NEW repo>
 git push origin --all 
 git push--tags
 REM ------------- Merge with existing branch 
