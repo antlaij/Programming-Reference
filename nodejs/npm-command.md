@@ -20,12 +20,6 @@ npm install jshint -g
 ```
 
 ---
-# Check which package can update
-```npm
-npm outdated
-```
-
----
 # check npm install location
 
 ```npm
@@ -61,6 +55,18 @@ npm version patch -m "upgrade to version"
 ```npm
 npm list
 npm list --depth=0
+```
+
+---
+# Check which package can update
+```npm
+npm outdated
+```
+
+---
+## Check latest verion of a package
+```npm
+npm view express version
 ```
 
 ---
