@@ -73,11 +73,22 @@ git config --global push.default current
 
 ---
 
-## Delete/undo last commit
-
+## Discarding All Local Changes
+### For All Chnaged files
 ```git
-If you have committed junk but not pushed,
+git restore .
 ```
+### For one Chnaged files
+```git
+git restore index.html
+```
+### For New files only
+```git
+git clean -f
+```
+
+## Delete/undo last commit
+### If you have committed junk but not pushed,
 
 ```git
 git reset --soft HEAD~1
