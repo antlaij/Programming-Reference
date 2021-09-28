@@ -87,6 +87,8 @@ git restore index.html
 git clean -f
 ```
 
+---
+
 ## Delete/undo last commit
 ### If you have committed junk but not pushed,
 
@@ -99,9 +101,10 @@ git reset HEAD~
 ```
 
 ## Now if you already pushed and someone pulled which is usually my case, you can't use git reset.
-
-You can however do a git revert,
+### You can however do a git revert,
+```git
 git revert HEAD
+```
 
 ## push changes to the master:updates
 
