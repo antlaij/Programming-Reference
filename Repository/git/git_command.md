@@ -7,6 +7,20 @@ git config --list
 
 ***
 
+# Git Status
+
+## show current branch status
+```bash
+git status
+```
+
+## compare branch to remote
+```bash
+git remote show origin
+```
+
+***
+
 # Branch
 
 ## List all branch
