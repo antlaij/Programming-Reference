@@ -42,6 +42,7 @@ npm install typescript@">=3.1.1 <3.2"
 
 ```npm
 npm root -g
+npm root
 ```
 
 ---
@@ -55,6 +56,10 @@ npm version patch -m "upgrade to version"
 ```npm
 npm list
 npm list --depth=0
+```
+### List version on one package
+```npm
+npm list webpack
 ```
 
 ---
@@ -73,4 +78,9 @@ npm view express version
 ## Show current info. for a package
 ```npm
 npm show vue
+```
+
+# view node version
+```npm
+node --version
 ```
