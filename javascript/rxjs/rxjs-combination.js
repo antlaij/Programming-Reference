@@ -1,6 +1,6 @@
 
 const { forkJoin, interval, of, concat, combineLatest, zip, merge, from, fromArray } = require('rxjs');
-const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll, delay, switchMap, mergeMap } = require('rxjs/operators');
+const { map, take, concatAll, catchError, groupBy, concatMap, combineAll, endWith, mergeAll, delay, switchMap, mergeMap, combineLatestAll } = require('rxjs/operators');
 
 const alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -29,11 +29,11 @@ let concatAll$ = (observableName, inObservable$) => {
 }
 
 /**
- * When all observables complete
+ * When all observables complete run in parallel
  * give the last emitted value from each as an array
  * Only emit the last value
  */
-const forkJoin$ = forkJoin(alphabets$, numbers$).pipe(catchError(error => of(error)));
+const forkJoin$ = forkJoin([alphabets$, numbers$]).pipe(catchError(error => of(error)));
 const forkJoinTestCase$ = concatAll$('forkJoin', forkJoin$);
 /*
 Marble Diagram:
@@ -115,7 +115,7 @@ run$ next => [----- combineAll End   -----]
  * When any observable emit a value
  * then subscriber will gets the  latest combined value in an Array [first, second]
  */
-const combineLatest$ = combineLatest(alphabets$, numbers$, alphabetsUpper$).pipe(catchError(error => of(error)));
+const combineLatest$ = combineLatest([alphabets$, numbers$, alphabetsUpper$]).pipe(catchError(error => of(error)));
 const combineLatestTestCase$ = concatAll$('combineLatest', combineLatest$);
 /*
 Marble Diagram:
@@ -356,11 +356,11 @@ run$ next => [----- endWith End   -----]
 */
 
 /**
- * Use combineAll Like forkjoin in sequence
+ * Use combineLatestAll Like forkjoin in sequence
  * Combine All Obserables in sequence and return an array of values
  */
-const combineObservables$ = from([of(1).pipe(delay(500)),of(2),of(3),of(4)]).pipe(combineAll());
-const combineObservablesTestCase$ = concatAll$('endWith', combineObservables$);
+const combineObservables$ = from([of(1).pipe(delay(500)),of(2),of(3),of(4)]).pipe(combineLatestAll());
+const combineObservablesTestCase$ = concatAll$('combineObservables', combineObservables$);
 /*
   output:
   [1,2,3,4]
