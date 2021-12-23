@@ -1,20 +1,19 @@
-
-const { interval, of, from } = require('rxjs');
+const { interval, of, iif } = require('rxjs');
+const { mergeMap, take, tap } = require('rxjs/operators');
 
 /**
- * rxjs of
+ * If else condition
  */
-of(
-  { channel: 'radio2', programName: 'curiouserandcuriouser', limit: 30 },
-  { channel: 'radio2', programName: 'weekendlover', limit: 30 },
-  { channel: 'radio1', programName: 'forensic_institute', limit: 30 },
-  { channel: 'radio2', programName: 'freeaswind', limit: 30 },
-  { channel: 'radio2', programName: 'Free_as_the_wind', limit: 30 },
-  { channel: 'radio1', programName: 'healthpedia', limit: 30 },
-  { channel: 'radio2', programName: 'reunion', limit: 30 },
-  { channel: 'radio1', programName: 'hkfootpath', limit: 30 },
-  { channel: 'radio2', programName: 'SeeSaw', limit: 30 },
-  { channel: 'radio1', programName: 'walk_along', limit: 30 },
-).subscribe((x) => {
-  console.log('x', x.channel);
-});
+const oddObservable$ = of('<---  ODD  -->');
+const evenObservable$ = of('<---  EVEN  -->');
+
+interval(1000).pipe(
+  tap(value => console.log(`interval: ${value}`)),
+  mergeMap(value =>
+    iif(
+      () => (value % 2),
+      oddObservable$,
+      evenObservable$
+    )),
+    take(5),
+).subscribe(console.log);
