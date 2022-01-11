@@ -435,6 +435,7 @@ export class ConsolePrint {
 ## Get all forms
 ```js
 var forms = document.getElementsByTagName('form');for(form of forms){console.log( `Form Name: '${form.name}'` )}
+var forms = document.getElementsByClassName('class-name');for(form of forms){console.log( `Form Name: '${form.name}'` )}
 ```
 
 

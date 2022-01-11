@@ -56,6 +56,7 @@ kubectl --kubeconfig /home/.kube/config get services
 ```batch
 kubectl get deployments --all-namespaces
 kubectl get deployment -n nodejs
+kubectl get deployment -n angular
 
 kubectl --kubeconfig /home/.kube/config get deployments
 ```
