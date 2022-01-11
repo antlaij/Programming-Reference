@@ -68,10 +68,10 @@
         "editor.findMatchBackground":"#ff0080be",
         "editor.findMatchHighlightBackground":"#c56900c0",
         "editor.findRangeHighlightBackground":"#ff00ff",
-        "editor.wordHighlightBorder":"#ffff00",
-        "editor.wordHighlightBackground":"#000000f3",
-        "editorBracketMatch.background":"#500581",
-        "editorBracketMatch.border":"#3dff02"
+        "editor.wordHighlightBorder":"#000000",
+        "editor.wordHighlightBackground":"#155800",
+        "editorBracketMatch.border":"#000000",
+        "editorBracketMatch.background":"#330055"
     },
     "editor.tokenColorCustomizations": {
         "comments": "#888888",
