@@ -71,7 +71,7 @@
         "editor.wordHighlightBorder":"#000000",
         "editor.wordHighlightBackground":"#155800",
         "editorBracketMatch.border":"#000000",
-        "editorBracketMatch.background":"#330055"
+        "editorBracketMatch.background":"#82005d"
     },
     "editor.tokenColorCustomizations": {
         "comments": "#888888",
