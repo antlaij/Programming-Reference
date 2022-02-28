@@ -27,3 +27,13 @@ from(counterObject$)
   toArray(),
 )
 .subscribe(x => console.log(x));
+
+/*
+Output:
+[
+  [ 'name 1', [ [Object], [Object], [Object], [Object] ] ],
+  [ 'name 2', [ [Object], [Object] ] ],
+  [ 'name 3', [ [Object], [Object], [Object], [Object], [Object] ] ],
+  [ 'name 4', [ [Object] ] ]
+]
+*/

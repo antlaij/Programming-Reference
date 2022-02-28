@@ -343,6 +343,54 @@ console.log(JSON.stringify(finalOutput, null, 2));
   });
 ```
 
+---
+### Generate a unique key by using two or more properties
+```ts
+let generateUniqueKeyByProperties = <T>(arrayOffObjs: Array<T>, propertyNames: Array<string>, uniqueKeyName: string = 'unkqueKey'): Array<any> => {
+  // Check arrayOffObjs
+  if (!arrayOffObjs) return [];
+  if (Array.isArray(arrayOffObjs) && arrayOffObjs.length === 0) return [];
+  // Check property name
+  if(isObjectEmpty(propertyNames)) return arrayOffObjs;
+
+  return arrayOffObjs.map(item => {
+    let unkqueKey = propertyNames.reduce((acc: string, curr: string) => {
+      if (item.hasOwnProperty(curr)) {
+        acc += item[curr];
+      }
+      return acc;
+    }, '');
+    return { ...item, [uniqueKeyName]: unkqueKey };
+  });
+};
+```
+```ts
+describe('collections.objects generateUniqueKeyByProperties', () => {
+  const testCases = [
+    // Positive Test case
+    ['generateUniqueKeyByProperties - multiple value as key', [{ key: '111', value: '123' }], ['key', 'value'], 'myUnkqueKey', [{ key: '111', value: '123', myUnkqueKey: '111123' }]],
+    ['generateUniqueKeyByProperties - multiple value as key', [{ key: '111', value: '123 ' }], ['key', 'value'], 'myUnkqueKey', [{ key: '111', value: '123 ', myUnkqueKey: '111123 ' }]],
+    ['generateUniqueKeyByProperties - property name does not exist', [{ key: '111', value: '123 ' }], ['key', 'values'], 'myUnkqueKey', [{ key: '111', value: '123 ', myUnkqueKey: '111' }]],
+    ['generateUniqueKeyByProperties - no duplicate', [{ key: '111', value: '123' }], ['key'], 'myUnkqueKey', [{ key: '111', value: '123', myUnkqueKey: '111' }]],
+    ['generateUniqueKeyByProperties - no duplicate', [{ key: '111', value: '123' }], ['key'], null, [{ key: '111', value: '123', unkqueKey: '111' }]],
+    // Nagetive Test case
+    ['generateUniqueKeyByProperties - null object input', null, ['key', 'value'], 'myUnkqueKey', []],
+    ['generateUniqueKeyByProperties - null key input', [{ key: '111', value: '123' }], null, 'myUnkqueKey', [{ key: '111', value: '123' }]],
+  ];
+
+  test.each(testCases)(
+    '%#. %s',
+    (testName: string, testObj: Array<any>, key: Array<string>, outputKeyName: string, expectedResult: Array<string>) => {
+      if (outputKeyName) {
+        expect(objects.generateUniqueKeyByProperties<{ key: string; value: string }>(testObj, key, outputKeyName)).toEqual(expectedResult);
+      } else {
+        expect(objects.generateUniqueKeyByProperties<{ key: string; value: string }>(testObj, key)).toEqual(expectedResult);
+      }
+    }
+  )
+});
+```
+
 ## Console Color Printing
 ```js
 export const consoleColor = {
