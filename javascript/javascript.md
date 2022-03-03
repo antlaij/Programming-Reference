@@ -344,6 +344,41 @@ console.log(JSON.stringify(finalOutput, null, 2));
 ```
 
 ---
+### Get duplicate keys in an array
+```ts
+let getDuplicateByKey = (objects: any[], key: string): Array<string> => {
+  if(isObjectEmpty(objects)) return [];
+  let objectEntities = objects.reduce((accumulator, currentValue) => {
+    let groupKey = currentValue[key];
+    if (!accumulator.hasOwnProperty(groupKey)) {
+      accumulator[groupKey] = 0;
+    }
+    accumulator[groupKey] = accumulator[groupKey] + 1;
+    return { ...accumulator };
+  }, {});
+  return Object.keys(objectEntities).filter(item => objectEntities[item] > 1);
+}
+```
+```ts
+describe('collections.objects getDuplicateByKey', () => {
+  const testCases = [
+    // Positive Test case
+    ['getDuplicateByKey - multiple value as key', [{ key: '111', value: '123' }], 'key', []],
+    ['getDuplicateByKey - multiple value as key', [{ key: '111', value: '123' }, { key: '111', value: '222' }], 'key', ['111']],
+    // Nagetive Test case
+    ['getDuplicateByKey - null object input', null, 'key', []],
+  ];
+
+  test.each(testCases)(
+    '%#. %s',
+    (testName: string, testObj: Array<any>, key: string, expectedResult: Array<string>) => {
+      expect(objects.getDuplicateByKey(testObj, key)).toEqual(expectedResult);
+    }
+  )
+});
+```
+
+---
 ### Generate a unique key by using two or more properties
 ```ts
 let generateUniqueKeyByProperties = <T>(arrayOffObjs: Array<T>, propertyNames: Array<string>, uniqueKeyName: string = 'unkqueKey'): Array<any> => {
