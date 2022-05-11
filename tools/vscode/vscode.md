@@ -107,3 +107,36 @@
   }
 }
 ```
+### 
+```json
+{
+	"folders": [
+		{
+			"path": "d:\\myDevFolder-Orange"
+		}
+	],
+	"settings": {
+		"editor.tabSize": 2,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#743e00",
+      "activityBar.activeBackground": "#a77405",
+      "activityBar.activeBorder": "#00bfbf",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#00bfbf",
+      "activityBarBadge.foreground": "#15202b",
+      "titleBar.activeBackground": "#743e00",
+      "titleBar.inactiveBackground": "#743e00",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveForeground": "#e7e7e799",
+      "statusBar.background": "#743e00",
+      "statusBarItem.hoverBackground": "#747400",
+      "statusBar.foreground": "#e7e7e7",
+      "sash.hoverBorder": "#747400",
+      "statusBarItem.remoteBackground": "#414100",
+      "statusBarItem.remoteForeground": "#e7e7e7"
+    },
+    "peacock.color": "#5570aa"  
+  }
+}
+```
