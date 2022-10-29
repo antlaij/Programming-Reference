@@ -675,5 +675,20 @@ git push --mirror
 
 
 
+#### Remove history
+#### Ref: https://www.willandskill.se/en/articles/deleting-your-git-commit-history-without-removing-repo-on-github-bitbucket
+```batch
+cd myrepo
+rm -rf .git
+
+$ git init
+$ git add .
+$ git commit -m "Remove history"
+
+$ git remote add origin github.com:me/my.git
+$ git push -u --force origin master
+```
+
+
 
 
