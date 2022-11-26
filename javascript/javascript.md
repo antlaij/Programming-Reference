@@ -177,7 +177,7 @@ Using new ES6 Set Data structure
 Set only allow unique value
 
 ```js
-var myArray = [1,2,3,3,4,4,5,5];
+var myArray = [1,2,3,3,4,4,5,5,3,2,2,1];
 var uniqueSet = new Set([...myArray]);
 var uniqueArray = Array.from(uniqueSet);
 
@@ -525,6 +525,17 @@ var forms = document.getElementsByClassName('class-name');for(form of forms){con
 ## Print all form values for debug
 ```js
 var formData = new FormData(document.calculator);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
+```
+
+
+## Ternary function call
+### Conditionally call a function
+```js
+let x = () => { console.log('x') };
+let y = () => { console.log('y') };
+
+let z = 10;
+( z === 10 ? x : y)();
 ```
 
 
