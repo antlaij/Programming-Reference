@@ -598,6 +598,11 @@ SET n:Product
 // update property by replace
 MATCH (n:Book) where exists(n.imageUrl) RETURN replace(n.imageUrl, "/", "/Programming/Collections/Photo/") order by n.name
 
+// update property from other node value
+MATCH (p:Product) WHERE EXISTS(p.myprop) and p.myprop = []
+set p.myprop = [p.otherprop]
+return p;
+
 // Add Property
 match (p:Product) set p.isPhotoMapCompleted = false return p
 
