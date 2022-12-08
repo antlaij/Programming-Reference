@@ -603,6 +603,12 @@ MATCH (p:Product) WHERE EXISTS(p.myprop) and p.myprop = []
 set p.myprop = [p.otherprop]
 return p;
 
+// update array property - add
+MATCH (p:Product) WHERE ID(p) = 1
+SET p.myArrayProp = coalesce(p.myArrayProp, []) + ['a', 'b', 'c']
+return p;
+
+
 // Add Property
 match (p:Product) set p.isPhotoMapCompleted = false return p
 
