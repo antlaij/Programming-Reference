@@ -524,7 +524,9 @@ var forms = document.getElementsByClassName('class-name');for(form of forms){con
 
 ## Print all form values for debug
 ```js
+var formData = new FormData(document.getElementsByTagName('form')[0]);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
 var formData = new FormData(document.calculator);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
+
 ```
 
 
@@ -536,6 +538,18 @@ let y = () => { console.log('y') };
 
 let z = 10;
 ( z === 10 ? x : y)();
+```
+
+
+## Number Format
+### Currency
+```js
+const number = 123456789;
+const numFormat = new Intl.NumberFormat("en-ca", {
+  currency: "CAD",
+  style: "currency",
+});
+console.log(numFormat.format(number));
 ```
 
 
