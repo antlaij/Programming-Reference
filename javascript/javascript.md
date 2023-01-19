@@ -552,6 +552,18 @@ const numFormat = new Intl.NumberFormat("en-ca", {
 console.log(numFormat.format(number));
 ```
 
+# DOM manipulation
+
+## Add element as a sibling
+### Use: Element.insertAdjacentHTML() with position: 'afterend'
+```js
+  const target = document.querySelector('#target');
+  const newElement = document.createElement("span");
+  newElement.innerHTML="This is a test";
+  target.insertAdjacentHTML('afterend', newElement);
+  target.insertAdjacentHTML('afterend', '<strong>inserted text</strong>');
+```
+
 
 
 
