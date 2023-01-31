@@ -1,25 +1,35 @@
 # Javascript
+## Table of Contents
++ [HTML Form](#HTML-Form)
+  - [Get all forms from HTML](#Get-all-forms-from-HTML)
+  - [Print all form values to console](#Print-all-form-values-to-console)
++ [Debug Javascript](#Debug-Javascript)
+  - [Print value for Debug](#Print-value-for-Debug)
+  - [Print value in Color for Debug](#Print-value-in-Color-for-Debug)
+  - [Print to console in different Colors](#Print-to-console-in-different-Colors)
++ [Date Time Function](#Date-Time-Function)
 
-## Print value for Debug
+## Debug Javascript
+### Print value for Debug
 ```js
     console.log('key - (value)', value);
 ```
-
-## Print value in Color for Debug
+### Print value in Color for Debug
 ```js
     console.log('%c al => text - ()', 'color:yellow; font-size: 16px');
 ```
-
-## Date to String "YYYY-MM-DDTHH:mm:ss"
+## Date Time Function
+### Date to String "YYYY-MM-DDTHH:mm:ss"
 ```js
 new Date().
   toLocaleString('en-us', {year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false}).
   replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2').replace(', ','T');
+
+/* Output:
+'2023-01-31T24:02:42'
+*/
 ```
-
-
 ## Array.Map changed the original array
-
 ```js
 const testArray = [{ name: '001' }, { name: '002' }, { name: '003' }, { name: '004' }];
 
@@ -51,11 +61,38 @@ let mapWithArrayMap = testArray.map((x) => {
 
 console.log('testArray', testArray);
 console.log('mapWithArrayMap', mapWithArrayMap);
+
+/* Output:
+testArray (4) [{…}, {…}, {…}, {…}]
+0: {name: '111'}
+1: {name: '111'}
+2: {name: '111'}
+3: {name: '111'}
+length: 4[[Prototype]]: Array(0)
+testArray (4) [{…}, {…}, {…}, {…}]
+0: {name: '111'}
+1: {name: '111'}
+2: {name: '111'}
+3: {name: '111'}
+length: 4[[Prototype]]: Array(0)
+mapWithAssign (4) [{…}, {…}, {…}, {…}]
+testArray (4) [{…}, {…}, {…}, {…}]
+0: {name: '111'}
+1: {name: '111'}
+2: {name: '111'}
+3: {name: '111'}
+length: 4[[Prototype]]: Array(0)
+mapWithNewObject (4) [{…}, {…}, {…}, {…}]
+testArray (4) [{…}, {…}, {…}, {…}]
+0: {name: '111'}
+1: {name: '111'}
+2: {name: '111'}
+3: {name: '111'}
+length: 4[[Prototype]]: Array(0)
+mapWithArrayMap (4) [{…}, {…}, {…}, {…}]
+*/
 ```
-
-
 ## Convert Array of object to entity
-
 ```js
 [
   { id: 1, name: 'a' },
@@ -78,11 +115,8 @@ console.log('mapWithArrayMap', mapWithArrayMap);
 }
 */
 ```
-
 ---
-
 ## Convert entity array back to Array
-
 ```js
 var entities = {
   "1": { "id": 1, "name": "a" },
@@ -101,9 +135,7 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 ]
 */
 ```
-
 ---
-
 ## Group By Key on an Array of object
 
 ```js
@@ -135,11 +167,8 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 }
   */
 ```
-
 ---
-
 ## Concatinate the value from Array of objects to Key value pair
-
 ```js
 [
   { id: 1, name: 'a' },
@@ -168,9 +197,7 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 ]
 */
 ```
-
 ---
-
 ## Remove duplicate from Array
 
 Using new ES6 Set Data structure
@@ -186,7 +213,6 @@ Set { 1, 2, 3, 4, 5 }
 [1, 2, 3, 4, 5]
 */
 ```
-
 ---
 ## Count Multipule distinct object from an Array
 ```js
@@ -244,8 +270,6 @@ console.log(JSON.stringify(finalOutput, null, 2));
 ]
 */
 ```
-
-
 ---
 ## Check object is empty or not
 ```js
@@ -272,7 +296,6 @@ console.log(JSON.stringify(finalOutput, null, 2));
     return false;
   }
 ```
-
 ---
 ### Compare all the first level data between 2 objects
 ```ts
@@ -342,7 +365,6 @@ console.log(JSON.stringify(finalOutput, null, 2));
     });
   });
 ```
-
 ---
 ### Get duplicate keys in an array
 ```ts
@@ -425,8 +447,7 @@ describe('collections.objects generateUniqueKeyByProperties', () => {
   )
 });
 ```
-
-## Console Color Printing
+## Print to console in different Colors
 ```js
 export const consoleColor = {
   Reset: "\x1b[0m",
@@ -513,22 +534,21 @@ export class ConsolePrint {
 
 ```
 
-# HTML Form
-
-## Get all forms
+## HTML Form
+### Get all forms from HTML
 ```js
 var forms = document.getElementsByTagName('form');for(form of forms){console.log( `Form Name: '${form.name}'` )}
 var forms = document.getElementsByClassName('class-name');for(form of forms){console.log( `Form Name: '${form.name}'` )}
 ```
 
-
-## Print all form values for debug
+### Print all form values to console
 ```js
+// Print values from first form
 var formData = new FormData(document.getElementsByTagName('form')[0]);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
+
+// Print values by the name of the form
 var formData = new FormData(document.calculator);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
-
 ```
-
 
 ## Ternary function call
 ### Conditionally call a function
@@ -540,8 +560,7 @@ let z = 10;
 ( z === 10 ? x : y)();
 ```
 
-
-## Number Format
+## Number Format by using Internationalization API
 ### Currency
 ```js
 const number = 123456789;
@@ -552,16 +571,31 @@ const numFormat = new Intl.NumberFormat("en-ca", {
 console.log(numFormat.format(number));
 ```
 
-# DOM manipulation
-
-## Add element as a sibling
-### Use: Element.insertAdjacentHTML() with position: 'afterend'
+## DOM manipulation
+### Add element as a sibling
+#### Use: Element.insertAdjacentHTML() with position: 'afterend'
 ```js
   const target = document.querySelector('#target');
   const newElement = document.createElement("span");
   newElement.innerHTML="This is a test";
   target.insertAdjacentHTML('afterend', newElement);
   target.insertAdjacentHTML('afterend', '<strong>inserted text</strong>');
+```
+
+## User Actions
+### Disable default function from Anchor Tag \<a\>
+#### Add a javascript function to attribute "href"
+> From HTML
+```html
+<a href="javascript:void(0)">Click</a>
+```
+> From javascript
+```js
+let userClick = () => {};
+
+let rowEle = document.createElement("A");
+rowEle.setAttribute('href', "javascript:void(0)");
+rowEle.onclick = userClick;
 ```
 
 
