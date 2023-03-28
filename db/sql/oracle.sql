@@ -2409,11 +2409,11 @@ SELECT * FROM PLAN_TABLE;
 
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 /*------------------------------------------------------------
-||	NAME		:	Array of column Type
+||	NAME		    :	Array of column Type
 ||	DESCRIPTION	:	Array of column Type
-||	CREATE		:	2011-01-24
+||	CREATE		  :	2011-01-24
 ||	LAST UPDATE	:	2011-01-24
-||	URL			:	http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14261/tuning.htm#BABJCBGD
+||	URL			    :	http://download.oracle.com/docs/cd/B19306_01/appdev.102/b14261/tuning.htm#BABJCBGD
 ------------------------------------------------------------*/
 
 DECLARE
@@ -2463,6 +2463,45 @@ BEGIN
 END;
 /
 
+
+
+
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+/*------------------------------     JSON      ------------------------------*/
+
+/*------------------------------------------------------------
+||	NAME		    :	Select Mock data from JSON format
+||	DESCRIPTION	:	Select Mock data from JSON format
+||	CREATE		  :	2023-02-22
+||	LAST UPDATE	:	2023-02-22
+||	REF. URL	  :	https://renenyffenegger.ch/notes/development/databases/Oracle/SQL/functions/json/table/index
+------------------------------------------------------------*/
+SELECT * FROM
+  JSON_TABLE ('[
+      [0, "ZERO" , "A"],
+      [1, "ONE"  , "B"],
+      [2, "TWO"  , "C"],
+      [3, "THREE", "D"],
+      [4, "FOUR" , "E"],
+      [5, "FIVE" , "F"]
+    ]',
+    '$[*]'
+    COLUMNS
+      ID    NUMBER  ( 1) PATH '$[0]',
+      NUM   VARCHAR2(10) PATH '$[1]',
+      META  VARCHAR2( 3) PATH '$[2]'
+  );
+
+/*-----   OUTPUT   -----*/
+--      ID NUM        MET
+---------- ---------- ---
+--       0 zero       A
+--       1 one        B
+--       2 two        C
+--       3 three      D
+--       4 four       E
+--       5 five       F
 
 
 
