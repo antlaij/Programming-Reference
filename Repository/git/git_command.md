@@ -654,7 +654,7 @@ git branch
 git branch -d master
 REM ------------- Point git to-new Repository
 git remote add origin <url to NEW repo>
-git push origin --all 
+git push origin --all
 git push--tags
 REM ------------- Merge with existing branch 
 git pull origin
@@ -686,7 +686,7 @@ $ git add .
 $ git commit -m "Remove history"
 
 $ git remote add origin github.com:me/my.git
-$ git push -u --force origin master
+$ git push -u --force origin main
 ```
 
 
