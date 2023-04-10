@@ -1,13 +1,14 @@
 # Javascript
 ## Table of Contents
-+ [HTML Form](#HTML-Form)
-  - [Get all forms from HTML](#Get-all-forms-from-HTML)
-  - [Print all form values to console](#Print-all-form-values-to-console)
 + [Debug Javascript](#Debug-Javascript)
   - [Print value for Debug](#Print-value-for-Debug)
   - [Print value in Color for Debug](#Print-value-in-Color-for-Debug)
   - [Print to console in different Colors](#Print-to-console-in-different-Colors)
 + [Date Time Function](#Date-Time-Function)
++ [Copy data to Clipboard](#Copy-data-to-Clipboard)
+  - [Save data in different formats](#Save-data-in-different-formats)
+
+
 
 ## Debug Javascript
 ### Print value for Debug
@@ -534,21 +535,6 @@ export class ConsolePrint {
 
 ```
 
-## HTML Form
-### Get all forms from HTML
-```js
-var forms = document.getElementsByTagName('form');for(form of forms){console.log( `Form Name: '${form.name}'` )}
-var forms = document.getElementsByClassName('class-name');for(form of forms){console.log( `Form Name: '${form.name}'` )}
-```
-
-### Print all form values to console
-```js
-// Print values from first form
-var formData = new FormData(document.getElementsByTagName('form')[0]);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
-
-// Print values by the name of the form
-var formData = new FormData(document.calculator);for(key of formData.keys()){console.log( `${key}: '${formData.get(key)}'` )}
-```
 
 ## Ternary function call
 ### Conditionally call a function
@@ -582,20 +568,22 @@ console.log(numFormat.format(number));
   target.insertAdjacentHTML('afterend', '<strong>inserted text</strong>');
 ```
 
-## User Actions
-### Disable default function from Anchor Tag \<a\>
-#### Add a javascript function to attribute "href"
-> From HTML
-```html
-<a href="javascript:void(0)">Click</a>
-```
-> From javascript
+## Copy data to Clipboard
+### Save data in different formats
+#### Use: clipboardData from Event
 ```js
-let userClick = () => {};
-
-let rowEle = document.createElement("A");
-rowEle.setAttribute('href', "javascript:void(0)");
-rowEle.onclick = userClick;
+let displayEle = document.createElement("button");
+displayEle.innerText = 'Copy';
+displayEle.onclick = (evt) => {
+  let listener = (e) => {
+    e.clipboardData.setData("text/plain", `Data to copy`);
+    e.clipboardData.setData("text/html", `<span>Data to copy</span>`);
+    e.preventDefault();
+  }
+  document.addEventListener("copy", listener);
+  document.execCommand("copy", true);
+  document.removeEventListener("copy", listener);
+};
 ```
 
 
