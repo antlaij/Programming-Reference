@@ -200,9 +200,8 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 ```
 ---
 ## Remove duplicate from Array
-
-Using new ES6 Set Data structure
-Set only allow unique value
+### Using new ES6 Set Data structure
+### Set only allow unique value
 
 ```js
 var myArray = [1,2,3,3,4,4,5,5,3,2,2,1];
@@ -555,35 +554,6 @@ const numFormat = new Intl.NumberFormat("en-ca", {
   style: "currency",
 });
 console.log(numFormat.format(number));
-```
-
-## DOM manipulation
-### Add element as a sibling
-#### Use: Element.insertAdjacentHTML() with position: 'afterend'
-```js
-  const target = document.querySelector('#target');
-  const newElement = document.createElement("span");
-  newElement.innerHTML="This is a test";
-  target.insertAdjacentHTML('afterend', newElement);
-  target.insertAdjacentHTML('afterend', '<strong>inserted text</strong>');
-```
-
-## Copy data to Clipboard
-### Save data in different formats
-#### Use: clipboardData from Event
-```js
-let displayEle = document.createElement("button");
-displayEle.innerText = 'Copy';
-displayEle.onclick = (evt) => {
-  let listener = (e) => {
-    e.clipboardData.setData("text/plain", `Data to copy`);
-    e.clipboardData.setData("text/html", `<span>Data to copy</span>`);
-    e.preventDefault();
-  }
-  document.addEventListener("copy", listener);
-  document.execCommand("copy", true);
-  document.removeEventListener("copy", listener);
-};
 ```
 
 
