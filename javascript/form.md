@@ -55,5 +55,34 @@ rowEle.onclick = userClick;
 ```
 
 
+## rxjs
+### Subscribe to Input change event
+#### use: fromEvent
+```js
+const { fromEvent, combineLatest } = rxjs;
+
+const inputNameChange$ = [fromEvent(document.formName.inputName, 'change');
+
+const combinedInputsChange$ = combineLatest(
+  [
+    fromEvent(document.formName.inputName1, 'change'),
+    fromEvent(document.formName.inputName2, 'change')
+  ]
+);
+```
+
+### Subscribe to Form change event
+#### use: fromEvent
+```js
+const htmlFormOnKeypress$ = fromEvent(document.formName, 'keypress');
+
+htmlFormOnKeypress$.subscribe({
+  next: htmlFormOnKeypressFn,
+  error: (e) => console.error(e),
+  complete: () => console.info('htmlFormOnKeypress$ completed')
+});
+```
+
+
 
 
