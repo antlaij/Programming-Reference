@@ -71,6 +71,11 @@ Deleted remote branch origin/MYR-1694-Go-Paperless-in-English-and-French-are-not
 -Sentence-Case (was 10f3e02).
 ```
 
+## Remame current Branch
+```batch
+git branch -m <newName>
+```
+
 ***
 
 # List Branches on a given commit
@@ -510,6 +515,7 @@ fi
 ## Git global setup:
 
 ```git
+git config --global init.defaultBranch main
 git config --global user.name "Anthony Lai"
 git config --global user.email "anthony.lai@mobilelive.ca"
 ```
