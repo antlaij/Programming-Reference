@@ -558,4 +558,47 @@ console.log(numFormat.format(number));
 
 
 
+## Regular expression
+### Get string between 2 strings
+```js
+(() => {
+const text = `
+[youtube] reuJ8yVCgSM: Downloading webpage
+[youtube] reuJ8yVCgSM: Downloading video info webpage
+[youtube] reuJ8yVCgSM: Extracting video information
+[youtube] reuJ8yVCgSM: Downloading MPD manifest
+[download]   1.0% of 11.90MiB at 24.96KiB/s ETA 39:35
+[download]   2.0% of 12.90MiB at 73.05KiB/s ETA 13:31
+[download]   3.0% of 13.90MiB at 170.45KiB/s ETA 05:47
+[download]   4.0% of 14.90MiB at 365.26KiB/s ETA 02:42
+[download]   5.1% of 15.90MiB at 526.02KiB/s ETA 01:52
+[download]   6.1% of 16.90MiB at 396.39KiB/s ETA 02:29
+`;
+// const re = new RegExp("ab+c");
+const re = /(?<=% of )(.*)(?= at )/g;
+
+// use match - get all matches
+const matchResult = text.match(re);
+console.log(matchResult);
+
+// use exec - get only the first one
+const execResult = re.exec(text);
+console.log(execResult);
+
+})();
+
+```
+### Rearrange date format with RegEx
+```js
+(() => {
+const currentDateTimeText = new Date().toLocaleString('en-us', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+console.log('currentDateTimeText', currentDateTimeText);
+const format_YYYY_MM_DD = currentDateTimeText.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
+console.log('YYYY-MM-DD, HH:mm:ss', format_YYYY_MM_DD);
+
+})();
+
+```
+
+
 
