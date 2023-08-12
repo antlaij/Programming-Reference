@@ -26,7 +26,9 @@ set Month=%date:~5,2%
 set Day=%date:~8,2%
 echo.
 echo Time format = %time%
-set Hour=%time:~0,2%
+echo 24 Hour Time format = %TIME: =0%
+set H24Time=%TIME: =0%
+set Hour=%H24Time:~0,2%
 set Minute=%time:~3,2%
 set Second=%time:~6,2%
 echo.
