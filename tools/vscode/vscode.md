@@ -113,7 +113,41 @@
 {
 	"folders": [
 		{
-			"path": "d:\\myDevFolder-Orange"
+			"path": "d:\\DEV-Yellow"
+		}
+	],
+	"settings": {
+		"editor.tabSize": 2,
+    "workbench.colorCustomizations": {
+      "activityBar.background": "#747400",
+      "activityBar.activeBackground": "#747400",
+      "activityBar.activeBorder": "#00bfbf",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#00bfbf",
+      "activityBarBadge.foreground": "#15202b",
+      "titleBar.activeBackground": "#414100",
+      "titleBar.inactiveBackground": "#41410099",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveForeground": "#e7e7e799",
+      "statusBar.background": "#414100",
+      "statusBarItem.hoverBackground": "#747400",
+      "statusBar.foreground": "#e7e7e7",
+      "sash.hoverBorder": "#747400",
+      "statusBarItem.remoteBackground": "#414100",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799"
+    },
+    "peacock.color": "#5570aa"  
+  }
+}
+```
+### 
+```json
+{
+	"folders": [
+		{
+			"path": "d:\\UAT-Orange"
 		}
 	],
 	"settings": {
