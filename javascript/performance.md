@@ -1,10 +1,9 @@
 # Javascript performance
 ## Table of Contents
-+ [Tail Call Optimization](#Tail-Call-Optimization)
-  - [Get all forms from HTML](#Get-all-forms-from-HTML)
-  - [Print all form values to console](#Print-all-form-values-to-console)
-+ [User Actions](#User-Actions)
-  - [Disable default function from Anchor Tag](#Disable-default-function-from-Anchor-Tag)
+1. [Tail Call Optimization - TCO](#Tail-Call-Optimization---TCO)
+    1. [Call OKTA api recursively to get all users with 200 limit per call](#Call-OKTA-api-recursively-to-get-all-users-with-200-limit-per-call)
+
+***
 
 
 ## Tail Call Optimization - TCO

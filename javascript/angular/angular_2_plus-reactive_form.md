@@ -1,36 +1,33 @@
 # Angular 2+ Reactive Form Reference
 
 ## Table of Contents
-1. [Form custom Validators](#Form-custom-Validators)
-1. [Enable or Disable a button or input field](#Enable-or-Disable-a-button-or-input-field)
+  * [Form Validation](#Form-Validation)
+  * [Form custom Validators](#Form-custom-Validators)
+  * [Enable or Disable a button or input field](#Enable-or-Disable-a-button-or-input-field)
 
-
+***
 
 ---
-> ### Form Validation
-
+### Form Validation
 ```ts
-    this.myForm = this.formBuilder.group(
-      {
-        notRequire: [""],
-        requireField: ["me", [Validators.required]],
-        requireFieldWithDefault: ["studyroom", [Validators.required]],
-        requiredMin2: ["", [Validators.required, Validators.minLength(2)]],
-        disabledField: {value:null, disabled: true},
-        requireWithPattern: ["10.99", [Validators.required, Validators.pattern("^[0-9]+.[0-9]{2}$")]],
-        nullOrPattern: ["", [Validators.pattern("^$|^[0-9]+.[0-9]{2}$")]],
-        dateField: new FormControl(new Date(), Validators.required)
-      },
-    );
-  }
-});
+  this.myForm = this.formBuilder.group(
+    {
+      notRequire: [""],
+      requireField: ["me", [Validators.required]],
+      requireFieldWithDefault: ["studyroom", [Validators.required]],
+      requiredMin2: ["", [Validators.required, Validators.minLength(2)]],
+      disabledField: {value:null, disabled: true},
+      requireWithPattern: ["10.99", [Validators.required, Validators.pattern("^[0-9]+.[0-9]{2}$")]],
+      nullOrPattern: ["", [Validators.pattern("^$|^[0-9]+.[0-9]{2}$")]],
+      dateField: new FormControl(new Date(), Validators.required)
+    },
+  );
 ```
 
 
 
 ---
-> ### Form custom Validators
-
+### Form custom Validators
 ```ts
 this.myForm = this.formBuilder.group({
   formField_001: new FormControl(null, [this.formService.formValidator]),
@@ -45,8 +42,7 @@ public formValidator(control: AbstractControl): ValidationErrors {
 ```
 
 ---
-> ### Enable or Disable a button or input field
-
+### Enable or Disable a button or input field
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disableMyButton?'disabled':null"></button>
 ```

@@ -1,51 +1,53 @@
 # Angular 2+ Library
-
 ## Table of Contents
-1. [Setup Angular Library with testing application](#Setup-Angular-Library-with-testing-application)
-   1. [Create Empty Workspace](#Create-Empty-Workspace)
-   1. [Generate library](#Generate-library)
-   1. [Generate Test Application](#Generate-Test-Application)
-   1. [Building, Serving, and Testing](#Building,-Serving,-and-Testing)
-   1. [Packaging Our Library](#Packaging-Our-Library)
-   1. [Install Library from tgz file](#Install-Library-from-tgz-file)
-1. [Add routing for a library](#Add-routing-for-a-library)
+  * [Setup Angular Library with testing application](#Setup-Angular-Library-with-testing-application)
+    * [Create Empty Workspace](#Create-Empty-Workspace)
+    * [Generate library](#Generate-library)
+    * [Generate Test Application](#Generate-Test-Application)
+    * [Building, Serving, and Testing](#Building,-Serving,-and-Testing)
+    * [Packaging Our Library](#Packaging-Our-Library)
+    * [Install Library from tgz file](#Install-Library-from-tgz-file)
+    * [Add routing for a library](#Add-routing-for-a-library)
+    * [Library routing sample](#Library-routing-sample)
+
+***
 
 
 ---
-> ### Setup Angular Library with testing application
+## Setup Angular Library with testing application
 
-#### Create Empty Workspace
+### Create Empty Workspace
 ```cmd
 ng new ng-module-lib --create-application=false
 ```
 
-#### Generate library
+### Generate library
 ```cmd
 cd ng-module-lib
 ng generate library module-lib --prefix=lib
 ```
-#### Generate Test Application
+### Generate Test Application
 ```cmd
 ng generate application module-lib-tester
 ```
 
-#### Building, Serving, and Testing
+### Building, Serving, and Testing
 ```cmd
 ng build module-lib
 ng build module-lib-tester --prod
 ```
-#### Packaging Our Library
+### Packaging Our Library
 ```cmd
 cd dist/module-lib
 npm pack
 ```
-#### Install Library from tgz file
+### Install Library from tgz file
 ```cmd
 npm install ./dist/module-lib/module-lib-0.0.1.tgz
 ```
 
 ---
-> ### Add routing for a library
+### Add routing for a library
 ```ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -86,7 +88,7 @@ const appRoutes: Routes = [
 })
 export class AppRoutingModule { }
 ```
-#### Library routing sample
+### Library routing sample
 ```ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

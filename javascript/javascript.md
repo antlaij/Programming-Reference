@@ -1,12 +1,33 @@
 # Javascript
 ## Table of Contents
-+ [Debug Javascript](#Debug-Javascript)
-  - [Print value for Debug](#Print-value-for-Debug)
-  - [Print value in Color for Debug](#Print-value-in-Color-for-Debug)
-  - [Print to console in different Colors](#Print-to-console-in-different-Colors)
-+ [Date Time Function](#Date-Time-Function)
-+ [Copy data to Clipboard](#Copy-data-to-Clipboard)
-  - [Save data in different formats](#Save-data-in-different-formats)
+  1. [Debug Javascript](#Debug-Javascript)
+      1. [Print value for Debug](#Print-value-for-Debug)
+      1. [Print value in Color for Debug](#Print-value-in-Color-for-Debug)
+  1. [Date Time Function](#Date-Time-Function)
+      1. [Date to String "YYYY-MM-DDTHH:mm:ss"](#Date-to-String-"YYYY-MM-DDTHH:mm:ss")
+  1. [Array.Map changed the original array](#Array.Map-changed-the-original-array)
+  1. [Convert Array of object to entity](#Convert-Array-of-object-to-entity)
+  1. [Convert entity array back to Array](#Convert-entity-array-back-to-Array)
+  1. [Group By Key on an Array of object](#Group-By-Key-on-an-Array-of-object)
+  1. [Concatinate the value from Array of objects to Key value pair](#Concatinate-the-value-from-Array-of-objects-to-Key-value-pair)
+  1. [Remove duplicate from Array](#Remove-duplicate-from-Array)
+      1. [Using new ES6 Set Data structure](#Using-new-ES6-Set-Data-structure)
+      1. [Set only allow unique value](#Set-only-allow-unique-value)
+  1. [Count Multipule distinct object from an Array](#Count-Multipule-distinct-object-from-an-Array)
+  1. [Check object is empty or not](#Check-object-is-empty-or-not)
+      1. [Compare all the first level data between 2 objects](#Compare-all-the-first-level-data-between-2-objects)
+      1. [Get duplicate keys in an array](#Get-duplicate-keys-in-an-array)
+      1. [Generate a unique key by using two or more properties](#Generate-a-unique-key-by-using-two-or-more-properties)
+  1. [Print to console in different Colors](#Print-to-console-in-different-Colors)
+  1. [Ternary function call](#Ternary-function-call)
+      1. [Conditionally call a function](#Conditionally-call-a-function)
+  1. [Number Format by using Internationalization API](#Number-Format-by-using-Internationalization-API)
+      1. [Currency](#Currency)
+  1. [Regular expression](#Regular-expression)
+      1. [Get string between 2 strings](#Get-string-between-2-strings)
+      1. [Rearrange date format with RegEx](#Rearrange-date-format-with-RegEx)
+
+***
 
 
 
@@ -106,16 +127,17 @@ mapWithArrayMap (4) [{…}, {…}, {…}, {…}]
     [currentValue.id]: currentValue
   };
   }, {});
-
-/* Output:
+```
+```text
+Output:
 {
   '1': { id: 1, name: 'a' },
   '2': { id: 2, name: 'b' },
   '3': { id: 3, name: 'c' },
   '4': { id: 4, name: 'd' }
 }
-*/
 ```
+
 ---
 ## Convert entity array back to Array
 ```js

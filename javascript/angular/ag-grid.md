@@ -1,7 +1,21 @@
 # Angular ag Grid
+## Table of Contents
+  * [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
+  * [AgGrid - Boolean Cell Renderer](#AgGrid---Boolean-Cell-Renderer)
+  * [AgGrid - Router Link Cell Renderer](#AgGrid---Router-Link-Cell-Renderer)
+  * [Reset Server Side data](#Reset-Server-Side-data)
+  * [Get Displayed Row Count](#Get-Displayed-Row-Count)
+  * [Get Filtered Row Count](#Get-Filtered-Row-Count)
+  * [Filter](#Filter)
+    * [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
+  * [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
+  * [Center Align column with css](#Center-Align-column-with-css)
+  * [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
+
+***
 
 ---
-> ### AgGrid - Boolean Cell editor
+### AgGrid - Boolean Cell editor
 
 ```ts
 import { Component, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
@@ -47,7 +61,7 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
 ```
 
 ---
-> ### AgGrid - Boolean Cell Renderer
+### AgGrid - Boolean Cell Renderer
 
 ```ts
 import { Component } from '@angular/core';
@@ -72,7 +86,7 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
-> ### AgGrid - Router Link Cell Renderer
+### AgGrid - Router Link Cell Renderer
 
 ```ts
 import { Component } from '@angular/core';
@@ -101,14 +115,14 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
-> ### Reset Server Side data
+### Reset Server Side data
 
 ```ts
 this.gridApi.purgeServerSideCache(route);
 ```
 
 ---
-> ### Get Displayed Row Count
+### Get Displayed Row Count
 
 ```ts
   get totalNumberOfRows(): number {
@@ -117,7 +131,7 @@ this.gridApi.purgeServerSideCache(route);
 ```
 
 ---
-> ### Get Filtered Row Count
+### Get Filtered Row Count
 
 ```ts
 public get filteredRowCount() {
@@ -133,7 +147,7 @@ public get filteredRowCount() {
 ```
 
 
-> ### Filter
+### Filter
 ---
 #### Hide Filter Icon from floating bar
 ```ts
@@ -144,7 +158,7 @@ public DEFAULT_COL_DEF: ColDef = {
 
 
 ---
-> ### Turning On Infinite Scrolling without ag-Grid Enterprise
+### Turning On Infinite Scrolling without ag-Grid Enterprise
 [Link from Ag Grid pagination](https://www.ag-grid.com/javascript-grid-infinite-scrolling/#pagination)
 
 ```html
@@ -205,7 +219,7 @@ private setAgGridDataSource = (start: number = 0) => {
 
 
 ---
-> ### Center Align column with css
+### Center Align column with css
 ```ts
   this.columnDefs = [
     { headerName: 'name', cellStyle: {textAlign: 'center'} }
@@ -214,7 +228,7 @@ private setAgGridDataSource = (start: number = 0) => {
 
 
 ---
-> ### Filter by cellRenderer value instead of column value
+### Filter by cellRenderer value instead of column value
 ```ts
 { colId: 'testId', headerName: 'test column', field: 'dataColumn', cellRenderer: 'customRenderer', filterValueGetter: (params) => this.myService.method(params.data.dataColumn) }
 ```

@@ -201,4 +201,34 @@ function ProductDetail ({match}) {
 }
 ```
 
+---
+> ### Error Handling
+---
+> #### Use Error Boundaries
+```jsx
+import React from 'react';
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasErrro: true; }
+  }
+
+  componentDidCatch(error, info) {
+    console.log(error, info);
+  }
+
+  render() {
+    if(this.state.hasError){
+      return this.props.fallback;
+    }
+    return thsi.props.children;
+  }
+}
+
+export default ErrorBoundary;
+
+```
+
 

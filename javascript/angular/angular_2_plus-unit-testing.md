@@ -1,13 +1,12 @@
 # Angular 2+ Reactive Form Reference
 
 ## Table of Contents
-1. [Testing API service with Mock data](#Testing-API-service-with-Mock-data)
+  * [Testing API with Mock data](#Testing-API-with-Mock-data)
 
-
+***
 
 ---
-> ### Testing API with Mock data
-
+### Testing API with Mock data
 ```ts
 describe('MyApiService'), () => {
   let myApiService: MyApiService;

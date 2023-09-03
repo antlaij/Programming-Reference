@@ -1,11 +1,19 @@
 # Javascript
 ## Table of Contents
-+ [HTML Form](#HTML-Form)
-  - [Get all forms from HTML](#Get-all-forms-from-HTML)
-  - [Print all form values to console](#Print-all-form-values-to-console)
-+ [User Actions](#User-Actions)
-  - [Disable default function from Anchor Tag](#Disable-default-function-from-Anchor-Tag)
+1. [HTML Form](#HTML-Form)
+    1. [Get all forms from HTML](#Get-all-forms-from-HTML)
+    1. [Print all form values to console](#Print-all-form-values-to-console)
+    1. [Form element to JSON](#Form-element-to-JSON)
+1. [User Actions](#User-Actions)
+    1. [Disable default function from Anchor Tag](#Disable-default-function-from-Anchor-Tag)
+        1. [Add a javascript function to attribute "href"](#Add-a-javascript-function-to-attribute-"href")
+1. [rxjs](#rxjs)
+    1. [Subscribe to Input change event](#Subscribe-to-Input-change-event)
+        1. [use: fromEvent](#use:-fromEvent)
+    1. [Subscribe to Form change event](#Subscribe-to-Form-change-event)
+        1. [use: fromEvent](#use:-fromEvent)
 
+***
 
 ## HTML Form
 ### Get all forms from HTML

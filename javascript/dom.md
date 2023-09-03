@@ -1,18 +1,18 @@
 # Javascript
 ## Table of Contents
-+ [DOM manipulation](#DOM-manipulation)
-  - [Add element as a sibling](#Add-element-as-a-sibling)
-+ [Clipboard](#Clipboard)
-  - [Copy data to Clipboard](#Copy-data-to-Clipboard)
-+ [Event](#Event)
-  - [Trigger event from a form element](#Trigger-event-from-a-form-element)
+  1. [DOM manipulation](#DOM-manipulation)
+      1. [Add element as a sibling](#Add-element-as-a-sibling)
+  1. [Clipboard](#Clipboard)
+      1. [Copy data to Clipboard](#Copy-data-to-Clipboard)
+          1. [Save data in different formats](#Save-data-in-different-formats)
+  1. [Event](#Event)
+      1. [Trigger event from a form element](#Trigger-event-from-a-form-element)
 
-
-
+***
 
 ## DOM manipulation
 ### Add element as a sibling
-#### Use: Element.insertAdjacentHTML() with position: 'afterend'
+Use: Element.insertAdjacentHTML() with position: 'afterend'
 ```js
   const target = document.querySelector('#target');
   const newElement = document.createElement("span");
@@ -25,7 +25,7 @@
 ## Clipboard
 ### Copy data to Clipboard
 #### Save data in different formats
-#### Use: clipboardData from Event
+Use: clipboardData from Event
 ```js
 let displayEle = document.createElement("button");
 displayEle.innerText = 'Copy';
@@ -44,14 +44,14 @@ displayEle.onclick = (evt) => {
 
 ## Event
 ### Trigger event from a form element
-#### Use: Element.dispatchEvent(new Event(Event Type, options))
-#### Keyboard Event
+Use: Element.dispatchEvent(new Event(Event Type, options))
+Keyboard Event
 ```js
 document.formName.inputName.dispatchEvent(new Event('keyup'), { bubbles: true, cancelable: false });
 document.formName.inputName.dispatchEvent(new Event('keydown'), { bubbles: true, cancelable: false });
 document.formName.inputName.dispatchEvent(new Event('keypress'), { bubbles: true, cancelable: false });
 ```
-#### Keyboard Event
+Keyboard Event
 ```js
 document.formName.inputName.dispatchEvent(new Event('mousedown'), { bubbles: true, cancelable: false });
 document.formName.inputName.dispatchEvent(new Event('mouseup'), { bubbles: true, cancelable: false });

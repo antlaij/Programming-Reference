@@ -1,4 +1,13 @@
+## Table of Contents
+1. [Use javascript to add css link file to web page](#Use-javascript-to-add-css-link-file-to-web-page)
+    1. [Add custom style to existing page by css link](#Add-custom-style-to-existing-page-by-css-link)
+    1. [Add custom style to existing page from bookmarklet](#Add-custom-style-to-existing-page-from-bookmarklet)
+    1. [Add custom style to existing page by javascript](#Add-custom-style-to-existing-page-by-javascript)
+    1. [Add custom style to existing page by searching data attribute in javascript](#Add-custom-style-to-existing-page-by-searching-data-attribute-in-javascript)
 
+***
+
+## Use javascript to add css link file to web page
 ### Add custom style to existing page by css link
 ```js
 var script = document.createElement('link');
@@ -8,12 +17,10 @@ script.href = 'http://localhost/custom-css/my.css';
 document.head.appendChild(script);
 ```
 
-
 ### Add custom style to existing page from bookmarklet
 ```js
 javascript:(function()(var script = document.createElement('link');script.type = 'text/css';script.rel = 'stylesheet';script.href = 'http://localhost/custom-css/my.css';document.head.appendChild(script);})();
 ```
-
 
 ### Add custom style to existing page by javascript
 ```js

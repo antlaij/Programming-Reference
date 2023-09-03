@@ -2,7 +2,7 @@
 
 ---
 
-> ### Get Store data from effect
+### Get Store data from effect
 
 ```ts
 myData$ = this.action$.ofType( myAction.Type )
@@ -17,7 +17,7 @@ myData$ = this.action$.ofType( myAction.Type )
 
 ---
 
-> ### Full Example
+### Full Example
 
 ```ts
 /**
@@ -195,7 +195,7 @@ import * as ProcessSelector from '../selectors/my.selector';
 
 ---
 
-> ### When dispatch an action then got the following error in console
+### When dispatch an action then got the following error in console
 >
 > ERROR TypeError: app_subscriber_shared_stores_subscription_process_store**WEBPACK_IMPORTED_MODULE_9**.UpdateSubscrpitions is not a constructor
 

@@ -25,21 +25,20 @@
    1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
 
 
-
 ---
-> ### Debug angular 2 plus
+### Debug angular 2 plus
 
 ```js
 var sc = ng.probe($0).componentInstance;
 ```
 
-> ### Debug angular 2 plus with IVY
+### Debug angular 2 plus with IVY
 ```js
 var com = ng.getComponent($0);
 ```
 
 ---
-> ### Add disabled to a button or input field
+### Add disabled to a button or input field
 
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disabled?'disabled':null"></button>
@@ -47,7 +46,7 @@ var com = ng.getComponent($0);
 ### Template
 
 ---
-> ### Put Condition in the switch case
+### Put Condition in the switch case
 >> Set ngSwitch to true
 >> put expression in ngSwitchCase
 
@@ -66,7 +65,7 @@ var com = ng.getComponent($0);
 ```
 
 ---
-> ### Pass context with ngTemplateOutlet
+### Pass context with ngTemplateOutlet
 
 ```html
 <ng-container *ngTemplateOutlet="templateOutleName; context: {item: variableName}"></ng-container>
@@ -92,7 +91,7 @@ var com = ng.getComponent($0);
 ```
 
 ---
-> ### Use HTML tag in variable from component and show in html template
+### Use HTML tag in variable from component and show in html template
 
 ```html
 <div [innerHTML]="myHtmlStringWithTag"></div>
@@ -106,7 +105,7 @@ this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</spa
 ```
 
 ---
-> ### Use ngTemplateOutlet to select template based on condition
+### Use ngTemplateOutlet to select template based on condition
 
 ```html
 <ng-container *ngTemplateOutlet="conditionGoseHere ? trueTemplate : falseTemplate; context: { $implicit: myVariable }">
@@ -119,13 +118,13 @@ this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</spa
 
 ### Styling
 ---
-> ### ngClass with Condition
+### ngClass with Condition
 ```html
 <div [ngClass]="{'success': response?.Success, 'error': !response?.success}"></div>
 ```
 
 ---
-> ### ngOnChanges from life cycle hook
+### ngOnChanges from life cycle hook
 
 ```ts
 ngOnChanges(changes: SimpleChanges) {
@@ -135,7 +134,7 @@ ngOnChanges(changes: SimpleChanges) {
 ```
 
 ---
-> ### Create Function pointer from component to service
+### Create Function pointer from component to service
 
 ```ts
 mappedFunctionName: (arg_01: string, arg: number) => boolean;
@@ -147,7 +146,7 @@ constructor( private myService: MyService ) {
 ```
 
 ---
-> ### Track By Async Element
+### Track By Async Element
 
 ```html
   <div *ngFor="let item of items | async; trackby: trackByUniqueKey " ></div>
@@ -160,7 +159,7 @@ class MyComponent {
 ```
 
 ---
-> ### Detect window resize
+### Detect window resize
 
 ```ts
 @HostListener('window:resize', ['$event'])
@@ -170,7 +169,7 @@ onResize(event) {
 ```
 
 ---
-> ### Component State Handling
+### Component State Handling
 
 ```html
 <ng-container [ngSwitch]="componentState">
@@ -226,7 +225,7 @@ export class testingComponent implements OnInit, OnDestroy {
 }
 ```
 
-> ### Rxjs
+### Rxjs
 ---
 > #### throw Error within rxjs pipe
 
@@ -305,7 +304,7 @@ export class MyModelClass {
 ```
 
 ---
-> ### Services
+### Services
 ---
 #### Inject Service to a Const
 ```ts
@@ -322,7 +321,7 @@ let anotherService = injector.get(AnotherService);
 
 ```
 
-> ### Directives
+### Directives
 ---
 ### Custom DIRECTIVES
 #### Scrolling Check
