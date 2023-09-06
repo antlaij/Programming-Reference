@@ -63,8 +63,17 @@ mkdir %Zip_Folder%
 cd %Folder_To_Zip%
 "C:\Program Files\7-Zip\7z" a -tzip createdZipFile.zip -r *.*  -xr!.git
 move createdZipFile.zip %Zip_Folder%
-)
 
 set Folder_To_Zip=
 set Zip_Folder=
+```
+
+## Create zip file by Power Shell
+```batch
+cls
+set Folder_To_Zip=C:\temp
+
+PowerShell -Command "Compress-Archive -LiteralPath '%Folder_To_Zip%' -DestinationPath 'C:\temp.zip'"
+
+set Folder_To_Zip=
 ```
