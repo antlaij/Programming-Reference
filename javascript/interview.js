@@ -37,21 +37,21 @@ class FunctionTest {
  * Function will mutate the original array
  */
 (() => {
-let testCase = new FunctionTest('Array - sort() Test');
-testCase.startTest();
-console.log('Before Calling sort()', unSortedNumbers);
-unSortedNumbers.sort();
-console.log('After Calling unSortedNumbers.sort()', unSortedNumbers);
-let sortedArray = unSortedNumbers;
-console.log('Assign unSortedNumbers to sortedArray -> Print: (sortedArray)', sortedArray);
-sortedArray.push(1000);
-console.log('Execute: sortedArray.push(1000);');
-console.log('unSortedNumbers has also changed -> Print: (unSortedNumbers)', sortedArray);
-console.log('sortedArray picks up the changes too - Print: (sortedArray)', sortedArray);
-console.log('Before Calling sort()', unSortedAlphabets);
-unSortedAlphabets.sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}));
-console.log('After Calling unSortedAlphabets.sort() with case insensitive', unSortedAlphabets);
-testCase.endTest();
+  let testCase = new FunctionTest('Array - sort() Test');
+  testCase.startTest();
+  console.log('Before Calling sort()', unSortedNumbers);
+  unSortedNumbers.sort();
+  console.log('After Calling unSortedNumbers.sort()', unSortedNumbers);
+  let sortedArray = unSortedNumbers;
+  console.log('Assign unSortedNumbers to sortedArray -> Print: (sortedArray)', sortedArray);
+  sortedArray.push(1000);
+  console.log('Execute: sortedArray.push(1000);');
+  console.log('unSortedNumbers has also changed -> Print: (unSortedNumbers)', sortedArray);
+  console.log('sortedArray picks up the changes too - Print: (sortedArray)', sortedArray);
+  console.log('Before Calling sort()', unSortedAlphabets);
+  unSortedAlphabets.sort((a, b) => a.localeCompare(b, undefined, {sensitivity: 'base'}));
+  console.log('After Calling unSortedAlphabets.sort() with case insensitive', unSortedAlphabets);
+  testCase.endTest();
 })();
 
 /**
@@ -123,5 +123,19 @@ testCase.endTest();
   });
   console.log('Execute: arrayInObjectProperty.a.map(); objAfterMap is undefined because forEach will not return anything -> Print: (objAfterMap)', objAfterMap);
   console.log('Print: (arrayInObjectProperty)', arrayInObjectProperty);
+  testCase.endTest();
+})();
+
+/**
+ * Get the last day of the month
+ * Set the month to next month and set date to zero
+ */
+(() => {
+  let testCase = new FunctionTest('Get the last day of the month');
+  testCase.startTest();
+  const targetYear = 2023;
+  const targetMonth = 2;
+  const lastDate = new Date(targetYear, (targetMonth), 0);
+  console.log('Start -> Print: (lastDate)', lastDate);
   testCase.endTest();
 })();

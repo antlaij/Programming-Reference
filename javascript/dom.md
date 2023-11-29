@@ -5,8 +5,6 @@
   1. [Clipboard](#Clipboard)
       1. [Copy data to Clipboard](#Copy-data-to-Clipboard)
           1. [Save data in different formats](#Save-data-in-different-formats)
-  1. [Event](#Event)
-      1. [Trigger event from a form element](#Trigger-event-from-a-form-element)
 
 ***
 
@@ -40,23 +38,4 @@ displayEle.onclick = (evt) => {
   document.removeEventListener("copy", listener);
 };
 ```
-
-
-## Event
-### Trigger event from a form element
-Use: Element.dispatchEvent(new Event(Event Type, options))
-Keyboard Event
-```js
-document.formName.inputName.dispatchEvent(new Event('keyup'), { bubbles: true, cancelable: false });
-document.formName.inputName.dispatchEvent(new Event('keydown'), { bubbles: true, cancelable: false });
-document.formName.inputName.dispatchEvent(new Event('keypress'), { bubbles: true, cancelable: false });
-```
-Keyboard Event
-```js
-document.formName.inputName.dispatchEvent(new Event('mousedown'), { bubbles: true, cancelable: false });
-document.formName.inputName.dispatchEvent(new Event('mouseup'), { bubbles: true, cancelable: false });
-document.formName.inputName.dispatchEvent(new Event('click'), { bubbles: true, cancelable: false });
-```
-
-
 
