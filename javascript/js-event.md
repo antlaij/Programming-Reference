@@ -2,8 +2,9 @@
 
 ## Table of Contents
 
-* [Dispatch event](#Dispatch-event)
-  * [Custom Event type](#Custom-Event-type)
+1. [Dispatch event](#Dispatch-event)
+    1. [Custom Event type](#Custom-Event-type)
+    1. [Trigger event from a form element](#Trigger-event-from-a-form-element)
 
 
 ## Dispatch event
@@ -22,6 +23,21 @@ let dispatchCustomEvent = (targetEle, eventType) => {
       break;
   }
 }
+```
+
+### Trigger event from a form element
+Use: Element.dispatchEvent(new Event(Event Type, options))
+Keyboard Event
+```js
+document.formName.inputName.dispatchEvent(new Event('keyup'), { bubbles: true, cancelable: false });
+document.formName.inputName.dispatchEvent(new Event('keydown'), { bubbles: true, cancelable: false });
+document.formName.inputName.dispatchEvent(new Event('keypress'), { bubbles: true, cancelable: false });
+```
+Mouse Event
+```js
+document.formName.inputName.dispatchEvent(new Event('mousedown'), { bubbles: true, cancelable: false });
+document.formName.inputName.dispatchEvent(new Event('mouseup'), { bubbles: true, cancelable: false });
+document.formName.inputName.dispatchEvent(new Event('click'), { bubbles: true, cancelable: false });
 ```
 
 
