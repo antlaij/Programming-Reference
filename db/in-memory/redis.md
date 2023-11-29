@@ -13,6 +13,7 @@ rdcli -h server -p 123456
 
 ## List all keys
 keys *
+keys batch:job-queue:76*
 
 ## Delete Key
 ```
