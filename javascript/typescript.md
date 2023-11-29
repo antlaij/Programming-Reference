@@ -1,5 +1,6 @@
-# Destructuring with types
+# Typescript
 
+## Destructuring with types
 ```ts
 let destructuring = ({
   proA,
@@ -114,7 +115,6 @@ if(Object.values(myEnum).includes('three'))) {
 
 
 ## Model which accept another model
-
 ```ts
 export class ApiPagingResponse<TList> {
   Items: Array<TList>;
@@ -122,4 +122,42 @@ export class ApiPagingResponse<TList> {
   PageSize: number;
   TotalNumberOfRecords: number;
 }
+```
+
+
+## Conditional Typescript type with generic
+```ts
+type ApiResponse<T> = 
+| { status: 'success'; data: T; timestamp: Date}
+| { status: 'error'; message: string; timestamp: Date};
+
+let res1: ApiResponse<number> = {
+    status: 'success',
+    data: 100,
+    timestamp: new Date()
+}
+
+let res2: ApiResponse<number> = {
+    status: 'error',
+    message: '100',
+    timestamp: new Date()
+}
+```
+
+
+## Discriminated union and Intersection types
+```ts
+type FileFilterOption = {
+  DirectoryType: 'Folder' | 'File' | 'Extension',
+  FilterType: 'Include' | 'Exclude',
+} & (
+  | {
+    searchBy: 'txt',
+    Filter: string,
+  }
+  | {
+    searchBy: 'RegExp',
+    Filter: RegExp,
+  }
+)
 ```

@@ -4,7 +4,7 @@
 ```batch
 netstat -aon | find "3000"
 ```
-#### Response:
+Output:
 ```txt
 Active Connections
 
@@ -25,6 +25,7 @@ Active Connections
 ```batch
 netstat -tulpn | grep LISTEN
 ```
+Output:
 ```
 (Not all processes could be identified, non-owned process info
  will not be shown, you would have to be root to see it all.)
@@ -48,5 +49,10 @@ tcp6       0      0 :::2000                 :::*                    LISTEN      
 tcp6       0      0 :::2001                 :::*                    LISTEN      -
 tcp6       0      0 :::5555                 :::*                    LISTEN      -
 tcp6       0      0 :::22                   :::*                    LISTEN      -
+```
+
+### Kill task
+```bat
+taskkill /PID 12356 /F
 ```
 
