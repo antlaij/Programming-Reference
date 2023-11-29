@@ -39,3 +39,12 @@ displayEle.onclick = (evt) => {
 };
 ```
 
+## DOM search
+### get parent element by tag name
+### [Ref. Link](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest)
+Use: Element.closest(selectors)
+```js
+  const target = document.querySelector('#target');
+  target.closest('form');
+```
+
