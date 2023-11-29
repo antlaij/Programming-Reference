@@ -186,3 +186,23 @@ testCase.endTest();
   console.log('Print: (uniqueArray)', uniqueArray);
 })();
 
+
+
+/**
+ * Testing remove empty value from an array by Boolean()
+ */
+(() => {
+  let testArray = [1,null, 2, undefined, 3];
+  console.log(testArray.filter(Boolean));
+})();
+
+
+
+/**
+ * Create a new array with n items by Array.from()
+ */
+(() => {
+  let testArray = Array.from({length: 10}, (value, idx) => idx)
+  console.log(testArray);
+})();
+
