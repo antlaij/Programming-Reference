@@ -77,3 +77,10 @@ PowerShell -Command "Compress-Archive -LiteralPath '%Folder_To_Zip%' -Destinatio
 
 set Folder_To_Zip=
 ```
+
+## Generate folder creation command from DOS
+```bat
+REM 
+d:
+FOR /f "tokens=*" %x IN ( 'DIR /B /S /A:D' ) DO ECHO MKDIR "%x" >> E:\Buffer\1.txt
+```
