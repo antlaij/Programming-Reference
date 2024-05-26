@@ -2106,6 +2106,13 @@ SELECT REGEXP_SUBSTR('FPP ResultResponsibility 0025' || CHR(10) || CHR(10) || 'O
 
 
 
+/*-----   REMOVE DUPLICATE FROM STRING   -----
+|	THIS WILL ONLY WORK WHEN THE STRING VALUE IS SORTED
+----------------------------------------------*/
+SELECT REGEXP_REPLACE( '2017,2017,2017,2017,2018,2018,2018,2018,2019,2019,2019,2019', '([^,]+)(,\1)+(,|$)', '\1\3') AS RESULT FROM DUAL;
+
+
+
 
 /*-----   REPLACE   -----*/
 
