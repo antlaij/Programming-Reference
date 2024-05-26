@@ -121,6 +121,30 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 this.gridApi.purgeServerSideCache(route);
 ```
 
+
+---
+### Status Bar
+#### Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid
+```html
+    <ag-grid-angular
+      [statusBar]="statusBar"
+      >
+    </ag-grid-angular>
+```
+```ts
+  public statusBar: {
+    statusPanels: StatusPanelDef[];
+  } = {
+    statusPanels: [
+      { statusPanel: "agTotalAndFilteredRowCountComponent" },
+      { statusPanel: "agTotalRowCountComponent" },
+      { statusPanel: "agFilteredRowCountComponent" },
+      { statusPanel: "agSelectedRowCountComponent" },
+      { statusPanel: "agAggregationComponent" },
+    ],
+  };
+```
+
 ---
 ### Get Displayed Row Count
 
