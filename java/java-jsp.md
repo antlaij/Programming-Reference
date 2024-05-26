@@ -19,6 +19,19 @@
 <!-- <%=this.getClass().getSimpleName().replaceFirst("__","").replaceFirst("_jsp","")%> -->
 ```
 
+### Print data to html
+#### Print value with line number
+```java
+  out.println(String.format("<div style='margin: 0.5rem;padding: 0.5rem;background-color: #ffff00;color: black;font-size: x-large;'>Line number: %s</div>", new Throwable().getStackTrace()[0].getLineNumber()));
+```
+#### Print value to html
+```html
+  <div style="margin: 0.5rem;padding: 0.5rem;background-color: #ffff00;color: black;font-size: x-large;"><pre><%= "jspValue: " + uniEmailInfo %></pre></div>
+```
+```java
+  out.println(String.format("<div style='margin: 0.5rem;padding: 0.5rem;background-color: #ffff00;color: black;font-size: x-large;'>jspValue: %s</div>", value));
+```
+
 ### Print compiled line number to the log
 #### It is for debug jsp page
 ```java
