@@ -1,16 +1,16 @@
 # JAVA Servlet
 
 ## Table of Contents
-  * [Get information from request](#Get-information-from-request)
-    * [get data with same name](#get-data-with-same-name)
-      * [Use: request.getParameterValues(key)](#Use:-request.getParameterValues(key))
-      * [Change the list of string to comma seperated string](#Change-the-list-of-string-to-comma-seperated-string)
-        * [["a", "b", "c", "d"] ==> "a,b,c,d"](#["a",-"b",-"c",-"d"]-==>-"a,b,c,d")
-  * [Get information from request](#Get-information-from-request)
-    * [get data with same name](#get-data-with-same-name)
-      * [Use: request.getParameterValues(key)](#Use:-request.getParameterValues(key))
-      * [Change the list of string to comma seperated string](#Change-the-list-of-string-to-comma-seperated-string)
-        * [["a", "b", "c", "d"] ==> "a,b,c,d"](#["a",-"b",-"c",-"d"]-==>-"a,b,c,d")
+  1. [Get information from request](#Get-information-from-request)
+    1. [get data with same name](#get-data-with-same-name)
+      1. [Use: request.getParameterValues(key)](#Use:-request.getParameterValues(key))
+      1. [Change the list of string to comma seperated string](#Change-the-list-of-string-to-comma-seperated-string)
+        1. [["a", "b", "c", "d"] ==> "a,b,c,d"](#["a",-"b",-"c",-"d"]-==>-"a,b,c,d")
+  1. [Get information from request](#Get-information-from-request)
+    1. [get data with same name](#get-data-with-same-name)
+      1. [Use: request.getParameterValues(key)](#Use:-request.getParameterValues(key))
+      1. [Change the list of string to comma seperated string](#Change-the-list-of-string-to-comma-seperated-string)
+        1. [["a", "b", "c", "d"] ==> "a,b,c,d"](#["a",-"b",-"c",-"d"]-==>-"a,b,c,d")
 
 ***
 

@@ -1,16 +1,19 @@
 # Angular ag Grid
 ## Table of Contents
-  * [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
-  * [AgGrid - Boolean Cell Renderer](#AgGrid---Boolean-Cell-Renderer)
-  * [AgGrid - Router Link Cell Renderer](#AgGrid---Router-Link-Cell-Renderer)
-  * [Reset Server Side data](#Reset-Server-Side-data)
-  * [Get Displayed Row Count](#Get-Displayed-Row-Count)
-  * [Get Filtered Row Count](#Get-Filtered-Row-Count)
-  * [Filter](#Filter)
-    * [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
-  * [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
-  * [Center Align column with css](#Center-Align-column-with-css)
-  * [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
+  1. [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
+  1. [Renderer](#Renderer)
+      1. [AgGrid - Boolean Cell Renderer](#AgGrid---Boolean-Cell-Renderer)
+      1. [AgGrid - Router Link Cell Renderer](#AgGrid---Router-Link-Cell-Renderer)
+  1. [Reset Server Side data](#Reset-Server-Side-data)
+  1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
+  1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
+  1. [Filter](#Filter)
+      1. [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
+      1. [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
+  1. [Data Summary](#Data-Summary)
+      1. [Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid](#Show-Total-row-count,-Filtered-row-count-...-in-ag-grid.-Add-status-bar-to-Ag-Grid)
+  1. [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
+  1. [Center Align column with css](#Center-Align-column-with-css)
 
 ***
 
@@ -61,8 +64,9 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
 ```
 
 ---
-### AgGrid - Boolean Cell Renderer
+### Renderer
 
+#### AgGrid - Boolean Cell Renderer
 ```ts
 import { Component } from '@angular/core';
 import { INoRowsOverlayAngularComp } from "ag-grid-angular";
@@ -86,7 +90,7 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
-### AgGrid - Router Link Cell Renderer
+#### AgGrid - Router Link Cell Renderer
 
 ```ts
 import { Component } from '@angular/core';
@@ -121,30 +125,6 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 this.gridApi.purgeServerSideCache(route);
 ```
 
-
----
-### Status Bar
-#### Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid
-```html
-    <ag-grid-angular
-      [statusBar]="statusBar"
-      >
-    </ag-grid-angular>
-```
-```ts
-  public statusBar: {
-    statusPanels: StatusPanelDef[];
-  } = {
-    statusPanels: [
-      { statusPanel: "agTotalAndFilteredRowCountComponent" },
-      { statusPanel: "agTotalRowCountComponent" },
-      { statusPanel: "agFilteredRowCountComponent" },
-      { statusPanel: "agSelectedRowCountComponent" },
-      { statusPanel: "agAggregationComponent" },
-    ],
-  };
-```
-
 ---
 ### Get Displayed Row Count
 
@@ -173,10 +153,41 @@ public get filteredRowCount() {
 
 ### Filter
 ---
+
 #### Hide Filter Icon from floating bar
 ```ts
 public DEFAULT_COL_DEF: ColDef = {
   floatingFilterComponentParams: { suppressFilterButton: true }
+};
+```
+
+---
+#### Filter by cellRenderer value instead of column value
+```ts
+{ colId: 'testId', headerName: 'test column', field: 'dataColumn', cellRenderer: 'customRenderer', filterValueGetter: (params) => this.myService.method(params.data.dataColumn) }
+```
+
+
+### Data Summary
+---
+#### Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid
+```html
+<ag-grid-angular
+  [statusBar]="statusBar"
+  >
+</ag-grid-angular>
+```
+```ts
+const STATUS_BAR: {
+  statusPanels: StatusPanelDef[];
+} = {
+  statusPanels: [
+    { statusPanel: "agTotalAndFilteredRowCountComponent" },
+    { statusPanel: "agTotalRowCountComponent" },
+    { statusPanel: "agFilteredRowCountComponent" },
+    { statusPanel: "agSelectedRowCountComponent" },
+    { statusPanel: "agAggregationComponent" },
+  ],
 };
 ```
 
@@ -248,12 +259,5 @@ private setAgGridDataSource = (start: number = 0) => {
   this.columnDefs = [
     { headerName: 'name', cellStyle: {textAlign: 'center'} }
   ]
-```
-
-
----
-### Filter by cellRenderer value instead of column value
-```ts
-{ colId: 'testId', headerName: 'test column', field: 'dataColumn', cellRenderer: 'customRenderer', filterValueGetter: (params) => this.myService.method(params.data.dataColumn) }
 ```
 

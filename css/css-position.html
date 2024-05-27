@@ -47,13 +47,18 @@
       position: fixed;
     }
 
+    .original-postion {
+      border: 2px white dashed;
+      width: -webkit-fill-available;
+    }
+
     .box-three {}
   </style>
 </head>
 
 <body>
 
-  <div class=mainheigmain-container">
+  <div class="main-container">
 
     <div class="sub-container orange-bg">
       Main Container 1
@@ -72,8 +77,13 @@
         If there is no relative or absulute parent element found then use the root html element
       </pre>
       </div>
+      <div class="blue-bg child-box position-absolute original-postion" style="">
+        Box Two - Original Position
+        <pre>
+        </pre>
+      </div>
       <div class="blue-bg child-box position-relative" style="left: 100px; top: 50px">
-        Box Two - left: 100px; position: relative;
+        Box Two - left: 100px; top: 50px position: relative;
         <pre>
         relative position will still keep the document original space and move based on the normal document flow
       </pre>
@@ -81,13 +91,13 @@
       <div class="green-bg child-box">Box Three</div>
     </div>
 
-    <div class="sub-container orange-bg position-fixed" style="width: 500px; top:500px; left: 600px;">
-      Main Container 3 - fixed position; width: 500px;
+    <div class="sub-container orange-bg position-fixed" style="width: 500px;top: 300px;left: 600px;">
+      Main Container 3 - fixed position; width: 500px;top: 300px;left: 600px;
       <div class="yellow-bg child-box" style="left: 0px; top: 50px">
-        Box One - left: 400px;
+        Box One - left: 0px; top: 50px
       </div>
       <div class="blue-bg child-box" style="left: 100px; top: 50px">
-        Box Two - left: 100px;
+        Box Two - left: 100px; top: 50px
       </div>
       <div class="green-bg child-box">Box Three</div>
     </div>

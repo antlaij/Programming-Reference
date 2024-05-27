@@ -168,6 +168,7 @@ body {
   </div>
 </header>
 ```
+
 > ### Show element outside of the parent element
 
 > HTML
@@ -185,6 +186,7 @@ body {
 }
 ```
 ---
+
 > ### **CSS pseudo class**
 > - #### :has
 

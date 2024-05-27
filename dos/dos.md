@@ -1,3 +1,17 @@
+# DOS Command
+
+## Table of Contents
+1. [Check Parameter is empty or not](#Check-Parameter-is-empty-or-not)
+1. [IF, ELSE IF, ELSE](#IF,-ELSE-IF,-ELSE)
+1. [Set current date and time](#Set-current-date-and-time)
+1. [Reset date and time variables](#Reset-date-and-time-variables)
+1. [Create zip file by 7-Zip](#Create-zip-file-by-7-Zip)
+    1. [do not zip .git folder](#do-not-zip-.git-folder)
+1. [Create zip file by Power Shell](#Create-zip-file-by-Power-Shell)
+1. [Generate folder creation command from DOS](#Generate-folder-creation-command-from-DOS)
+
+***
+
 ## Check Parameter is empty or not
 ```batch
 IF [%3] == [] (

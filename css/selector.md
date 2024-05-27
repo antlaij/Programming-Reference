@@ -6,17 +6,17 @@ $x('//div');
 $x('//a');
 ```
 
-## select all child A tag under DIV
+## select all child A tag within a DIV tag
 ```js
 $x('//div//a');
 ```
 
-## select all child A tag with link text = '123456' under DIV
+## select all child A tag with link text = '123456' within a DIV tag
 ```js
 $x('//div//a[text()="123456"');
 ```
 
-## select all child A tag starts with inner text = '123' under DIV
+## select all child A tag starts with inner text = '123' within a DIV tag
 ### Matched:
 ### xpath selector
 ```js

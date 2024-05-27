@@ -1,15 +1,16 @@
 # JAVA JSP
-
 ## Table of Contents
-  * [Debug jsp](#Debug-jsp)
-    * [Add current jsp filename to the page](#Add-current-jsp-filename-to-the-page)
-      * [Add the code before <html> tag](#Add-the-code-before-<html>-tag)
-    * [Print compiled line number to the log](#Print-compiled-line-number-to-the-log)
-      * [It is for debug jsp page](#It-is-for-debug-jsp-page)
-    * [Print variable](#Print-variable)
+  1. [Debug jsp](#Debug-jsp)
+      1. [Add current jsp filename to the page](#Add-current-jsp-filename-to-the-page)
+          1. [Add the code before <html> tag](#Add-the-code-before-<html>-tag)
+      1. [Print data to html](#Print-data-to-html)
+          1. [Print value with line number](#Print-value-with-line-number)
+          1. [Print value to html](#Print-value-to-html)
+      1. [Print compiled line number to the log](#Print-compiled-line-number-to-the-log)
+          1. [It is for debug jsp page](#It-is-for-debug-jsp-page)
+      1. [Print variable](#Print-variable)
 
 ***
-
 
 ## Debug jsp
 

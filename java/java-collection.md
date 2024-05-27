@@ -1,12 +1,12 @@
 # JAVA Servlet
 
 ## Table of Contents
-  * [ArrayList](#ArrayList)
-    * [Create ArrayList with default value](#Create-ArrayList-with-default-value)
-    * [Use Stream on ArrayList of object](#Use-Stream-on-ArrayList-of-object)
-    * [Get first item from a list](#Get-first-item-from-a-list)
-    * [Use Stream on ArrayList of object](#Use-Stream-on-ArrayList-of-object)
-    * [Map to other value](#Map-to-other-value)
+  1. [ArrayList](#ArrayList)
+      1. [Create ArrayList with default value](#Create-ArrayList-with-default-value)
+      1. [Use Stream on ArrayList of object](#Use-Stream-on-ArrayList-of-object)
+      1. [Get first item from a list](#Get-first-item-from-a-list)
+      1. [Use Stream on ArrayList of object](#Use-Stream-on-ArrayList-of-object)
+      1. [Map to other value](#Map-to-other-value)
 
 ***
 
