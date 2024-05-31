@@ -38,7 +38,7 @@ var com = ng.getComponent($0);
 ```
 
 ---
-### Add disabled to a button or input field
+### Add disabled attribute to a button or input field
 
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disabled?'disabled':null"></button>
