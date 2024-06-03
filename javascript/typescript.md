@@ -1,5 +1,30 @@
 # Typescript
 
+## Table of Contents
+  1. [String literal types](#String-literal-types)
+      1. [Use array of string to hold the values for a string literal types. ](#Use-array-of-string-to-hold-the-values-for-a-string-literal-types.-)
+  1. [Destructuring with types](#Destructuring-with-types)
+  1. [Bitwise](#Bitwise)
+      1. [Access Rights check](#Access-Rights-check)
+  1. [Function](#Function)
+      1. [Create Function syntax](#Create-Function-syntax)
+  1. [enum](#enum)
+      1. [Check if object exist in ENUM porperty's name](#Check-if-object-exist-in-ENUM-porperty's-name)
+      1. [Check if object in ENUM property's values](#Check-if-object-in-ENUM-property's-values)
+  1. [Model which accept another model](#Model-which-accept-another-model)
+  1. [Conditional Typescript type with generic](#Conditional-Typescript-type-with-generic)
+  1. [Discriminated union and Intersection types](#Discriminated-union-and-Intersection-types)
+
+***
+
+## String literal types
+### Use array of string to hold the values for a string literal types. 
+- This made the logic easy to get all values from the type
+```ts
+const ThemeMOdes = ['dark', 'light', 'os-default'] as const;
+type ThemeMode = typeof ThemeMOdes[number];
+```
+
 ## Destructuring with types
 ```ts
 let destructuring = ({
@@ -37,7 +62,7 @@ var data = {
 ```
 
 ## Bitwise
-
+### Access Rights check
 ```ts
 enum AccessRights {
   None = 0,
@@ -49,7 +74,10 @@ enum AccessRights {
 }
 
 let isRightsGranted = (currentMode: AccessRights, targetMode: AccessRights): boolean => {
-  return ((currentMode & targetMode) === targetMode || (currentMode & AccessRights.Full) === AccessRights.Full);
+  return (
+    (currentMode & targetMode) === targetMode
+    || (currentMode & AccessRights.Full) === AccessRights.Full
+  );
 }
 
 let myRights = AccessRights.Add | AccessRights.ReadOnly | AccessRights.Delete;
@@ -68,47 +96,38 @@ Has Granted ReadOnly   :  true
 
 ```
 
-## Create Function syntax
-
+## Function
+### Create Function syntax
 ```ts
-
-let findDuplicate = (key: string): number => {
-  return 0;
-}
-
 let findDuplicate = (key: string): number => {
   return 0;
 }
 ```
 
-## Check if object in an ENUM name
-
+## enum
+### Check if object exist in ENUM porperty's name
 ```ts
-
 export enum myEnum {
-  one = 'one',
-  two = 'two',
-  three = 'three',
-  four = 'four',
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
 }
 
 if('three' in myEnum) {
 }
-
 ```
 
-## Check if object in an ENUM values
-
+### Check if object in ENUM property's values
 ```ts
-
 export enum myEnum {
-  one = 'one',
-  two = 'two',
-  three = 'three',
-  four = 'four',
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
 }
 
-if(Object.values(myEnum).includes('three'))) {
+if(Object.values(myEnum).includes('3'))) {
 }
 
 ```
