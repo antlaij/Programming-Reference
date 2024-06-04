@@ -55,20 +55,34 @@ for(i=0; i<5; i++) {
 ## Event - pageshow
 ### Detect the page is load from history or not
 
-#### Method 1: using event listener for pageshow
+#### Method 1: using window.navigation.canGoForward
 ```js
+const isLoadFromHistory: () => {
+  return window.navigation.canGoForward;
+}
+```
 
+#### Method 2: using event listener for pageshow
+```js
 window.addEventListener('pageshow', (event) => {
   console.log('event.persisted', event.persisted);
   if(event.persisted) console.log('Page is loaded from history or back button click');
   else console.log('Page is not loaded from history');
 });
-
 ```
 
-#### Method 2: using hidden form to hold the a flag
+#### Method 3: using hidden form to hold the a flag
 ```html
-
 <form id="hiddenForm" name="hiddenForm" class="hidden"><input type="text" name="hasPageLoaded" value="0"></form>
+```
+```js
+let searchControl = document.getElementById('searchControl');
+let searchAgainControl = document.getElementById('searchAgainControl');
 
+let submitUniForm = () => {
+  if(document.hiddenForm && document.hiddenForm.hasPageLoaded){
+    document.hiddenForm.hasPageLoaded.value = '1';
+  }
+  return true;
+}
 ```
