@@ -98,3 +98,9 @@ REM
 d:
 FOR /f "tokens=*" %x IN ( 'DIR /B /S /A:D' ) DO ECHO MKDIR "%x" >> E:\Buffer\1.txt
 ```
+
+## Command - DIR
+### List filename only
+```bat
+dir /b /a-d
+```
