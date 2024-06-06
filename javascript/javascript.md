@@ -596,16 +596,21 @@ const text = `
 [download]   5.1% of 15.90MiB at 526.02KiB/s ETA 01:52
 [download]   6.1% of 16.90MiB at 396.39KiB/s ETA 02:29
 `;
-// const re = new RegExp("ab+c");
 const re = /(?<=% of )(.*)(?= at )/g;
 
-// use match - get all matches
+// use match - get all matches in an array
 const matchResult = text.match(re);
 console.log(matchResult);
 
 // use exec - get only the first one
 const execResult = re.exec(text);
-console.log(execResult);
+// console.log(execResult);
+
+// use exec - get all matches
+const matches = text.matchAll(re);
+for (const match of matches) {
+  console.log(match);
+}
 
 })();
 
@@ -620,6 +625,20 @@ console.log('YYYY-MM-DD, HH:mm:ss', format_YYYY_MM_DD);
 
 })();
 
+```
+
+### Get Groups from RegExp
+```js
+(() => {
+const text = `ScanImg_240107015450_001.jpg
+ScanPDF_230909190213.pdf`;
+const regExp = /^(?<prefix>Scan(Img|PDF))_(?<year>[0-9]{2})(?<month>[0-9]{2})(?<day>[0-9]{2})(?<hour>[0-9]{2})(?<minute>[0-9]{2})(?<second>[0-9]{2})(.*)(\.jpg|\.pdf)$/gm;
+const matches = text.matchAll(regExp);
+for (const match of matches) {
+  console.log('match', match);
+  console.log('groups', match.groups);
+}
+})();
 ```
 
 
