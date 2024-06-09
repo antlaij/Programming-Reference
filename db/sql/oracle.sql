@@ -2488,6 +2488,7 @@ SELECT USER_ROLE, COUNTER FROM USER_TABLE
   ORDER BY USER_ROLE
   OFFSET 100 * ( 2 - 1 ) ROWS FETCH NEXT 100 ROWS ONLY;
 
+
 /*------------------------------     JSON      ------------------------------*/
 
 /*------------------------------------------------------------

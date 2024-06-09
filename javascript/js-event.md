@@ -52,6 +52,46 @@ for(i=0; i<5; i++) {
 ```
 
 
+## Event - copy
+### Copy data to clipboard from web page
+```js
+let renderCopyButton = (data, dataset) => {
+  let cellEle = document.createElement("span");
+  cellEle.style.cssText = 'display: grid; position: relative;';
+  let displayEle = document.createElement("button");
+  displayEle.setAttribute('aria-label', `copy data`);
+  displayEle.classList.add(`tablet-view-cell-ellipsis`, 'button-regular', 'clickable');
+  displayEle.style.cssText = 'white-space: nowrap; overflow: hidden; text-overflow: ellipsis;';
+  displayEle.innerHTML = (pageLanguage === languages.FR)?'Donn&eacute;es - Copier': 'Copy Data';
+  displayEle.onclick = (evt) => {
+    let listener = (e) => {
+
+      // Prepare data for the HTML
+      let dataToCopy = reformatDataset(dataset);
+
+      // Copy data in plain text
+      e.clipboardData.setData("text/plain", `Data:\r\n${jsonToText(dataToCopy)}`);
+      // Copy data in HTML format
+      e.clipboardData.setData("text/html", `<i>Info.</i> <b>Data</b>. <pre>${JSON.stringify(dataToCopy, null, 2)}</pre>`);
+      // e.clipboardData.setData("application/json", JSON.stringify(dataToCopy, null, 2));
+      e.preventDefault();
+    }
+    document.addEventListener("copy", listener);
+    document.execCommand("copy", true);
+    document.removeEventListener("copy", listener);
+    // Show a message to user after copy the data to clipboard
+    evt.target.innerHTML = (pageLanguage === languages.FR)?'Donn&eacute;es copi&eacute;es !': 'Data Copied!';
+    setTimeout(() => {
+      evt.target.innerHTML = (pageLanguage === languages.FR)?'Donn&eacute;es - Copier': 'Copy Data';
+    }, 3000);
+  };
+  cellEle.appendChild(displayEle);
+  return cellEle;
+
+}
+```
+
+
 ## Event - pageshow
 ### Detect the page is load from history or not
 

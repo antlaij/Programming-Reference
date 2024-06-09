@@ -131,7 +131,7 @@ class FunctionTest {
  * Set the month to next month and set date to zero
  */
 (() => {
-  let testCase = new FunctionTest('Get the last day of the month');
+  let testCase = new FunctionTest('Get last day of the month');
   testCase.startTest();
   const targetYear = 2023;
   const targetMonth = 2;
