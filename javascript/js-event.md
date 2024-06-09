@@ -1,12 +1,19 @@
 # Javascript - Event function
 
 ## Table of Contents
-
 1. [Dispatch event](#Dispatch-event)
     1. [Custom Event type](#Custom-Event-type)
     1. [Trigger event from a form element](#Trigger-event-from-a-form-element)
-    1. [Find all elements by selector and Click each element with mouse](#Find-all-elements-by-selector-and-Click-each-element-with-mouse)
+        1. [Find all elements by selector and Click each element with mouse](#Find-all-elements-by-selector-and-Click-each-element-with-mouse)
+1. [Event - copy](#Event---copy)
+    1. [Copy data to clipboard from web page](#Copy-data-to-clipboard-from-web-page)
+1. [Event - pageshow](#Event---pageshow)
+    1. [Detect the page is load from history or not](#Detect-the-page-is-load-from-history-or-not)
+        1. [Method 1: using window.navigation.canGoForward](#Method-1:-using-window.navigation.canGoForward)
+        1. [Method 2: using event listener for pageshow](#Method-2:-using-event-listener-for-pageshow)
+        1. [Method 3: using hidden form to hold the a flag](#Method-3:-using-hidden-form-to-hold-the-a-flag)
 
+***
 
 ## Dispatch event
 ### Custom Event type
