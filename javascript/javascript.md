@@ -293,9 +293,10 @@ console.log(JSON.stringify(finalOutput, null, 2));
 */
 ```
 ---
-## Check object is empty or not
+## object
+### Check object is empty or not
 ```js
-  isEmpty(inputObject) {
+  isObjectEmpty(inputObject) {
     if (inputObject === null || inputObject === undefined) {
       return true;
     }
@@ -469,7 +470,8 @@ describe('collections.objects generateUniqueKeyByProperties', () => {
   )
 });
 ```
-## Print to console in different Colors
+## console
+### Print to console in different Colors
 ```js
 export const consoleColor = {
   Reset: "\x1b[0m",
@@ -567,8 +569,9 @@ let z = 10;
 ( z === 10 ? x : y)();
 ```
 
-## Number Format by using Internationalization API
-### Currency
+## Internationalization API
+### Number Format
+#### Currency
 ```js
 const number = 123456789;
 const numFormat = new Intl.NumberFormat("en-ca", {

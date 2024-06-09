@@ -17,6 +17,17 @@
 
 ***
 
+## Variable Declaration
+### const
+#### use "as const" to set a variable to a real constants. It will make the variable immutable in properties level
+```ts
+const userObject = {
+  name: 'Peter',
+  age: 30,
+  roles: ['admin', 'user']
+} as const;
+```
+
 ## String literal types
 ### Use array of string to hold the values for a string literal types. 
 - This made the logic easy to get all values from the type
