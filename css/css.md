@@ -3,7 +3,8 @@
 1. [CSS Triangle](#CSS-Triangle)
 ---
 
-## CSS Triangle
+## Create Triangle or Arrow from css
+### Using border
 ```css
 .triangle-down {
   --shap-side: 20px;
@@ -18,3 +19,19 @@
 ```html
 <span class="triangle-down"></span>
 ```
+### Using Hex code
+```css
+.triangle-down::after {
+  content: '\25bc';
+  color: green;
+}
+```
+```html
+<span class="triangle-down"></span>
+```
+|Direction|HEX code|
+|---------|-------:|
+|UP       |    25B2|
+|RIGHT    |    25BA|
+|DOWN     |    25BC|
+|LEFT     |    25C0|
