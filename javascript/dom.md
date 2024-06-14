@@ -48,3 +48,11 @@ Use: Element.closest(selectors)
   target.closest('form');
 ```
 
+### get HTML Tag from javascript
+Use: Element.closest(selectors)
+```js
+  const htmlTag = document.documentElement;
+  htmlTag.classList.add('dark');
+  htmlTag.classList.remove('dark');
+```
+
