@@ -2,31 +2,58 @@
 
 ## Table of Contents
 1. [Debug angular 2 plus](#Debug-angular-2-plus)
-1. [Add disabled to a button or input field](#Add-disabled-to-a-button-or-input-field)
-1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
-1. [Routing](#Routing)
-   1. [routerLink with queryParams](#routerLink-with-queryParams)
-1. [Directives](#Directives)
-   1. [Custom DIRECTIVES](#Custom-DIRECTIVES)
-   1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
-1. [Pipe](#Pipe)
-   1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
-1. [Services](#Services)
-   1. [Inject Service to a Const](#Inject-Service-to-a-Const)
+    1. [Debug angular 2 plus with IVY](#Debug-angular-2-plus-with-IVY)
+    1. [Add disabled attribute to a button or input field](#Add-disabled-attribute-to-a-button-or-input-field)
 1. [Template](#Template)
-   1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
-   1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
-   1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
+    1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
+    1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
+    1. [Component State Handling](#Component-State-Handling)
+    1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
+    1. [Use ngTemplateOutlet to select template based on condition](#Use-ngTemplateOutlet-to-select-template-based-on-condition)
 1. [Styling](#Styling)
-   1. [ngClass with Condition](#ngClass-with-Condition)
-   1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+    1. [ngClass with Condition](#ngClass-with-Condition)
+    1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+    1. [Create Function pointer from component to service](#Create-Function-pointer-from-component-to-service)
 1. [Rxjs](#Rxjs)
-   1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
-   1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
+    1. [Error handling](#Error-handling)
+        1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
+        1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
+        1. [Access multiple html elements within ngFor](#Access-multiple-html-elements-within-ngFor)
+1. [Model](#Model)
+    1. [Inject Service to a Model class](#Inject-Service-to-a-Model-class)
+1. [Directives](#Directives)
+    1. [Structural Directive](#Structural-Directive)
+        1. [build in Structural Directive](#build-in-Structural-Directive)
+            1. [*ngFor or [ngFor]](#*ngFor-or-[ngFor])
+                1. [Track By Async Element](#Track-By-Async-Element)
+        1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
+            1. [Detect window resize](#Detect-window-resize)
+            1. [Authorize directive ](#Authorize-directive-)
+    1. [Attribute Directive](#Attribute-Directive)
+        1. [Custom Attribute DIRECTIVES](#Custom-Attribute-DIRECTIVES)
+            1. [Scrolling Check](#Scrolling-Check)
+1. [Services](#Services)
+    1. [Inject Service to a Const](#Inject-Service-to-a-Const)
+    1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
+        1. [app.module.ts](#app.module.ts)
+        1. [AppConig.service.ts](#AppConig.service.ts)
+    1. [Component](#Component)
+1. [Pipe](#Pipe)
+    1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
+        1. [DatePipe](#DatePipe)
+1. [Routing](#Routing)
+    1. [routerLink with queryParams](#routerLink-with-queryParams)
+    1. [Call a function on every route](#Call-a-function-on-every-route)
+1. [Content Projection](#Content-Projection)
+    1. [ng-content](#ng-content)
+        1. [Multi slot content projection](#Multi-slot-content-projection)
+            1. [Parent component](#Parent-component)
+            1. [my-component component](#my-component-component)
 
+***
 
 ---
-### Debug angular 2 plus
+## Debug angular 2 plus
 
 ```js
 var sc = ng.probe($0).componentInstance;
@@ -36,14 +63,15 @@ var sc = ng.probe($0).componentInstance;
 ```js
 var com = ng.getComponent($0);
 ```
-
 ---
+
 ### Add disabled attribute to a button or input field
 
 ```html
 <button id="myButton" type="button" label="Click" [attr.disabled]="disabled?'disabled':null"></button>
 ```
-### Template
+
+## Template
 
 ---
 ### Put Condition in the switch case
@@ -73,8 +101,6 @@ var com = ng.getComponent($0);
 <ng-template let-variableNameUseInTemplate="item" #templateOutleName>
 </ng-template>
 
-
-
 <ng-template
   [ngTemplateOutlet]="templateOutleName"
   [ngTemplateOutletContent]="{
@@ -91,82 +117,6 @@ var com = ng.getComponent($0);
 ```
 
 ---
-### Use HTML tag in variable from component and show in html template
-
-```html
-<div [innerHTML]="myHtmlStringWithTag"></div>
-<span [innerHTML]="myHtmlStringWithTag"></span>
-```
-
-```ts
-public myHtmlStringWithTag: string = '<span class="">this is a test</span>';
-public myClass = 'testCss';
-this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</span>`;
-```
-
----
-### Use ngTemplateOutlet to select template based on condition
-
-```html
-<ng-container *ngTemplateOutlet="conditionGoseHere ? trueTemplate : falseTemplate; context: { $implicit: myVariable }">
-</ng-container>
-
-<ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
-
-<ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
-```
-
-### Styling
----
-### ngClass with Condition
-```html
-<div [ngClass]="{'success': response?.Success, 'error': !response?.success}"></div>
-```
-
----
-### ngOnChanges from life cycle hook
-
-```ts
-ngOnChanges(changes: SimpleChanges) {
-  if (cahnges.myValue) {
-  }
-}
-```
-
----
-### Create Function pointer from component to service
-
-```ts
-mappedFunctionName: (arg_01: string, arg: number) => boolean;
-
-// Setup mapping in constructor
-constructor( private myService: MyService ) {
-  this.mappedFunctionName = myService.targetFunctionName;
-}
-```
-
----
-### Track By Async Element
-
-```html
-  <div *ngFor="let item of items | async; trackby: trackByUniqueKey " ></div>
-```
-
-```ts
-class MyComponent {
-  trackByUniqueKey = (idx, element) => element.uniqueKey;
-}
-```
-
----
-### Detect window resize
-
-```ts
-@HostListener('window:resize', ['$event'])
-onResize(event) {
-  let screenWidth = document.getElementById("header").offsetWidth;
-}
-```
 
 ---
 ### Component State Handling
@@ -224,11 +174,66 @@ export class testingComponent implements OnInit, OnDestroy {
 
 }
 ```
-
-### Rxjs
 ---
-> #### throw Error within rxjs pipe
 
+### Use HTML tag in variable from component and show in html template
+
+```html
+<div [innerHTML]="myHtmlStringWithTag"></div>
+<span [innerHTML]="myHtmlStringWithTag"></span>
+```
+
+```ts
+public myHtmlStringWithTag: string = '<span class="">this is a test</span>';
+public myClass = 'testCss';
+this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</span>`;
+```
+
+---
+### Use ngTemplateOutlet to select template based on condition
+
+```html
+<ng-container *ngTemplateOutlet="conditionGoseHere ? trueTemplate : falseTemplate; context: { $implicit: myVariable }">
+</ng-container>
+
+<ng-template #trueTemplate let-myVariable>True: {{myVariable}}</ng-template>
+
+<ng-template #falseTemplate let-myVariable>False: {{myVariable}}</ng-template>
+```
+
+## Styling
+---
+### ngClass with Condition
+```html
+<div [ngClass]="{'success': response?.Success, 'error': !response?.success}"></div>
+```
+
+---
+### ngOnChanges from life cycle hook
+
+```ts
+ngOnChanges(changes: SimpleChanges) {
+  if (cahnges.myValue) {
+  }
+}
+```
+
+---
+### Create Function pointer from component to service
+
+```ts
+mappedFunctionName: (arg_01: string, arg: number) => boolean;
+
+// Setup mapping in constructor
+constructor( private myService: MyService ) {
+  this.mappedFunctionName = myService.targetFunctionName;
+}
+```
+
+## Rxjs
+### Error handling
+---
+#### throw Error within rxjs pipe
 ```ts
 myObservable$
 .pipe(
@@ -280,7 +285,7 @@ ngAfterViewChecked() {
 ```
 
 ---
-### Model
+## Model
 #### Inject Service to a Model class
 ```ts
 import { MyService, AnotherService } from "../services/local.service";
@@ -304,76 +309,37 @@ export class MyModelClass {
 ```
 
 ---
-### Services
+## Directives
+
 ---
-#### Inject Service to a Const
-```ts
-import { Injector } from '@angular/core';
-import { MyService, AnotherService } from "../services/local.service";
+### Structural Directive
+#### build in Structural Directive
+##### *ngFor or [ngFor]
+###### Track By Async Element
 
-const injector = Injector.create([
-  { provide: MyService, deps: [] },
-  { provide: AnotherService, deps: [] }
-]);
-
-let myService = injector.get(MyService);
-let anotherService = injector.get(AnotherService);
-
+```html
+  <div *ngFor="let item of items | async; trackby: trackByUniqueKey " ></div>
 ```
 
-### Directives
----
-### Custom DIRECTIVES
-#### Scrolling Check
 ```ts
-import { Directive, Output, HostListener, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
-
-@Directive({
-  selector: '[scrollTracker]'
-})
-export class ScrollTrackerDirective implements AfterViewInit {
-
-  /**
-   * Emit data back to parent
-   */
-  @Output() onScrolledToBottom: EventEmitter<boolean> = new EventEmitter();
-
-  /**
-   * Listening to the user scroll event and passing the target element
-   * @param targetElement
-   */
-  @HostListener('scroll', ['$event.target'])
-  onScroll(targetElement: Element) {
-    /**
-     * Calculate the scrollable height on the target element
-     */
-    let scrollableHeight = targetElement.scrollHeight - targetElement.clientHeight;
-    /**
-     * When scrollable height equals scroll top that means user scrolled to the end
-     * then emit true back to the user
-     */
-    if (targetElement.scrollTop >= scrollableHeight) {
-      this.onScrolledToBottom.emit(true);
-    }
-  }
-
-  constructor(private ele: ElementRef) {
-    this.onScrolledToBottom.emit(false);
-   }
-
-   ngAfterViewInit(): void {
-     /**
-      * If scroll height and client height are the same that means there is no scroll bar needed
-      * then return a flag to the parent
-      */
-    this.onScrolledToBottom.emit(this.ele.nativeElement.scrollHeight === this.ele.nativeElement.clientHeight);
-  }
+class MyComponent {
+  trackByUniqueKey = (idx, element) => element.uniqueKey;
 }
 ```
 
 ---
-### Custom STRUCTURAL DIRECTIVES
-#### Authorize directive 
+#### Custom STRUCTURAL DIRECTIVES
+##### Detect window resize
+
+```ts
+@HostListener('window:resize', ['$event'])
+onResize(event) {
+  let screenWidth = document.getElementById("header").offsetWidth;
+}
+```
+
+---
+##### Authorize directive 
 [Link from Angular Docs](https://v2.angular.io/docs/ts/latest/guide/structural-directives.html)
 ```ts
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
@@ -423,6 +389,73 @@ export class UnlessDirective {
 </p>
 ```
 
+---
+### Attribute Directive
+#### Custom Attribute DIRECTIVES
+##### Scrolling Check
+```ts
+import { Directive, Output, HostListener, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
+
+@Directive({
+  selector: '[scrollTracker]'
+})
+export class ScrollTrackerDirective implements AfterViewInit {
+
+  /**
+   * Emit data back to parent
+   */
+  @Output() onScrolledToBottom: EventEmitter<boolean> = new EventEmitter();
+
+  /**
+   * Listening to the user scroll event and passing the target element
+   * @param targetElement
+   */
+  @HostListener('scroll', ['$event.target'])
+  onScroll(targetElement: Element) {
+    /**
+     * Calculate the scrollable height on the target element
+     */
+    let scrollableHeight = targetElement.scrollHeight - targetElement.clientHeight;
+    /**
+     * When scrollable height equals scroll top that means user scrolled to the end
+     * then emit true back to the user
+     */
+    if (targetElement.scrollTop >= scrollableHeight) {
+      this.onScrolledToBottom.emit(true);
+    }
+  }
+
+  constructor(private ele: ElementRef) {
+    this.onScrolledToBottom.emit(false);
+   }
+
+   ngAfterViewInit(): void {
+     /**
+      * If scroll height and client height are the same that means there is no scroll bar needed
+      * then return a flag to the parent
+      */
+    this.onScrolledToBottom.emit(this.ele.nativeElement.scrollHeight === this.ele.nativeElement.clientHeight);
+  }
+}
+```
+
+---
+## Services
+---
+### Inject Service to a Const
+```ts
+import { Injector } from '@angular/core';
+import { MyService, AnotherService } from "../services/local.service";
+
+const injector = Injector.create([
+  { provide: MyService, deps: [] },
+  { provide: AnotherService, deps: [] }
+]);
+
+let myService = injector.get(MyService);
+let anotherService = injector.get(AnotherService);
+
+```
 
 ---
 ### Load Data before application start by APP_INITIALIZER
@@ -492,10 +525,10 @@ ngAfterViewInit() {
 
 ```
 
-### Pipe
+## Pipe
 ---
-> #### Use default pipe in typescript code
->> ##### DatePipe
+### Use default pipe in typescript code
+#### DatePipe
 ```ts
 // Create new variable
 private datePipe;
@@ -509,16 +542,16 @@ public test = (): string => {
 }
 ```
 
-### Routing
+## Routing
 ---
-> #### routerLink with queryParams
+### routerLink with queryParams
 ```html
 <a [routerLink]="['/order']" [queryParams]="{ orderNumber: 123456}">
   Products
 </a>
 ```
 
-> #### Call a function on every route
+### Call a function on every route
 ```html
 <router-outlet (activate)="onRouteChanged()"></router-outlet>
 ```
@@ -528,16 +561,16 @@ onRouteChanged = () => {
 }
 ```
 
-### Content Projection
+## Content Projection
 ---
-> #### ng-content
+### ng-content
 ```html
 <my-component>
   <div>testing</div>
 </my-conponent>
 ```
 ---
-> #### Multi slot content projection
+#### Multi slot content projection
 ##### Parent component
 ```html
 <my-component>
