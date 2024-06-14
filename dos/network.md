@@ -23,11 +23,11 @@ netsh wlan export profile folder=d:\ key=clear
 ## Check what port is open
 ### Search for "LISTENING" Only
 ```batch
-netstat –aon | find "LISTENING"
+netstat -aon | find "LISTENING"
 ```
 ### Find port 3000 only
 ```batch
-netstat –aon | find "3000"
+netstat -aon | find "3000"
 ```
 ### Output:
 ```
