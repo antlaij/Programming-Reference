@@ -197,6 +197,12 @@ git push -u origin localBranch:remoteBranchToBeCreated
 
 ---
 
+## Stage Changes
+### Undo Staged Changes on a file
+```bash
+git reset -q HEAD -- targetFilename.txt
+```
+
 ## Commit Changes
 
 ### Discarding All Local Changes
