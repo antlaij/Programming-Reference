@@ -29,7 +29,7 @@ netstat -aon | find "LISTENING"
 ```batch
 netstat -aon | find "3000"
 ```
-### Output:
+#### Output:
 ```
 Protocol Local IP               Foreign IP             State           PID
   TCP    127.0.0.1:3000         0.0.0.0:0              LISTENING       28876
@@ -40,4 +40,27 @@ Protocol Local IP               Foreign IP             State           PID
 ## Kill Process for by PID
 ```batch
 Taskkill /PID 28876 /F
+```
+
+## Redirect user to different port
+### Change host file and netsh (windows)
+#### Use any free address in the subnet 127.0.0.0/8 (127.x.x.x).
+##### Check listening ports
+###### For Linux
+```bash
+netstat -a -n -p TCP | grep "LISTENING"
+```
+###### For Windows
+```batch
+netstat -a -n -p TCP | find "LISTENING"
+```
+#### Add the following entry to the host file
+```txt
+127.1.2.3     example.test
+```
+#### Redirect port from 80 to 8080 by proxy
+#### Use Netsh interface portproxy commands
+[Reference](https://learn.microsoft.com/en-us/windows-server/networking/technologies/netsh/netsh-interface-portproxy#add-v4tov4)
+```batch
+netsh interface portproxy add v4tov4 listenport=80 listenaddress=127.1.2.3 connectport=8080 connectaddress=127.0.0.1
 ```
