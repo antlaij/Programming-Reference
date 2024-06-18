@@ -1,7 +1,120 @@
 
 ---
-> ### Component
+## Component
 ---
+### Reactjs component must starts with Uppercase name
+Because the lowercase html tag, react compiler will think that is a regular html tag
+Uppercase name will consider custom component function
+
+
+### Pass properties to component
+```html
+<MyComponent name="abc"></MyComponent>
+```
+```jsx
+function MyComponent(props) {
+  return (
+    <div>
+      <p>{props.author}</p>
+      <p>{props.body}</p>
+    </div>
+  );
+}
+
+export default Post;
+```
+
+### Inputs
+In React there are three kinds of inputs that you can read while rendering: props, state, and context.
+
+
+### Conditional Content Renderring
+```jsx
+ConditionalContentComponent() => {
+  const [shouldShowContent, setShouldShowContent] = useState(true);
+
+  function hideModalHandler() {
+    setShouldShowContent(false);
+  }
+
+  return (
+    <>
+      {shouldShowContent && (
+        <div>This the conditional content</div>
+      )}
+    </>
+  );
+}
+
+export default ConditionalContentComponent;
+```
+
+
+### Content Projection
+---
+#### Use Children Props
+```html
+<MyComponent>
+  <div class="class-selector">testing</div>
+  <div class="class-selector-01">testing 01</div>
+  <div >No selector content</div>
+</MyComponent>
+```
+---
+#### Multi slot content projection
+##### Use Prop name call ch
+##### Parent component
+```html
+<MyComponent>
+  <div class="class-selector">testing</div>
+  <div class="class-selector-01">testing 01</div>
+  <div >No selector content</div>
+</MyComponent>
+```
+##### Child component
+```jsx
+function MyComponent({ children }) {
+  return (
+    <div>
+      {children}
+    </div>
+  );
+}
+
+export default Modal;
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > #### Different between Class Component and Function Component
 No need to import Component
 Where to use:
