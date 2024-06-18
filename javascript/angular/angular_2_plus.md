@@ -567,7 +567,7 @@ onRouteChanged = () => {
 ```html
 <my-component>
   <div>testing</div>
-</my-conponent>
+</my-component>
 ```
 ---
 #### Multi slot content projection
@@ -577,7 +577,7 @@ onRouteChanged = () => {
   <div class="class-selector">testing</div>
   <div class="class-selector-01">testing 01</div>
   <div >No selector content</div>
-</my-conponent>
+</my-component>
 ```
 ##### my-component component
 ```html
