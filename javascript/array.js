@@ -132,37 +132,17 @@ testCase.endTest();
  */
 (() => {
   let testArray = [];
-  for(let i=0; i<10000; i++) {
+  for(let i=0; i<20000; i++) {
     testArray.push(i);
     testArray.push(i);
   }
   console.log('Print: (testArray)', testArray);
   let uniqueArray = [];
-  console.time('Testing');
+  console.time('Test execution Time:');
   for(let item of testArray) {
     (!uniqueArray.includes(item)) && uniqueArray.push(item);
   }
-  console.timeEnd('Testing');
-  console.log('Print: (uniqueArray)', uniqueArray);
-})();
-
-
-/**
- * Testing remove duplicate by loop
- */
-(() => {
-  let testArray = [];
-  for(let i=0; i<10000; i++) {
-    testArray.push(i);
-    testArray.push(i);
-  }
-  console.log('Print: (testArray)', testArray);
-  let uniqueArray = [];
-  console.time('Testing');
-  for(let item of testArray) {
-    (!uniqueArray.includes(item)) && uniqueArray.push(item);
-  }
-  console.timeEnd('Testing');
+  console.timeEnd('Test execution Time:');
   console.log('Print: (uniqueArray)', uniqueArray);
 })();
 
@@ -170,19 +150,21 @@ testCase.endTest();
 
 /**
  * Testing remove duplicate by Set Object type
+ * 100 times faster than using loop
  */
 (() => {
   let testArray = [];
-  for(let i=0; i<10000; i++) {
+  // insert double values to array
+  for(let i=0; i<20000; i++) {
     testArray.push(i);
     testArray.push(i);
   }
   console.log('Print: (testArray)', testArray);
   let uniqueArray = [];
-  console.time('Testing');
+  console.time('Test execution Time:');
   let setArray = new Set([...testArray]);
   uniqueArray = Array.from(setArray);
-  console.timeEnd('Testing');
+  console.timeEnd('Test execution Time:');
   console.log('Print: (uniqueArray)', uniqueArray);
 })();
 
@@ -190,9 +172,10 @@ testCase.endTest();
 
 /**
  * Testing remove empty value from an array by Boolean()
+ * This method does not work with array contains Zero or empty string
  */
 (() => {
-  let testArray = [1,null, 2, undefined, 3];
+  let testArray = [-1, 0, 1,null, 2, undefined, 3, '', {}];
   console.log(testArray.filter(Boolean));
 })();
 
@@ -204,5 +187,79 @@ testCase.endTest();
 (() => {
   let testArray = Array.from({length: 10}, (value, idx) => idx)
   console.log(testArray);
+})();
+
+
+
+/**
+ * Sort an array of objects by properties
+ * sort() will convert the value to a string and compare
+ */
+// For: string array
+(() => {
+  let testArray = [ '10','4','5','69','18','-1'];
+  testArray.sort();
+  console.log(JSON.stringify(testArray, null, 2));
+})();
+
+/* Output:
+[
+  "-1",
+  "10",
+  "18",
+  "4",
+  "5",
+  "69"
+]
+*/
+
+// For: number array cannot use sort(), it will sort as a string
+(() => {
+  let testArray = [ 10,4,5,69,18, -1];
+  testArray.sort();
+  console.log(JSON.stringify(testArray, null, 2));
+})();
+
+/* Output unexpected:
+[
+  -1,
+  10,
+  18,
+  4,
+  5,
+  69
+]
+*/
+
+// For: number array needs to compare it properly
+(() => {
+  let testArray = [ 10,4,5,69,18, -1];
+  testArray.sort((a,b) => a-b);
+  console.log(JSON.stringify(testArray, null, 2));
+})();
+
+/* Output:
+[
+  -1,
+  4,
+  5,
+  10,
+  18,
+  69
+]
+*/
+
+(() => {
+  let testArray = [
+    {id: 2, name: 'Peter' },
+    {id: 1, name: 'Walker' },
+    {id: 5, name: 'Abb' },
+  ];
+  testArray.sort((a, b) => {
+    if(a.name < b.name) return -1;
+    if(a.name > b.name) return 1;
+    return 0;
+  });
+  console.log(JSON.stringify(testArray, null, 2));
 })();
 
