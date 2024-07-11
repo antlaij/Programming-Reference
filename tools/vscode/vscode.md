@@ -1,4 +1,4 @@
-### Find and replace synctax
+## Find and replace synctax
 
 | Description | Find | Replace |
 | :--- | :----: | :---: |
@@ -189,5 +189,20 @@
     },
     "peacock.color": "#5570aa"  
   }
+}
+```
+
+## Custom Labels
+### Workbench > Editor > Custom Labels:
+C:\\[Project_Folder]\\.vscode\settings.json
+```json
+{
+    "workbench.editor.customLabels.patterns": {
+        "**/README.md": "${filename}.${extname} - [ ${dirname} ]",
+        "**/page.tsx": "${filename}.${extname} - [ ${dirname} ]",
+        "**/index.html": "${filename}.${extname} - [ ${dirname} ]",
+        "**/index.ts": "${filename}.${extname} - [ ${dirname} ]",
+        "**/main.js": "${filename}.${extname} - [ ${dirname} ]"
+    }
 }
 ```
