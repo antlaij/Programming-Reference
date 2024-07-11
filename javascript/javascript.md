@@ -573,6 +573,88 @@ let z = 10;
 ( z === 10 ? x : y)();
 ```
 
+
+## Loop
+### "For in" loop
+#### It is returning a key from the object - Mainly for Object Type
+##### Test for in with an Object
+```js
+(() => {
+  const obj = {
+  id: 1,
+  name: 'Superman',
+  age: 10,
+};
+
+for (const key in obj) {
+  console.log('key', key);
+}
+})();
+
+/* Output:
+key id
+key name
+key age
+*/
+```
+##### Test for in with an array
+```js
+(() => {
+const ary = [1, 2, 3, 4, 5];
+
+for (const key in ary) {
+  console.log('key', key);
+}
+})();
+
+/* Output:
+key 0
+key 1
+key 2
+key 3
+key 4
+*/
+```
+### "For of" loop
+#### It is returning a value from the object - Mainly for Array Type
+##### Test for in with Object
+```js
+(() => {
+  const obj = {
+  id: 1,
+  name: 'Superman',
+  age: 10,
+};
+
+for (const key of obj) {
+  console.log('key', key);
+}
+})();
+
+/* Output with error:
+TypeError: obj is not iterable
+*/
+```
+```js
+// Test for in with an array
+(() => {
+const ary = [1, 2, 3, 4, 5];
+
+for (const value of ary) {
+  console.log('value', value);
+}
+})();
+
+/* Output:
+value 1
+value 2
+value 3
+value 4
+value 5
+*/
+```
+
+
 ## Internationalization API
 ### Number Format
 #### Currency
