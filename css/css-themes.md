@@ -41,6 +41,9 @@ body {
 }
 
 .color-picker {
+  label{
+    margin: 0 2rem 0 0;
+  }
    input[type="radio"] {
     appearance: none;
     width: 0.5rem;
@@ -159,27 +162,38 @@ body {
 ### HTML
 
 ```html
-<header id="header">
-  <div class="block-align-right">
-    <form class="color-picker" action="">
-      <fieldset>
-        <legend class="visually-hidden">Pick a color scheme</legend>
-        <label for="light" class="visually-hidden">Light</label>
-        <input type="radio" id="light" name="theme">
-    
-        <label for="pink" class="visually-hidden">Pink theme</label>
-        <input type="radio" id="pink" name="theme">
-    
-        <label for="blue" class="visually-hidden">Blue theme</label>
-        <input type="radio" id="blue" name="theme">
-    
-        <label for="green" class="visually-hidden">Green theme</label>
-        <input type="radio" id="green" name="theme">
-    
-        <label for="dark" class="visually-hidden">Dark theme</label>
-        <input type="radio" id="dark" name="theme" checked>
-      </fieldset>
-    </form>
-  </div>
-</header>
+<html lang="en">
+  <head>
+    <title>CSS Themes switcher</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <header id="header">
+      <div class="block-align-right">
+        <form class="color-picker" action="">
+          <fieldset>
+            <legend class="visually-hidden">Pick a color scheme</legend>
+            <input type="radio" id="light" name="theme">
+            <label for="light" class="visually-hidden">Light</label>
+        
+            <input type="radio" id="pink" name="theme">
+            <label for="pink" class="visually-hidden">Pink theme</label>
+        
+            <input type="radio" id="blue" name="theme">
+            <label for="blue" class="visually-hidden">Blue theme</label>
+        
+            <input type="radio" id="green" name="theme">
+            <label for="green" class="visually-hidden">Green theme</label>
+        
+            <input type="radio" id="dark" name="theme" checked>
+            <label for="dark" class="visually-hidden">Dark theme</label>
+          </fieldset>
+        </form>
+      </div>
+    </header>
+    <div>This is a test</div>
+        
+  </body>
+</html>
 ```
