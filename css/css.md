@@ -3,6 +3,15 @@
 1. [CSS Triangle](#CSS-Triangle)
 ---
 
+## Calculate size
+### calc-size()
+#### Calculate the size base on auto
+```css
+.my-container.show {
+  height: calc-size(auto);
+}
+```
+
 ## Create Triangle or Arrow from css
 ### Using border
 ```css
