@@ -50,3 +50,12 @@
 
 ---
 
+## Template
+### Declare Variables in Templates - V18.1
+#### @let operator
+```html
+@let name = 'Peter';
+<h1>Dashboard for {{name}}</h1>
+Hello, {{name}}
+```
+
