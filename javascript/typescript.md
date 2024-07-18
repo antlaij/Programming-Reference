@@ -1,22 +1,21 @@
 # Typescript
-
 ## Table of Contents
-1. [Variable Declaration](#Variable-Declaration)
-    1. [const](#const)
-        1. [use "as const" to set a variable to a real constants. It will make the variable immutable in properties level](#use-"as-const"-to-set-a-variable-to-a-real-constants.-It-will-make-the-variable-immutable-in-properties-level)
-1. [String literal types](#String-literal-types)
-    1. [Use array of string to hold the values for a string literal types. ](#Use-array-of-string-to-hold-the-values-for-a-string-literal-types.-)
-1. [Destructuring with types](#Destructuring-with-types)
-1. [Bitwise](#Bitwise)
-    1. [Access Rights check](#Access-Rights-check)
-1. [Function](#Function)
-    1. [Create Function syntax](#Create-Function-syntax)
-1. [enum](#enum)
-    1. [Check if object exist in ENUM porperty's name](#Check-if-object-exist-in-ENUM-porperty's-name)
-    1. [Check if object in ENUM property's values](#Check-if-object-in-ENUM-property's-values)
-1. [Model which accept another model](#Model-which-accept-another-model)
-1. [Conditional Typescript type with generic](#Conditional-Typescript-type-with-generic)
-1. [Discriminated union and Intersection types](#Discriminated-union-and-Intersection-types)
+  1. [Variable Declaration](#Variable-Declaration)
+      1. [const](#const)
+          1. [use "as const" to set a variable to a real constants. It will make the variable immutable in properties level](#use-"as-const"-to-set-a-variable-to-a-real-constants.-It-will-make-the-variable-immutable-in-properties-level)
+  1. [String literal types](#String-literal-types)
+      1. [Use array of string to hold the values for a string literal types. ](#Use-array-of-string-to-hold-the-values-for-a-string-literal-types.-)
+  1. [Destructuring with types](#Destructuring-with-types)
+  1. [Bitwise](#Bitwise)
+      1. [Access Rights check](#Access-Rights-check)
+  1. [Function](#Function)
+      1. [Create Function syntax](#Create-Function-syntax)
+  1. [enum](#enum)
+      1. [Check if object exist in ENUM porperty's name](#Check-if-object-exist-in-ENUM-porperty's-name)
+      1. [Check if object in ENUM property's values](#Check-if-object-in-ENUM-property's-values)
+  1. [Model which accept another model](#Model-which-accept-another-model)
+  1. [Conditional Typescript type with generic](#Conditional-Typescript-type-with-generic)
+  1. [Discriminated union and Intersection types](#Discriminated-union-and-Intersection-types)
 
 ***
 

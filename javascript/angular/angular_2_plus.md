@@ -1,56 +1,80 @@
 # Angular 2+ Reference
 
 ## Table of Contents
-1. [Debug angular 2 plus](#Debug-angular-2-plus)
-    1. [Debug angular 2 plus with IVY](#Debug-angular-2-plus-with-IVY)
-    1. [Add disabled attribute to a button or input field](#Add-disabled-attribute-to-a-button-or-input-field)
-1. [Template](#Template)
-    1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
-    1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
-    1. [Component State Handling](#Component-State-Handling)
-    1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
-    1. [Use ngTemplateOutlet to select template based on condition](#Use-ngTemplateOutlet-to-select-template-based-on-condition)
-1. [Styling](#Styling)
-    1. [ngClass with Condition](#ngClass-with-Condition)
-    1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
-    1. [Create Function pointer from component to service](#Create-Function-pointer-from-component-to-service)
-1. [Rxjs](#Rxjs)
-    1. [Error handling](#Error-handling)
-        1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
-        1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
-        1. [Access multiple html elements within ngFor](#Access-multiple-html-elements-within-ngFor)
-1. [Model](#Model)
-    1. [Inject Service to a Model class](#Inject-Service-to-a-Model-class)
-1. [Directives](#Directives)
-    1. [Structural Directive](#Structural-Directive)
-        1. [build in Structural Directive](#build-in-Structural-Directive)
-            1. [*ngFor or [ngFor]](#*ngFor-or-[ngFor])
-                1. [Track By Async Element](#Track-By-Async-Element)
-        1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
-            1. [Detect window resize](#Detect-window-resize)
-            1. [Authorize directive ](#Authorize-directive-)
-    1. [Attribute Directive](#Attribute-Directive)
-        1. [Custom Attribute DIRECTIVES](#Custom-Attribute-DIRECTIVES)
-            1. [Scrolling Check](#Scrolling-Check)
-1. [Services](#Services)
-    1. [Inject Service to a Const](#Inject-Service-to-a-Const)
-    1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
-        1. [app.module.ts](#app.module.ts)
-        1. [AppConig.service.ts](#AppConig.service.ts)
-    1. [Component](#Component)
-1. [Pipe](#Pipe)
-    1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
-        1. [DatePipe](#DatePipe)
-1. [Routing](#Routing)
-    1. [routerLink with queryParams](#routerLink-with-queryParams)
-    1. [Call a function on every route](#Call-a-function-on-every-route)
-1. [Content Projection](#Content-Projection)
-    1. [ng-content](#ng-content)
-        1. [Multi slot content projection](#Multi-slot-content-projection)
-            1. [Parent component](#Parent-component)
-            1. [my-component component](#my-component-component)
+  1. [Cmpilation](#Cmpilation)
+      1. [AOT](#AOT)
+          1. [Compilation Steps:](#Compilation-Steps:)
+      1. [JIT](#JIT)
+  1. [Debug angular 2 plus](#Debug-angular-2-plus)
+      1. [Debug angular 2 plus with IVY](#Debug-angular-2-plus-with-IVY)
+      1. [Add disabled attribute to a button or input field](#Add-disabled-attribute-to-a-button-or-input-field)
+  1. [Template](#Template)
+      1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
+      1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
+      1. [Component State Handling](#Component-State-Handling)
+      1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
+      1. [Use ngTemplateOutlet to select template based on condition](#Use-ngTemplateOutlet-to-select-template-based-on-condition)
+  1. [Styling](#Styling)
+      1. [ngClass with Condition](#ngClass-with-Condition)
+      1. [ngOnChanges from life cycle hook](#ngOnChanges-from-life-cycle-hook)
+      1. [Create Function pointer from component to service](#Create-Function-pointer-from-component-to-service)
+  1. [Rxjs](#Rxjs)
+      1. [Error handling](#Error-handling)
+          1. [throw Error within rxjs pipe](#throw-Error-within-rxjs-pipe)
+          1. [Create Unknown number of observable for one subscription](#Create-Unknown-number-of-observable-for-one-subscription)
+          1. [Access multiple html elements within ngFor](#Access-multiple-html-elements-within-ngFor)
+  1. [Model](#Model)
+          1. [Inject Service to a Model class](#Inject-Service-to-a-Model-class)
+  1. [Directives](#Directives)
+      1. [Structural Directive](#Structural-Directive)
+          1. [build in Structural Directive](#build-in-Structural-Directive)
+              1. [*ngFor or [ngFor]](#*ngFor-or-[ngFor])
+                  1. [Track By Async Element](#Track-By-Async-Element)
+          1. [Custom STRUCTURAL DIRECTIVES](#Custom-STRUCTURAL-DIRECTIVES)
+              1. [Detect window resize](#Detect-window-resize)
+              1. [Authorize directive ](#Authorize-directive-)
+      1. [Attribute Directive](#Attribute-Directive)
+          1. [Custom Attribute DIRECTIVES](#Custom-Attribute-DIRECTIVES)
+              1. [Scrolling Check](#Scrolling-Check)
+  1. [Services](#Services)
+      1. [Inject Service to a Const](#Inject-Service-to-a-Const)
+      1. [Load Data before application start by APP_INITIALIZER](#Load-Data-before-application-start-by-APP_INITIALIZER)
+          1. [app.module.ts](#app.module.ts)
+          1. [AppConig.service.ts](#AppConig.service.ts)
+      1. [Component](#Component)
+  1. [Pipe](#Pipe)
+      1. [Use default pipe in typescript code](#Use-default-pipe-in-typescript-code)
+          1. [DatePipe](#DatePipe)
+  1. [Routing](#Routing)
+      1. [routerLink with queryParams](#routerLink-with-queryParams)
+      1. [Call a function on every route](#Call-a-function-on-every-route)
+  1. [Content Projection](#Content-Projection)
+      1. [ng-content](#ng-content)
+          1. [Multi slot content projection](#Multi-slot-content-projection)
+              1. [Parent component](#Parent-component)
+              1. [my-component component](#my-component-component)
 
 ***
+
+---
+## Cmpilation
+### AOT
+1. Faster startup time
+1. Smaller bundle size
+1. Catch template errors earlier
+1. Better security
+
+#### Compilation Steps:
+1. Code analysis
+2. Code generation
+3. Teplate type checking
+
+### JIT
+1. Inefficient for production
+1. Happens for every user
+1. More components will take more time
+1. Have to ship Angular compiler as part of the vendor.bundle.js
+
 
 ---
 ## Debug angular 2 plus

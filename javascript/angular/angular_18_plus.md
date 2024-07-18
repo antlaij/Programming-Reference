@@ -1,5 +1,40 @@
 # Angular 18+ Reference
+## Table of Contents
+  1. [Configuration](#Configuration)
+      1. [Change default port number when serving the application](#Change-default-port-number-when-serving-the-application)
+          1. [Add port number in angular.json](#Add-port-number-in-angular.json)
+      1. [Define prefix in component. Error will show in IDE](#Define-prefix-in-component.-Error-will-show-in-IDE)
+          1. [Add prefix in project.json](#Add-prefix-in-project.json)
+          1. [Or add prefix in .eslintrc.json](#Or-add-prefix-in-.eslintrc.json)
+  1. [Routing](#Routing)
+      1. [Lazy loading](#Lazy-loading)
+          1. [For Child route](#For-Child-route)
+              1. [Use loadChildren](#Use-loadChildren)
+              1. [Child routes](#Child-routes)
+          1. [For Child component](#For-Child-component)
+              1. [Use loadComponent. **This only works for Standalone component**](#Use-loadComponent.-**This-only-works-for-Standalone-component**)
+      1. [Use @Input to Read Angular Route Parameters](#Use-@Input-to-Read-Angular-Route-Parameters)
+          1. [To read the value from the route parameter](#To-read-the-value-from-the-route-parameter)
+              1. [For standalone bootstrapping](#For-standalone-bootstrapping)
+          1. [To enable this function](#To-enable-this-function)
+              1. [For standalone bootstrapping - use: withComponentInputBinding](#For-standalone-bootstrapping---use:-withComponentInputBinding)
+              1. [For classic bootstrapping - set bindToComponentInputs to true](#For-classic-bootstrapping---set-bindToComponentInputs-to-true)
+  1. [Template](#Template)
+      1. [Declare Variables in Templates - V18.1](#Declare-Variables-in-Templates---V18.1)
+          1. [@let operator](#@let-operator)
+      1. [Built-in control flow](#Built-in-control-flow)
+          1. [@if block conditionals](#@if-block-conditionals)
+          1. [@for block - repeaters](#@for-block---repeaters)
+              1. [With empty block](#With-empty-block)
+              1. [contextual variables](#contextual-variables)
+          1. [@switch block - selection](#@switch-block---selection)
+  1. [Signals](#Signals)
+      1. [Signal base input function](#Signal-base-input-function)
+          1. [Passing signal to a component](#Passing-signal-to-a-component)
+          1. [Getting input signal from a parent component](#Getting-input-signal-from-a-parent-component)
+          1. [Using input signal from a component](#Using-input-signal-from-a-component)
 
+***
 ---
 
 ## Configuration

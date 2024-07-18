@@ -1,3 +1,17 @@
+# VS Code
+## Table of Contents
+  1. [Find and replace synctax](#Find-and-replace-synctax)
+  1. [Custom IDE color](#Custom-IDE-color)
+      1. [Purple theme - Web app](#Purple-theme---Web-app)
+      1. [Blue theme - app](#Blue-theme---app)
+      1. [Green theme - default](#Green-theme---default)
+      1. [Yellow theme - DEV code](#Yellow-theme---DEV-code)
+      1. [Orange theme - UAT code](#Orange-theme---UAT-code)
+  1. [Custom Labels](#Custom-Labels)
+      1. [Workbench > Editor > Custom Labels:](#Workbench->-Editor->-Custom-Labels:)
+
+***
+
 ## Find and replace synctax
 
 | Description | Find | Replace |
@@ -8,7 +22,7 @@
 
 
 ## Custom IDE color
-### 
+### Purple theme - Web app
 ```json
 {
 	"folders": [
@@ -50,7 +64,7 @@
   }
 }
 ```
-### 
+### Blue theme - app
 ```json
 {
 	"folders": [
@@ -83,7 +97,7 @@
   }
 }
 ```
-### 
+### Green theme - default
 ```json
 {
 	"folders": [
@@ -124,7 +138,7 @@
   }
 }
 ```
-### 
+### Yellow theme - DEV code
 ```json
 {
 	"folders": [
@@ -158,7 +172,7 @@
   }
 }
 ```
-### 
+### Orange theme - UAT code
 ```json
 {
 	"folders": [
@@ -192,6 +206,7 @@
 }
 ```
 
+---
 ## Custom Labels
 ### Workbench > Editor > Custom Labels:
 C:\\[Project_Folder]\\.vscode\settings.json
