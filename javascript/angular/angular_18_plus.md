@@ -142,8 +142,8 @@ Hello, {{name}}
 
 ---
 
-## Built-in control flow
-### @if block conditionals
+### Built-in control flow
+#### @if block conditionals
 ```ts
 @if (a > b) {
   {{a}} is greater than {{b}}
@@ -153,8 +153,8 @@ Hello, {{name}}
   {{a}} is equal to {{b}}
 }
 ```
-### @for block - repeaters
-#### With empty block
+#### @for block - repeaters
+##### With empty block
 ```ts
 @for (item of items; track item.name) {
   <li> {{ item.name }}</li>
@@ -162,7 +162,22 @@ Hello, {{name}}
   <li> There are no items.</li>
 }
 ```
-### @switch block - selection
+##### contextual variables
+[Reference Link:](https://v17.angular.io/guide/control_flow#index-and-other-contextual-variables)
+|VARIABLE|MEANING|
+|---------|:-------|
+|$count |	Number of items in a collection iterated over |
+|$index |	Index of the current row |
+|$first |	Whether the current row is the first row |
+|$last  |	Whether the current row is the last row |
+|$even  |	Whether the current row index is even |
+|$odd   |	Whether the current row index is odd |
+```ts
+@for (item of items; track item.id; let idx = $index, e = $even) {
+  Item #{{ idx+1 }}: {{ item.name }}
+}
+```
+#### @switch block - selection
 ```ts
 @switch (condition) {
   @case (caseA) {
