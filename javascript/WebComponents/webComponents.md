@@ -1,6 +1,64 @@
 # Create multiple selection dropdown with checkbox
 
-## Use web component from HTML
+## Basic Web component structure
+```js
+const template = document.createElement('template');
+template.innerHTML = `
+<style>
+.custom-component-style {
+  width: 200px;
+}
+</style>
+
+<div class="custom-component-style">
+  <div class="child-element" >
+    This is a test
+  </div>
+</div>
+`;
+
+// Create a class for the element
+class MultiSelectDropdownElement extends HTMLElement {
+
+  static observedAttributes = ["web-component-attribute"];
+  constructor() {
+    // Always call super first in constructor
+    super();
+    // Create a shadow root
+    this.root = this.attachShadow({ mode: "open" });
+
+    let clone = template.content.cloneNode(true);
+    this.root.append(clone);
+  }
+
+  connectedCallback() {
+    console.log("Custom element added to page.");
+  }
+
+  disconnectedCallback() {
+    console.log("Custom element removed from page.");
+  }
+
+  adoptedCallback() {
+    console.log("Custom element moved to new page.");
+  }
+
+  // Callback when attribute changed
+  attributeChangedCallback(name, oldValue, newValue) {
+    switch (name) {
+      case 'web-component-attribute':
+        // call function when web-component-attribute value changed
+        break;
+      default:
+        break;
+    }
+  }
+}
+
+customElements.define("wc-multiselect-dropdown", MultiSelectDropdownElement);
+```
+
+## Example: Use web component from HTML
 ```html
 <wc-multiselect-dropdown
   id="componentId"
@@ -13,11 +71,14 @@
 
 ## Fill dropdown values
 ```js
-
+const languages = {EN: 'en', FR: 'fr'};
+const pageLanguage = 'en';
 let multipleDropdownEle = document.querySelector('#multipleDropdownEle');
 
 let buildDrowdownOptions = (isTitleIncluded) => {
   let options = [];
+  options.push({label: `2018`, value: `2018`});
+  options.push({label: `2019`, value: `2019`});
   options.push({label: `2020`, value: `2020`});
   options.push({label: `2021`, value: `2021`});
   options.push({label: `2022`, value: `2022`});
@@ -30,18 +91,27 @@ let buildDrowdownOptions = (isTitleIncluded) => {
   multipleDropdownEle.items = options;
 }
 
-
-let onMultipleDropdownEleValueChanged = (values) => {
+let onMultipleDropdownEleValueChanged = ({detail}) => {
   // Add your code here to trigger business logic
-  console.log('values', values);
+  console.log('onMultipleDropdownEleValueChanged - (detail)', detail);
 }
 
+document.addEventListener('onMultipleDropdownWebComponentValueChanged', onMultipleDropdownEleValueChanged);
+
+document.addEventListener("click", (evt) => {
+  let composedPath = evt.composedPath();
+  if(!composedPath.includes(multipleDropdownEle)){
+    multipleDropdownEle.setAttribute("dropdown-state", "collapse");
+  }
+});
+
+buildDrowdownOptions(true);
 ```
 
 ## Create Web Component
 ```js
 /**
- * Version: 4.139
+ * Version: 1.222
  * Create multiple selection dropdown with checkbox
  */
 
@@ -151,7 +221,7 @@ class MultiSelectDropdownElement extends HTMLElement {
       optionLabel.appendChild(labelText);
       checkboxes.appendChild(optionLabel);
     });
-    
+
     // this.updateMainSelectionLabel(this.getAttribute("data-label"));
   }
 
@@ -199,8 +269,8 @@ class MultiSelectDropdownElement extends HTMLElement {
       } else {
         this.updateMainSelectionLabel(this.getAttribute("data-label"));
       }
-    // console.log('onCheckboxClicked - (values)', values);
-    this.dispatchEvent(new CustomEvent(this.getAttribute("data-change-event-name"), { detail: values }));
+    console.log('onCheckboxClicked - (values)', values);
+    this.dispatchEvent(new CustomEvent(this.getAttribute("data-change-event-name"), { bubbles: true, detail: values }));
   }
 
   onDropdownClicked = (event) => {
