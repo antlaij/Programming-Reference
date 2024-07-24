@@ -248,3 +248,139 @@ export class myComponent {
 <div>{{age()}}</div>
 ```
 
+---
+
+## Service
+### Injecting Services
+#### Multiple ways to providing a Service
+##### Most Common way to provide in root
+
+This will creata a singleton on this service for the whole application with angular tree shaking
+
+```ts
+@Injectable({
+  providedIn: 'root'
+})
+export class MyService {
+}
+```
+
+##### provide in root component
+
+This will creata a singleton on this service for the whole application without tree shaking
+
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [MyService],
+}).catch((err) =>
+  console.error(err)
+);
+```
+
+##### provide in a component level by Elementinjector
+**[ This will not work on services, because service will not reach out the Elementinjector ]**
+
+This will creata a new instant on every copy of this component and this is also available in all children
+
+```ts
+@Component({
+  standalone: true,
+  imports: [],
+  selector: 'my-component',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  providers: [MyService],
+})
+export class AppComponent implements OnInit {
+```
+
+#### Injection Token
+##### useClass - this is the default
+
+```ts
+bootstrapApplication(AppComponent, {
+  providers: [MyService],
+}).catch((err) =>
+  console.error(err)
+);
+```
+
+This is the long form of the above code
+
+```ts
+import { InjectionToken } from '@angular/core';
+import { MyService } from './app/serices/my.service';
+
+export const MyServiceToken = new InjectionToken<MyService>('my-service-token');
+
+bootstrapApplication(AppComponent, {
+  providers: [ { provide: MyServiceToken, useClass: MyService } ],
+}).catch((err) =>
+  console.error(err)
+);
+```
+
+###### Usage with inject function
+
+```ts
+@Component({
+  standalone: true,
+  imports: [],
+  selector: 'my-component',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+})
+export class MyComponent implements OnInit {
+  authService = inject(MyServiceToken);
+}
+```
+
+###### Usage in constructor by @Inject decorator
+
+```ts
+export class MyComponent implements OnInit {
+  authService = inject(MyServiceToken);
+  constructor(@Inject(MyServiceToken) private myService: MyService) {}
+}
+```
+
+##### Provide a non class value using custom provider by useValue
+###### Setup the provider
+```ts
+import { InjectionToken, Provider } from '@angular/core';
+
+export type TaskStatus = 'OPEN' | 'IN_PROGRESS' | 'DONE';
+
+type TaskStatusOptions = {
+  value: 'open' | 'in-progress' | 'done';
+  taskStatus: TaskStatus;
+  text: string;
+}[];
+
+export const TASK_STATUS_OPTIONS = new InjectionToken<TaskStatusOptions>('task-status-options');
+
+export const TaskStatusOptions: TaskStatusOptions = [
+  { value: 'open', taskStatus: 'OPEN', text: 'Open', },
+  { value: 'in-progress', taskStatus: 'IN_PROGRESS', text: 'In-Progress', },
+  { value: 'done', taskStatus: 'DONE', text: 'Completed', },
+];
+
+export const taskStatusOptionsProvider: Provider = { provide: TASK_STATUS_OPTIONS, useValue: TaskStatusOptions };
+```
+
+###### inject custom provider
+
+```ts
+import { Component, computed, inject, signal } from '@angular/core';
+
+import { TASK_STATUS_OPTIONS, taskStatusOptionsProvider } from '../task.model';
+
+@Component({
+  providers: [taskStatusOptionsProvider]
+})
+export class TasksListComponent {
+  taskStatusOptions = inject(TASK_STATUS_OPTIONS);
+}
+```
+
+
