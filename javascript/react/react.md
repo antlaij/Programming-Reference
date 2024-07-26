@@ -1,4 +1,26 @@
-
+# Reactjs
+## Table of Contents
+  1. [Component](#Component)
+      1. [Reactjs component must starts with Uppercase name](#Reactjs-component-must-starts-with-Uppercase-name)
+      1. [Pass properties to component](#Pass-properties-to-component)
+      1. [Inputs](#Inputs)
+      1. [Conditional Content Renderring](#Conditional-Content-Renderring)
+      1. [Content Projection](#Content-Projection)
+          1. [Use Children Props](#Use-Children-Props)
+          1. [Multi slot content projection](#Multi-slot-content-projection)
+              1. [Use Prop name call ch](#Use-Prop-name-call-ch)
+              1. [Parent component](#Parent-component)
+              1. [Child component](#Child-component)
+      1. [Hooks](#Hooks)
+          1. [Built-in Hooks](#Built-in-Hooks)
+              1. [State Hooks](#State-Hooks)
+              1. [Effect Hooks](#Effect-Hooks)
+                  1. [Dependencies](#Dependencies)
+              1. [useMemo Hooks](#useMemo-Hooks)
+                  1. [Referential equality for useMemo when comparing object](#Referential-equality-for-useMemo-when-comparing-object)
+  1. [State Management](#State-Management)
+      1. [Use Context Provider to share state between different component](#Use-Context-Provider-to-share-state-between-different-component)
+          1. [createContext](#createContext)
 ---
 ## Component
 ---
@@ -82,6 +104,168 @@ function MyComponent({ children }) {
 }
 
 export default Modal;
+```
+
+
+### Hooks
+---
+#### Built-in Hooks
+##### State Hooks
+This will store the value in state
+```jsx
+const [state, setState] = useState(initialState)
+```
+```jsx
+function ImageGallery() {
+  // This run everytime
+  const [index, setIndex] = useState(0);
+  // OR
+  // This will only run once
+  const [index, setIndex] = useState(() => {
+    console.log('calling useState myVaraible');
+    return 0;
+  });
+}
+```
+##### Effect Hooks
+Effects let you run some code after rendering
+```jsx
+useEffect(setup, dependencies?)
+```
+###### Dependencies
+1. Passing a dependency array
+    - Effect runs after the initial render and after re-renders with changed dependencies.
+2. Passing an empty dependency array
+    - It will only run after the initial render.
+3. Passing no dependency array at all
+    - Effect runs after every single render (and re-render) of your component.
+
+```jsx
+const FunctionComponent = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    return () => {
+      console.log('clean up function here');
+    }
+  }, []);
+
+  return (
+    <>
+      <span>test 1</span>
+      <span>test 2</span>
+    </>
+  );
+}
+export default FunctionComponent;
+```
+
+##### useMemo Hooks
+useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
+```jsx
+const cachedValue = useMemo(calculateValue, dependencies)
+```
+```jsx
+const FunctionComponent = () => {
+  const [number, setNumber] = useState(0);
+  const visibleTodos = useMemo(() => plusTwo(number), [number]);
+
+  return (
+    <>
+      <span>test 1</span>
+      <span>test 2</span>
+    </>
+  );
+}
+export default FunctionComponent;
+
+function plusTwo(num) {
+  for(let i=-; i<1_000_000; i++>){}
+  return num + 2;
+}
+```
+
+###### Referential equality for useMemo when comparing object
+```jsx
+const FunctionComponent = () => {
+  const [theme, setTheme] = useState('dark');
+  const themeStyles = useMemo(() => {
+    return {
+      currentTheme: theme
+    }
+  });
+  useEffect(() => {
+    console.log('called');
+  }, [themeStyles])
+
+  return (
+    <>
+      <span>test 1</span>
+      <span>test 2</span>
+    </>
+  );
+}
+export default FunctionComponent;
+
+function plusTwo(num) {
+  for(let i=-; i<1_000_000; i++>){}
+  return num + 2;
+}
+```
+
+
+## State Management
+### Use Context Provider to share state between different component
+#### createContext
+```tsx
+import { Trip } from '@mono-repo-workspace/models';
+import { createContext, useState, FC, ReactNode } from 'react';
+
+const FavoritesContext = createContext({
+  favorites: [] as Trip[],
+  totalFavorites: 0,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  addFavorite: (tripId: Trip) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  removeFavorite: (tripId: string) => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  isTripFavorite: (tripId: string) => !!tripId
+});
+
+export const FavoritesContextProvider: FC<{ children: ReactNode }> = ({children}) => {
+  const [userFavorites, setUserFavorites] = useState<Trip[]>([]);
+
+  const addFavoriteHandler = (favoriteMeetup: Trip) => {
+    setUserFavorites((prevUserFavorites) => {
+      return prevUserFavorites.concat(favoriteMeetup);
+    });
+  }
+
+  const removeFavoriteHandler = (tripId: string) => {
+    setUserFavorites(prevUserFavorites => {
+      return prevUserFavorites.filter(meetup => meetup.id !== tripId);
+    });
+  }
+
+  const itemIsFavoriteHandler = (tripId: string) => {
+    return userFavorites.some(meetup => meetup.id === tripId);
+  }
+
+  const context = {
+    favorites: userFavorites,
+    totalFavorites: userFavorites.length,
+    addFavorite: addFavoriteHandler,
+    removeFavorite: removeFavoriteHandler,
+    isTripFavorite: itemIsFavoriteHandler
+  };
+
+  return (
+    <FavoritesContext.Provider value={context}>
+      {children}
+    </FavoritesContext.Provider>
+  );
+}
+
+export default FavoritesContext;
 ```
 
 
@@ -189,38 +373,6 @@ const Users: React.FC = (props) => {
 }
 
 export default Users
-```
-
----
-> ### Hooks
----
-> #### useState hook
-useState has run in the same order
-Try to use function version of the useState
-```jsx
-  const [myVaraible, setMyVaraible] = useState(0);
-  const [myVaraible, setMyVaraible] = useState(() => {
-    console.log('calling useState myVaraible');
-    return 0;
-  });
-
-const changMyVaraible = () => {
-    setMyVaraible( prevValue => prevValue + 1);
-  }
-```
-
----
-> ### Class and For
----
-> #### For CSS class, need to use className
-```jsx
-      <div className="my-style-class-name">
-      </div>
-```
-> #### For For
-```jsx
-      <div htmlFor="for-name">
-      </div>
 ```
 
 ---

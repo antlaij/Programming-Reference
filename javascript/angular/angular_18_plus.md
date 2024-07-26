@@ -33,6 +33,19 @@
           1. [Passing signal to a component](#Passing-signal-to-a-component)
           1. [Getting input signal from a parent component](#Getting-input-signal-from-a-parent-component)
           1. [Using input signal from a component](#Using-input-signal-from-a-component)
+  1. [Service](#Service)
+      1. [Injecting Services](#Injecting-Services)
+          1. [Multiple ways to providing a Service](#Multiple-ways-to-providing-a-Service)
+              1. [Most Common way to provide in root](#Most-Common-way-to-provide-in-root)
+              1. [provide in root component](#provide-in-root-component)
+              1. [provide in a component level by Elementinjector](#provide-in-a-component-level-by-Elementinjector)
+          1. [Injection Token](#Injection-Token)
+              1. [useClass - this is the default](#useClass---this-is-the-default)
+                  1. [Usage with inject function](#Usage-with-inject-function)
+                  1. [Usage in constructor by @Inject decorator](#Usage-in-constructor-by-@Inject-decorator)
+              1. [Provide a non class value using custom provider by useValue](#Provide-a-non-class-value-using-custom-provider-by-useValue)
+                  1. [Setup the provider](#Setup-the-provider)
+                  1. [inject custom provider](#inject-custom-provider)
 
 ***
 ---
