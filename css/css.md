@@ -1,7 +1,34 @@
 # CSS Tutorial
 ## Table of Contents
-1. [CSS Triangle](#CSS-Triangle)
----
+  1. [Viewport Meta Tag](#Viewport-Meta-Tag)
+      1. [Meta tag in Head](#Meta-tag-in-Head)
+  1. [Container Query](#Container-Query)
+      1. [Container Query Ranges Syntax](#Container-Query-Ranges-Syntax)
+  1. [Media Query](#Media-Query)
+      1. [Media Query Ranges Syntax](#Media-Query-Ranges-Syntax)
+  1. [CSS Grid](#CSS-Grid)
+      1. [Change element order responsively](#Change-element-order-responsively)
+          1. [When screen size between 800px to 1000px then put the first and second element at the end. Element without order add first.](#When-screen-size-between-800px-to-1000px-then-put-the-first-and-second-element-at-the-end.-Element-without-order-add-first.)
+                                                                      1. [{](#{)
+  1. [Clamp](#Clamp)
+      1. [clamp(min, normal, max)](#clamp(min,-normal,-max))
+          1. [From this](#From-this)
+          1. [Change to](#Change-to)
+  1. [Calculate size](#Calculate-size)
+      1. [calc-size()](#calc-size())
+          1. [Calculate the size base on auto](#Calculate-the-size-base-on-auto)
+  1. [Create Triangle or Arrow from css](#Create-Triangle-or-Arrow-from-css)
+      1. [Using border](#Using-border)
+      1. [Using Hex code](#Using-Hex-code)
+          1. [Content code](#Content-code)
+  1. [Input](#Input)
+      1. [Checkbox to switch](#Checkbox-to-switch)
+                                                      1. [{](#{)
+  1. [Animation](#Animation)
+      1. [Properties order](#Properties-order)
+          1. [Calculate the size base on auto](#Calculate-the-size-base-on-auto)
+
+***
 
 ## Viewport Meta Tag
 ### Meta tag in Head
@@ -132,6 +159,65 @@
 |RIGHT    |    25BA|
 |DOWN     |    25BC|
 |LEFT     |    25C0|
+
+
+---
+## Input
+
+### Checkbox to switch
+```html
+  <div id="css-switch-box">
+    <label>
+      <input type="checkbox" />
+      Switch
+    </label>
+  </div>
+```
+```css
+#css-switch-box {
+  input {
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    height: 1.65rem;
+    aspect-ratio: 16 / 10;
+    vertical-align: middle;
+    background: rgb(58, 57, 57);
+    border-radius: 2rem;
+    box-shadow: 0px 1px 3px #0003 inset;
+    transition: 0.25s linear background;
+
+    &:before {
+      content: '';
+      display: block;
+      height: 1.25rem;
+      aspect-ratio: 1 / 1;
+      background: #fff;
+      position: absolute;
+      top: 0.2rem;
+      left: 0.2rem;
+      border-radius: 1.2rem;
+      box-shadow: 0px 1px 3px #0003 inset;
+      transition: 0.25s linear transform;
+      transform: translateX(0rem)
+    }
+    
+    &:checked {
+      background: rgb(42, 209, 42);
+    }
+
+    &:checked::before {
+      transform: translateX(1rem);
+    }
+
+    &:focus-visible {
+      outline:  2px solid dodgerblue;
+      outline-offset: 2px;
+    }
+
+  }
+}
+```
 
 
 ## Animation
