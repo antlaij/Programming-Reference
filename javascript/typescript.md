@@ -36,6 +36,10 @@ const userObject = {
 ```ts
 const ThemeMOdes = ['dark', 'light', 'os-default'] as const;
 type ThemeMode = typeof ThemeMOdes[number];
+
+export class WebConfig {
+  Theme!: ThemeMode;
+}
 ```
 
 ## Destructuring with types
@@ -112,7 +116,7 @@ Has Granted ReadOnly   :  true
 ## Function
 ### Create Function syntax
 ```ts
-let findDuplicate = (key: string): number => {
+const findDuplicate = (key: string): number => {
   return 0;
 }
 ```

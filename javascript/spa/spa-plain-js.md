@@ -1,6 +1,17 @@
 # SPA using plain javascript
 
-## html
+## Get the route from URL
+```js
+  const routeHash = window.location.hash;
+```
+
+## Set the URL to a new route
+```js
+  window.history.pushState({}, "", `${window.location.pathname}#about`);
+```
+
+## Full example
+### html
 ```html
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -59,6 +70,7 @@
 </html>
 ```
 
+### Javascript
 ```js
 
 const { forkJoin } = rxjs;
@@ -83,12 +95,14 @@ const displayHome = () => {
   homeContainer.style.display = 'block';
   aboutContainer.style.display = 'none';
   contactContainer.style.display = 'none';
+  window.history.pushState({}, "", `${window.location.pathname}#home`);
 }
 
 const showAbout = () => {
   homeContainer.style.display = 'none';
   aboutContainer.style.display = 'block';
   contactContainer.style.display = 'none';
+  window.history.pushState({}, "", `${window.location.pathname}#about`);
 }
 
 const handleRouting = async () => {
