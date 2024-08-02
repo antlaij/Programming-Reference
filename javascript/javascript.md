@@ -710,8 +710,8 @@ for (const match of matches) {
 }
 
 })();
-
 ```
+
 ### Rearrange date format with RegEx
 ```js
 (() => {
@@ -719,9 +719,17 @@ const currentDateTimeText = new Date().toLocaleString('en-us', { year: 'numeric'
 console.log('currentDateTimeText', currentDateTimeText);
 const format_YYYY_MM_DD = currentDateTimeText.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2');
 console.log('YYYY-MM-DD, HH:mm:ss', format_YYYY_MM_DD);
-
 })();
+```
 
+### Format js date string with RegEx
+```js
+(() => {
+const currentDateTimeText = new Date().toISOString();
+console.log('currentDateTimeText', currentDateTimeText);
+const format_YYYY_MM_DD = currentDateTimeText.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d{3})Z/, '$1-$2-$3');
+console.log('YYYY-MM-DD, HH:mm:ss', format_YYYY_MM_DD);
+})();
 ```
 
 ### Get Groups from RegExp
