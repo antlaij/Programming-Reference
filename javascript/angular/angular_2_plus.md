@@ -8,11 +8,14 @@
   1. [Debug angular 2 plus](#Debug-angular-2-plus)
       1. [Debug angular 2 plus with IVY](#Debug-angular-2-plus-with-IVY)
       1. [Add disabled attribute to a button or input field](#Add-disabled-attribute-to-a-button-or-input-field)
+  1. [Lifecycle Hooks](#Lifecycle-Hooks)
   1. [Template](#Template)
       1. [Put Condition in the switch case](#Put-Condition-in-the-switch-case)
       1. [Pass context with ngTemplateOutlet](#Pass-context-with-ngTemplateOutlet)
       1. [Component State Handling](#Component-State-Handling)
-      1. [Use HTML tag in variable from component and show in html template](#Use-HTML-tag-in-variable-from-component-and-show-in-html-template)
+      1. [Add HTML tag to a variable and use in the template safely](#Add-HTML-tag-to-a-variable-and-use-in-the-template-safely)
+          1. [Use a pipe](#Use-a-pipe)
+          1. [Just in a component](#Just-in-a-component)
       1. [Use ngTemplateOutlet to select template based on condition](#Use-ngTemplateOutlet-to-select-template-based-on-condition)
   1. [Styling](#Styling)
       1. [ngClass with Condition](#ngClass-with-Condition)
@@ -215,17 +218,57 @@ export class testingComponent implements OnInit, OnDestroy {
 ```
 ---
 
-### Use HTML tag in variable from component and show in html template
+### Add HTML tag to a variable and use in the template safely
+#### Use a pipe
+```ts
+import { Pipe, PipeTransform } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
+@Pipe({
+  name: 'safeHtml'
+})
+export class SafeHtmlPipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(value: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(value);
+  }
+}
+```
+#### Just in a component
 ```html
 <div [innerHTML]="myHtmlStringWithTag"></div>
 <span [innerHTML]="myHtmlStringWithTag"></span>
 ```
 
 ```ts
-public myHtmlStringWithTag: string = '<span class="">this is a test</span>';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+private sanitizer = inject(DomSanitizer);
+
+public myHtmlStringWithTag: SafeHtml = this.sanitizer.bypassSecurityTrustHtml('<span class="">this is a test</span>');
 public myClass = 'testCss';
-this.myHtmlStringWithTag: string = `<span class="${myClass}">this is a test</span>`;
+this.myHtmlStringWithTag: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(`<span class="${myClass}">this is a test</span>`);
+```
+
+### Add HTML Element to template
+```ts
+import { Component, ElementRef, Renderer2 } from '@angular/core';
+
+@Component({
+  selector: 'custom-element',
+  template: '<div #needDynamicContent></div>',
+})
+export class DynamicElementsComponent implements OnInit {
+  @ViewChild('needDynamicContent', { read: ElementRef }) needDynamicContent: ElementRef;
+  private renderer = inject(Renderer2);
+
+  ngOnInit(): void {
+    const newSpan = this.renderer.createElement('span');
+    this.renderer.addClass(newSpan, 'style-classname');
+    this.renderer.appendChild(this.needDynamicContent.nativeElement, newSpan);
+  }
+}
 ```
 
 ---
