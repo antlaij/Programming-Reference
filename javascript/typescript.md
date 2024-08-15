@@ -149,6 +149,19 @@ if(Object.values(myEnum).includes('3'))) {
 
 ```
 
+### ENUM to array of display and value
+```ts
+enum myEnum {
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
+}
+
+const myEnumArray: Array<{display: string, value: string}> = Object.values(myEnum).map((value) => ({display: value, value: myEnum[value]}));
+
+```
+
 
 ## Model which accept another model
 ```ts
