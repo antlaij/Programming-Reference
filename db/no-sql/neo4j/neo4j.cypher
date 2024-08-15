@@ -1,6 +1,9 @@
 // Clauses
 // https://neo4j.com/docs/cypher-manual/current/clauses/
 
+// ==================================================
+// |  Server setup
+// ==================================================
 // Using Neo4j in docker under Synology
 docker run \
     --name dockertestneo4j \
@@ -69,7 +72,9 @@ UNWIND value.items AS item
 RETURN item.title, item.owner, item.creation_date, keys(item);
 
 
-// SETUP THE DATABASE
+// +------------------------------------------------+
+// |  SETUP THE DATABASE
+// +------------------------------------------------+
 
 // Create CONSTRAINT
 CREATE CONSTRAINT ON (c:Country) ASSERT c.name IS UNIQUE;
@@ -363,6 +368,16 @@ RETURN label, value.count
 CALL db.relationshipTypes() YIELD relationshipType as type
 CALL apoc.cypher.run('MATCH ()-[:`'+type+'`]->() RETURN count(*) as count',{}) YIELD value
 RETURN type, value.count
+
+
+// ==================================================
+// |>>>>>>>>>>   Aggregating functions   <<<<<<<<<<<|
+// ==================================================
+// +------------------------------------------------+
+// |  count()
+// +------------------------------------------------+
+// Number of restaurant serving this Food
+MATCH (r:Restaurant)-[s:SERVE]->(f:Food) with f,count(r) as NumOfRestaurantServing return * order by NumOfRestaurantServing desc;
 
 
 // Create Data
