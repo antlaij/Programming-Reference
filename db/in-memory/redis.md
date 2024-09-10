@@ -17,7 +17,12 @@ keys *
 keys batch:job-queue:76*
 ```
 
-## Delete Key
+## Delete
+### Delete all keys
+```
+flushall
+```
+### Delete a Key
 ```
 del batch:job-queue:completed
 del batch:job-queue:failed
@@ -35,7 +40,7 @@ type batch:job-queue:286
 ## Get all HASH values from a key
 ### HGETALL [KEY]
 ```bash
-hgetall batch:job-queue:286
+hgetall batch:job-queue:802
 ```
 
 ## Get field from HASH value of a key
@@ -52,7 +57,14 @@ hget batch:job-queue:286 name
 ## Get list values from a key
 ### LRANGE key start stop
 ```bash
-lrange batch:job-queue:898:logs -100 100
+# Get all the values from a list
+lrange batch:job-queue:110:logs 0 -1
+```
+
+## TTL - Time To Live 
+### LRANGE key start stop
+```bash
+ttl batch:job-queue:286
 ```
 
 
