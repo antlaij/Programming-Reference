@@ -746,5 +746,13 @@ for (const match of matches) {
 })();
 ```
 
+## Performance
+### Add delay to async function
+```js
+(async () => {
+await new Promise(resolve => setTimeout(resolve, 1000));
+})();
+```
+
 
 
