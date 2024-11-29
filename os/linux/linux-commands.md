@@ -3,12 +3,6 @@
 ## System Infomation
 
 
-## System Update
-```sh
-sudo apt-get update
-```
-
-
 ### Hardware
 #### how to get sd card info from raspberry pi 5
 To get information about the SD card on your Raspberry Pi 5, you can use a few different methods. Here are some steps you can follow:
@@ -152,7 +146,15 @@ ifconfig
 ```
 
 
-### List all installed packages:
+### Software
+
+
+#### System Update
+```sh
+sudo apt-get update
+```
+
+#### List all installed packages:
 ```sh
 # All packages
 dpkg -l
@@ -161,7 +163,7 @@ dpkg -l
 dpkg -l | grep sql
 ```
 
-### System monitor
+#### System monitor
 ```sh
 top
 
