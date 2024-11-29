@@ -1,41 +1,43 @@
 ## Pull Docker image from Docker Hub
-```batch
+```sh
 docker pull image-name
 ```
 
 ## Push Docker image to Docker Hub
-```batch
+```sh
 docker push image-name:tag
 ```
 
 ## Tag Docker image
-```batch
+```sh
 docker tag image-name:tag repository-path
 ```
 
 
 ## Show all images
-```batch
+```sh
 docker images
 ```
 
 
 ## Delete a docker image
 ### To delete an image, delete the container from the image first
-```batch
+```sh
 docker rmi image-id
 ```
 
 
 ## List all containers
-```docker
+```sh
 docker ps
+
+# List all containers wheather it is running or stoped
 docker ps -a
 ```
 
 
 ## Start and Stop container
-```batch
+```sh
 docker start container-id
 docker stop container-id
 ```
@@ -43,69 +45,80 @@ docker stop container-id
 
 ## Delete a docker container
 ### To delete a docker container, stop the container first
-```batch
+```sh
 docker rm container-id
 ```
 
 
 ## Run container
 ### bind port 6379 from container to host port 6000
-```batch
-docker run -p6000:6379 redis
+```sh
+docker run -p 6000:6379 redis
 ```
 ### Run container in a new name
-```batch
-docker run -d -p6000:6379 ==name new-container-name redis
+```sh
+docker run -d -p 6000:6379 ==name new-container-name redis
 ```
 
 ### Run container in detach mode then you can use the terminal again
-```batch
+```sh
 docker run -d redis
 ```
-```batch
+```sh
 docker run -d image-name:1.0
 ```
 
 
 ## Debug
-```batch
+```sh
 docker logs container-id
 docker logs container-name
 ```
+
 ### Docker interactive terminal
 #### Sometime if /bin/bash does not work, try use /bin/sh instead
-```batch
+```sh
+# Use container ID
 docker exec -it container-id /bin/bash
 docker exec -it a18464acf4b2 /bin/sh
+
+# Use container name
 docker exec -it new-container-name /bin/bash
 ```
 
 
-## DOcker Network
-```batch
+## Docker Network
+```sh
 docker network ls
 docker network create mongo-network
 ```
 ### 
-```batch
+```sh
 docker run -p 27017:27017 -d mongo
 ```
 
 
+## Docker Run
+```sh
+docker run -d --name my-mongo 
+```
+
+
+
 ## Setup Web application with MongoDB
-```batch
+```sh
 docker pull mongo
 docker pull mongo-express
 docker images
 
 ```
-```
+```sh
 docker run -d --network mongo-network --name my-mongo \
     -e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
     -e MONGO_INITDB_ROOT_PASSWORD=secret \
     mongo
 ```
-```
+```sh
 docker run -it --rm \
     --network mongo-network \
     --name mongo-express \
@@ -120,18 +133,18 @@ docker run -it --rm \
 
 ## Docker Compose
 ### Start all containers in the yaml files
-```batch
+```sh
 docker-compose -f docker-compose.yaml up
 ```
 ### shut down all containers in the yaml files
-```batch
+```sh
 docker-compose -f docker-compose.yaml down
 ```
 
 
 ## Build Docker Image
 ### Host Voulumes
-```batch
+```sh
 doscker build -t image-name:1.0 .
 ```
 
@@ -142,15 +155,15 @@ doscker build -t image-name:1.0 .
 #### Windows: c:\ProgramData\docker\volumes
 #### Linux: /var/lib/docker/volumes
 #### Mac: /var/lib/docker/volumes
-```batch
+```sh
 doscker run -v /home/mmount/doat:/var/lib/mysql/data
 ```
 ### Anonymous volumes
-```batch
+```sh
 doscker run -v /var/lib/mysql/data
 ```
 ### Named volumes
-```batch
+```sh
 doscker run -v name:/var/lib/mysql/data
 ```
 
