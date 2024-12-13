@@ -145,6 +145,26 @@ nmcli connection modify "<old_name>" connection.id "<new_name>"
 ifconfig
 ```
 
+###### Command: hostname
+```sh
+# Network config
+hostname -I
+```
+
+
+#### Camera
+##### command: v4l2-ctl
+```sh
+# install v4l-utils
+sudo apt install v4l-utils
+
+# list all camera
+v4l2-ctl --list-devices
+
+# 
+v4l2-ctl --list-formats-ext
+```
+
 
 ### Software
 
@@ -169,6 +189,122 @@ top
 
 ps aux
 ```
+
+
+#### Development
+
+##### python
+```sh
+# Install pip
+sudo apt install python3-pip
+
+# Check pip3 version
+pip3 --version
+
+# 
+pip3 install Flask
+
+```
+
+##### Flask
+```sh
+# Install Flash
+pip3 install Flask
+
+```
+
+
+
+## System Administration
+
+### OS
+```bash
+# Shutdown immediately
+sudo shutdown now
+
+# Reboot system
+sudo reboot
+```
+
+### User
+#### Create new user
+```sh
+sudo adduser <username>
+sudo usermod -aG sudo <username>
+
+```
+
+Output
+```txt
+cker@raspberrypidocker:~ $ sudo adduser <username>
+Adding user `<username>' ...
+Adding new group `<username>' (1001) ...
+Adding new user `<username>' (1001) with group `<username> (1001)' ...
+Creating home directory `/home/<username>' ...
+Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for <username>
+Enter the new value, or press ENTER for the default
+        Full Name []: <User Full name>
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] Y
+Adding new user `<username>' to supplemental / extra groups `users' ...
+Adding user `<username>' to group `users' ...
+```
+
+
+### Switch between the CLI and GUI on a Linux server
+[Ref.](https://www.redhat.com/en/blog/configure-systemd-startup-targets)
+
+```sh
+# Identify the current target
+sudo systemctl get-default
+
+```
+
+#### Change targets manually
+You can switch between targets on the fly by using the isolate subcommand. Perhaps you have a long checklist of administrative tasks, and it would be simplest for you to accomplish these in a GUI, but your server boots to the CLI. You can switch to the GUI, perform your tasks, and then switch the system back to the more efficient CLI.
+
+```sh
+# launch the GUI from the multi-user.target
+sudo systemctl isolate graphical.target
+
+# Switch back by specifying the multi-user.target
+sudo systemctl isolate multi-user.target
+```
+
+#### Set a default target
+The default target represents the interface presented when the system first boots. Booting a server to a CLI for efficiency and security is common. The CLI consumes far fewer resources and contains less software to patch and worry over. Newer administrators or those migrating from another server platform may not be comfortable enough with Bash to work effectively at the command line. End-user workstations rarely boot to the CLI because the user typically needs graphics-based software, such as productivity suites and web browsers. For these users, the performance hit is worth the convenience.
+
+```sh
+# Configure the default startup target as the CLI:
+sudo systemctl set-default multi-user.target
+
+# Check the current default target:
+sudo systemctl get-default
+
+# Switch to the opposite target (for example, if your system boots to the GUI, switch to the CLI):
+sudo systemctl set-default multi-user.target
+
+# Reboot and confirm the appropriate target launched:
+sudo systemctl reboot
+
+# Manually switch targets:
+sudo systemctl isolate graphical.target
+
+# Configure the system back to the original target:
+sudo systemctl set-default graphical.target
+
+# Reboot and then confirm the default target:
+sudo systemctl reboot
+
+```
+
 
 ## IO
 ### Show current working folder
@@ -211,8 +347,10 @@ grep "hello" hello.txt
 ```
 
 
-
-
-
+### Clone SD Card
+```sh
+sudo dd if=/dev/sda of=/home/docker/RaspberryPi_5-headless.img
+sudo dd if=/dev/sda of=/home/docker/RaspberryPi_5-headless.img bs=4M status=progress
+```
 
 
