@@ -1,10 +1,51 @@
 # Linux commands
+## Table of Contents
+  1. [System Infomation](#System-Infomation)
+      1. [Hardware](#Hardware)
+          1. [Storage](#Storage)
+              1. [Command: lsblk](#Command:-lsblk)
+              1. [Command: df](#Command:-df)
+              1. [Command: fdisk](#Command:-fdisk)
+              1. [Command: udevadm](#Command:-udevadm)
+              1. [Command: cat](#Command:-cat)
+          1. [Network](#Network)
+              1. [General Network Management](#General-Network-Management)
+                  1. [Command: nmcli](#Command:-nmcli)
+                  1. [Command: ifconfig](#Command:-ifconfig)
+                  1. [Command: hostname](#Command:-hostname)
+          1. [Camera](#Camera)
+              1. [command: v4l2-ctl](#command:-v4l2-ctl)
+      1. [Software](#Software)
+          1. [System Update](#System-Update)
+          1. [List all installed packages:](#List-all-installed-packages:)
+          1. [System monitor](#System-monitor)
+          1. [Development](#Development)
+              1. [python](#python)
+              1. [Flask](#Flask)
+  1. [System Administration](#System-Administration)
+      1. [OS](#OS)
+      1. [User](#User)
+          1. [Create new user](#Create-new-user)
+      1. [Switch between the CLI and GUI on a Linux server](#Switch-between-the-CLI-and-GUI-on-a-Linux-server)
+          1. [Change targets manually](#Change-targets-manually)
+          1. [Set a default target](#Set-a-default-target)
+  1. [IO](#IO)
+      1. [Show current working folder](#Show-current-working-folder)
+      1. [List files from current folder](#List-files-from-current-folder)
+      1. [delete file or folder](#delete-file-or-folder)
+      1. [Crate new file](#Crate-new-file)
+      1. [view file content](#view-file-content)
+      1. [Search text in file](#Search-text-in-file)
+      1. [Clone SD Card](#Clone-SD-Card)
+
+***
 
 ## System Infomation
 
 
 ### Hardware
-#### how to get sd card info from raspberry pi 5
+#### Storage
+How to get sd card info from raspberry pi 5?
 To get information about the SD card on your Raspberry Pi 5, you can use a few different methods. Here are some steps you can follow:
 
 ##### Command: lsblk
@@ -339,11 +380,6 @@ cat hello.txt
 ### Search text in file
 ```sh
 grep "hello" hello.txt
-```
-
-### 
-```sh
-
 ```
 
 
