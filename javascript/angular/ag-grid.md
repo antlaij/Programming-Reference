@@ -1,24 +1,29 @@
-# Angular ag Grid
+# Angular Ag Grid
 ## Table of Contents
   1. [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
   1. [Renderer](#Renderer)
-      1. [AgGrid - Boolean Cell Renderer](#AgGrid---Boolean-Cell-Renderer)
-      1. [AgGrid - Router Link Cell Renderer](#AgGrid---Router-Link-Cell-Renderer)
+      1. [Boolean Cell Renderer](#Boolean-Cell-Renderer)
+      1. [Router Link Cell Renderer](#Router-Link-Cell-Renderer)
   1. [Reset Server Side data](#Reset-Server-Side-data)
-  1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
-  1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
+      1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
+      1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
   1. [Filter](#Filter)
       1. [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
       1. [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
   1. [Data Summary](#Data-Summary)
       1. [Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid](#Show-Total-row-count,-Filtered-row-count-...-in-ag-grid.-Add-status-bar-to-Ag-Grid)
-  1. [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
-  1. [Center Align column with css](#Center-Align-column-with-css)
+      1. [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
+      1. [Center Align column with css](#Center-Align-column-with-css)
+  1. [Cell](#Cell)
+      1. [Cell Event](#Cell-Event)
+          1. [onClick Event](#onClick-Event)
+      1. [Cell Button](#Cell-Button)
+          1. [Button call parent component](#Button-call-parent-component)
 
 ***
 
 ---
-### AgGrid - Boolean Cell editor
+## AgGrid - Boolean Cell editor
 
 ```ts
 import { Component, ViewChild, ViewContainerRef, AfterViewInit } from '@angular/core';
@@ -64,9 +69,9 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
 ```
 
 ---
-### Renderer
+## Renderer
 
-#### AgGrid - Boolean Cell Renderer
+### Boolean Cell Renderer
 ```ts
 import { Component } from '@angular/core';
 import { INoRowsOverlayAngularComp } from "ag-grid-angular";
@@ -90,7 +95,7 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
-#### AgGrid - Router Link Cell Renderer
+### Router Link Cell Renderer
 
 ```ts
 import { Component } from '@angular/core';
@@ -119,7 +124,7 @@ export class EditableBooleanCellRenderer implements INoRowsOverlayAngularComp {
 ```
 
 ---
-### Reset Server Side data
+## Reset Server Side data
 
 ```ts
 this.gridApi.purgeServerSideCache(route);
@@ -151,10 +156,10 @@ public get filteredRowCount() {
 ```
 
 
-### Filter
+## Filter
 ---
 
-#### Hide Filter Icon from floating bar
+### Hide Filter Icon from floating bar
 ```ts
 public DEFAULT_COL_DEF: ColDef = {
   floatingFilterComponentParams: { suppressFilterButton: true }
@@ -162,15 +167,15 @@ public DEFAULT_COL_DEF: ColDef = {
 ```
 
 ---
-#### Filter by cellRenderer value instead of column value
+### Filter by cellRenderer value instead of column value
 ```ts
 { colId: 'testId', headerName: 'test column', field: 'dataColumn', cellRenderer: 'customRenderer', filterValueGetter: (params) => this.myService.method(params.data.dataColumn) }
 ```
 
 
-### Data Summary
+## Data Summary
 ---
-#### Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid
+### Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid
 ```html
 <ag-grid-angular
   [statusBar]="statusBar"
@@ -259,5 +264,74 @@ private setAgGridDataSource = (start: number = 0) => {
   this.columnDefs = [
     { headerName: 'name', cellStyle: {textAlign: 'center'} }
   ]
+```
+
+
+---
+## Cell
+### Cell Event
+#### onClick Event
+```ts
+this.columnDefs = [
+  {
+    headerName: 'name',
+    onCellClicked: this.whenCellClicked,
+  }
+]
+
+whenCellClicked = (event: CellClickedEvent) => {
+  console.log(`event`, event);
+}
+```
+
+### Cell Button
+#### Button call parent component
+
+HTML template
+```html
+<ag-grid-angular
+  #myGrid
+  id="myGrid"
+  [rowData]="items"
+  [context]="context"
+>
+</ag-grid-angular>
+```
+
+Ag Grid Component
+```ts
+export class MyAgGridComponent implements OnInit, OnDestroy {
+
+  public context - this;
+
+  buttonColumnDef = {
+    headerName: 'Button Action',
+    cellRenderer: CustomButtonComponent,
+  };
+
+}
+```
+
+Custom Button Component
+```ts
+
+@Component({
+  template: `<div><button (click)="callMethod($event)">Call</button></div>`,
+})
+export class CustomButtonComponent implements ICellRendererAngularComp {
+
+  public params: any;
+  private parentCallbackMethod: (data: string) => void;
+
+  agInit = (params: ICellRendererParams): void => {
+    this.params = params;
+    this.parentCallbackMethod = params.context.parentCallbackMethod;
+  }
+
+  public callMethod = (evt: CellClickedEvent) => {
+    this.parentCallbackMethod('testing');
+  }
+}
+
 ```
 
