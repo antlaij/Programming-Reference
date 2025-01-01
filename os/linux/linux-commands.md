@@ -185,11 +185,81 @@ nmcli connection modify "<old_name>" connection.id "<new_name>"
 # Network config
 ifconfig
 ```
+Output:
+```txt
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:37:86:55:c8  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.111.123  netmask 255.255.255.0  broadcast 192.168.111.255
+        inet6 fe80::110b:aaf1:cda4:c2a0  prefixlen 64  scopeid 0x20<link>
+        ether 2c:cf:67:52:fd:e0  txqueuelen 1000  (Ethernet)
+        RX packets 1043194  bytes 497518558 (474.4 MiB)
+        RX errors 0  dropped 2  overruns 0  frame 0
+        TX packets 721348  bytes 20422533963 (19.0 GiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 106
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 73595  bytes 39454358 (37.6 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 73595  bytes 39454358 (37.6 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.42.0.1  netmask 255.255.255.0  broadcast 10.42.0.255
+        inet6 fe80::2ecf:67ff:fe52:fde1  prefixlen 64  scopeid 0x20<link>
+        ether 2c:cf:67:52:fd:e1  txqueuelen 1000  (Ethernet)
+        RX packets 23889  bytes 2787755 (2.6 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 48585  bytes 70174773 (66.9 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
 
 ###### Command: hostname
 ```sh
-# Network config
+# Show all IP address
 hostname -I
+```
+
+###### Command: netstat
+```sh
+# Show Listening Ports
+sudo netstat -tunlp
+
+# check for port 5000
+sudo netstat -tunlp | grep :5000
+```
+Output:
+```txt
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 10.42.0.1:53            0.0.0.0:*               LISTEN      946/dnsmasq
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      774/sshd: /usr/sbin
+tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      933/smbd
+tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN      769/motion
+tcp        0      0 127.0.0.1:8081          0.0.0.0:*               LISTEN      769/motion
+tcp6       0      0 :::445                  :::*                    LISTEN      933/smbd
+tcp6       0      0 :::22                   :::*                    LISTEN      774/sshd: /usr/sbin
+tcp6       0      0 :::139                  :::*                    LISTEN      933/smbd
+udp        0      0 0.0.0.0:49102           0.0.0.0:*                           645/avahi-daemon: r
+udp        0      0 10.42.0.1:53            0.0.0.0:*                           946/dnsm
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           645/avahi-daemon: r
+udp6       0      0 :::60601                :::*                                645/avahi-daemon: r
+udp6       0      0 :::5353                 :::*                                645/avahi-daemon: r
+```
+
+###### Kill the process by PID
+```sh
+kill <PID>
 ```
 
 
