@@ -26,9 +26,12 @@ flushall
 ```
 del batch:job-queue:completed
 del batch:job-queue:failed
-del batch:job-queue:id
 del batch:job-queue:limiter
 del batch:job-queue:stalled-check
+```
+#### By ID
+```
+del batch:job-queue:1316
 ```
 
 ## Get the value type
