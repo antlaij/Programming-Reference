@@ -12,6 +12,24 @@
 
 ***
 
+## Get System Info.
+```sh
+systeminfo
+```
+
+## Search command line process
+```sh
+wmic process where "commandline like '%node.exe%'" get /format:list > E:\Buffer\1.log
+wmic process where "commandline like '%node.exe%'" get processid"," commandline > E:\Buffer\1.log
+wmic process where "commandline like '%node.exe%'" get ProcessId"," Caption"," Name"," CommandLine /format:list > E:\Buffer\1.log
+
+```
+
+## Kill process by PID
+```sh
+taskkill /PID 123456
+```
+
 ## Check Parameter is empty or not
 ```batch
 IF [%3] == [] (
