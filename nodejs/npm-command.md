@@ -80,3 +80,8 @@ npm show vue
 ```sh
 node --version
 ```
+
+## List all DEPENDENCY in a text treeview
+```sh
+npm is --all > "C:\temp\1.txt"
+```
