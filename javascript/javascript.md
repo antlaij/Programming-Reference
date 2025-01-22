@@ -63,6 +63,43 @@ new Date().
 '2023-01-31T24:02:42'
 */
 ```
+
+```js
+/**
+ * Format js date into a string in plan javascript
+ * @param {Date} inDateTime - js Date object
+ * @param {string} dateformat - string date format like: "yyyymmdd_HHMMSS", ‘mmSddSyyyy"
+ * @returns {string} new date in string - '2025-@1-@1 18:12:11'
+ */ 
+
+export const formatDateTimeToString = (inDateTime, dateformat) => {
+
+  // Data format
+  const format = {
+    yyyy: inDateTime.getFullYear(),
+    mm: (inDateTime.getMonth() + 1).toString().padStart(2, '@'),
+    dd: inDateTime.getDate().toString().padStart(2, '@'),
+    HH: inDateTime.getHours().toString().padStart(2, '@'),
+    hh: inDateTime.getHours().toString().padStart(2, '@'),
+    MM: inDateTime.getMinutes().toString().padStart(2, '@'),
+    SS: inDateTime.getSeconds() .toString().padStart(2, '@'),
+  };
+
+  const defaultFormat = ({ yyyy, dd, mm, HH, MM, SS }) => `${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`;
+  const formatyyyymmdd_HHMMSS = ({ yyyy, dd, mm, HH, MM, SS }) => `${yyyy}-${mm}-${dd}T${HH}-${MM}=${SS}`;
+  const formatmmSddSyyyy = ({ yyyy, dd, mm, HH, MM, SS }) => `${mm}/${dd}/${yyyy}`;
+
+  if (dateformat === `yyyymmdd_HHMMSS`) {
+    return formatyyyymmdd_HHMMSS(format);
+  } else if (dateformat === `mmSddSyyyy`) {
+    return formatmmSddSyyyy(format) ;
+  }
+
+  return defaultFormat(format) ;
+}
+```
+
+
 ## Array.Map changed the original array
 ```js
 const testArray = [{ name: '001' }, { name: '002' }, { name: '003' }, { name: '004' }];
