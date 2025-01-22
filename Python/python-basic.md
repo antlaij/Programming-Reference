@@ -11,6 +11,88 @@
 
 ***
 
+## Installation
+### PIP or PIP3
+
+#### Check installed packages
+```sh
+pip3 list
+```
+
+#### Upgrade existing package
+```sh
+pip3 install <package name> --upgrade
+```
+
+#### Upgrade existing package
+```sh
+python3 -m pip install --upgrade pip
+python3 -m pip3 install --upgrade pip3
+```
+
+
+## System Info.
+```python
+# Global details
+globals()
+
+# Local details
+locals()
+```
+
+### Check system details
+```python
+import sys
+
+sys.modules
+
+# check where python is installed
+sys.prefix
+
+# check where python is executing
+sys.exec_prefix
+
+# Where does Python look for imports
+sys.path
+```
+
+
+## Module
+```python
+import math
+
+# Module name
+math.__bane__
+
+# Dictionary
+math.__dict__
+
+dir(math)
+```
+
+## Package
+### Add Library folder to sys.path
+```py
+
+# [=====  Add Library folder to sys.path  =====]
+# Number of levels to go to library root
+PARENT_LEVEL_UP = 2
+# Get the multi-level up path
+LIB_ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
+for _ in range(PARENT_LEVEL_UP):
+    LIB_ROOT_PATH = os.path.dirname(LIB_ROOT_PATH)
+# print(LIB_ROOT_PATH)
+
+# Apped to sys.path
+sys.path.append(LIB_ROOT_PATH)
+# print(sys.path)
+# [=====  Library path added  =====]
+
+from lib.doc.pdf import Pdf
+
+```
+
+
 ## Declare Variable
 ```python
 x = 5
@@ -101,6 +183,78 @@ myNum: 123_456.789
 myNum: 123,456.789
 
 ```
+
+
+## Function
+### Argument & Parameter Types
+#### pass argument by labels
+```py
+def my_fn(x, y):
+    print(x, y)
+    pass
+
+my_fn(y=2, x=1)
+```
+
+#### pass argument by position and labels
+position argument has to go first
+```py
+def my_fn(x, y, z):
+    print(x, y, z)
+    pass
+
+my_fn(1, Z=3, y=2)
+```
+
+#### optional argument
+```py
+def my_fn(x, y, z=3):
+    print(x, y, z)
+    pass
+
+my_fn(1, y=2)
+```
+```txt
+1 2 3
+```
+
+#### *args and **kwargs
+```py
+def my_fn(x, y, *args):
+    print(x, y, args)
+    pass
+
+my_fn(1, 2, 3, 4, 5, 6, 7)
+```
+Output
+```txt
+1 2 (3, 4, 5, 6, 7)
+```
+```py
+def my_fn(*args, **kwargs):
+    print(args, kwargs)
+    print(kwargs['x'])
+    pass
+
+my_fn(1, 2, 3, 4, 5, 6, 7, x = 'abc', y = 'def')
+```
+Output
+```txt
+(1, 2, 3, 4, 5, 6, 7) {'x': 'abc', 'y': 'def'}
+abc
+```
+```py
+def my_fn(w, x, y, z):
+    print(w, x, y, z)
+    pass
+
+my_fn(*[1, 2], **{'y': 'abc', 'z': 'def'})
+```
+Output
+```txt
+1 2 abc def
+```
+
 
 
 
