@@ -52,9 +52,6 @@ To get information about the SD card on your Raspberry Pi 5, you can use a few d
 ```sh
 # This will list all the block devices, including your SD card. Look for the device labeled mmcblk0 (or similar), which represents your SD card.
 lsblk
-
-# This will list all block devices along with their model and serial number. Look for the entry corresponding to your SD card, usually labeled mmcblk0.
-lsblk -o NAME,MODEL,SERIAL
 ```
 Output:
 ```txt
@@ -62,6 +59,11 @@ NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
 mmcblk0     179:0    0 58.9G  0 disk
 ├─mmcblk0p1 179:1    0  512M  0 part /boot/firmware
 └─mmcblk0p2 179:2    0 58.4G  0 part /
+```
+
+```sh
+# This will list all block devices along with their model and serial number. Look for the entry corresponding to your SD card, usually labeled mmcblk0.
+lsblk -o NAME,MODEL,SERIAL
 ```
 Output:
 ```txt
