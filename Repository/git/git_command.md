@@ -197,6 +197,22 @@ git push -u origin localBranch:remoteBranchToBeCreated
 
 ---
 
+## File Information
+### List all files in repository
+Script can save in a file<list_all_files.sh> and execute
+```sh
+echo "Tracked files:"
+git ls-files
+
+echo "Untracked files:"
+git ls-files --others --exclude-standard
+
+echo "Ignored files:"
+git ls-files --others --ignored --exclude-standard
+```
+
+---
+
 ## Stage Changes
 ### Undo Staged Changes on a file
 ```bash
