@@ -185,6 +185,33 @@ myNum: 123,456.789
 ```
 
 
+## Type hints
+[typing — Support for type hints](https://docs.python.org/3/library/typing.html)
+[Type hints cheat sheet](https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html)
+### Basic Types
+
+Text Type:         str
+Numeric Types:     int, float, complex
+Sequence Types:    list, tuple, range
+Mapping Type:      dict
+Set Types:         set, frozenset
+Boolean Type:      bool
+Binary Types:      bytes, bytearray, memoryview
+None Type:         NoneType
+
+### Union types
+```py
+def my_func(first: Union[int, str, float]) -> str:
+    return ''
+```
+
+### typing.Optional types
+```py
+def my_func(optional_param: Optional[str]) -> None:
+    pass
+```
+
+
 ## Function
 ### Argument & Parameter Types
 #### pass argument by labels
@@ -255,6 +282,18 @@ Output
 1 2 abc def
 ```
 
+
+## List
+### list comprehension
+```py
+def double(x):
+    return x * 2
+
+doubled = [double(x) for x in range(5)]
+print(doubled)
+
+# Output: [0, 2, 4, 6, 8]
+```
 
 
 
