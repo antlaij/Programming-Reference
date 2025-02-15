@@ -17,11 +17,35 @@
 systeminfo
 ```
 
-## Search command line process
+## System Process like task manager
+[Gets the processes that are running on the local computer](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-process?view=powershell-7.5)
 ```sh
+Get-Process node -FileVersion
+Get-Process node | ? { $_.Path -ne $null -and $_.Path -ne '' } | Select Responding,Description,ProcessName,CommandLine,Path,Threads,CPU,PeakPageMemorySize64,FileVersin,StartTime,MalnWindowTitle,Modules > E:\Buffer\1.log
+
+# Search process by name
+Get-Process winword, explorer | Format-List * > E:\Buffer\1.log
+
+# Get all processes with a working set greater than a specified size
+Get-Process | Where-Object {$_.WorkingSet -gt 20000000} > E:\Buffer\1.log
+```
+
+## Search command line process
+Run in Powershell
+### List all process
+```sh
+wmic path win32_process get Caption,Processid,Commandline > E:\Buffer\1.log
+wmic path win32_process get /format:list > E:\Buffer\1.log
+```
+```sh
+# Search for node.exe in ExecutablePath
+wmic process where "ExecutablePath like '%node.exe%'" get /format:list > E:\Buffer\1.log
+
+# Search for node.exe in commandline
 wmic process where "commandline like '%node.exe%'" get /format:list > E:\Buffer\1.log
 wmic process where "commandline like '%node.exe%'" get processid"," commandline > E:\Buffer\1.log
 wmic process where "commandline like '%node.exe%'" get ProcessId"," Caption"," Name"," CommandLine /format:list > E:\Buffer\1.log
+wmic process where "commandline like '%aaron-expo-app%'" get ProcessId"," Caption"," Name"," CommandLine /format:list > E:\Buffer\1.log
 
 ```
 
