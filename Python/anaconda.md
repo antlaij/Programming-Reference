@@ -2,6 +2,12 @@
 
 ## conda
 
+### Settings
+#### Prevent Conda from activating the base environment by default
+```sh
+conda config --set auto_activate_base false
+```
+
 ### list
 ### LIst all env
 ```sh
