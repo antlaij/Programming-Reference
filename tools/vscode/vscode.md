@@ -16,9 +16,22 @@
 
 | Description | Find | Replace |
 | :--- | :----: | :---: |
+| Change from X100000 to X100.000 | \([XYZ]\)\([0-9]*\)\([0-9][0-9][0-9]\) | \1\2.\3 |
 | Remove duplicate lines | ^(.*)(\n\1)+$ |$1|
 | Replace from find | ^([a-zA-Z]+) |{headerName: '$1', field: '$1'}|
 | Find all words and replace | ^([\w]+) |{headerName: '$1', field: '$1'}|
+| Find all the space between two words | [ \t]+ ||
+| Replace from (public const string CONTRACT_NUMBER --> public const string CONTRACT_NUMBER	= "CONTRACT_NUMBER";) | \([a-zA-Z_]+\)$ | \1\t= "\1"; |
+| Find any word follow by tab | [A-Za-z0-9]\t |  |
+| "Proc_in_lim_n = "  --->  ""Proc_in_lim_n = " + EDI_File_Def.Proc_in_lim_n + ", " + | "\([A-Za-z0-9_]*\) = " | "\1 = " + EDI_File_Def.\1 + ", " + |
+| Find all the space between two words | \>[ ]*\< |  |
+| Find all the space or tabs between two words | \>[ ]*[\t]*\< |  |
+| Find and replace from Visual Studio Code | aria\-label="([a-z]+ said:) | messageinfo="$1 |
+| &lt;td&gt;&lt;img src="images/IMG_0001.jpg" width="30"&gt;&lt;/td&gt; ---&gt; &lt;td&gt;&lt;a href="images/IMG_0001.jpg"&gt;&lt;img src="images/IMG_0001.jpg" width="30"&gt;&lt;/a&gt;&lt;/td&gt; | &lt;td&gt;&lt;img src="images/IMG_\([0-9]*\).jpg" width="30"&gt;&lt;/td&gt; | &lt;td&gt;&lt;a href="images/IMG_\1.jpg"&gt;&lt;img src="images/IMG_\1.jpg" width="30"&gt;&lt;/a&gt;&lt;/td&gt; |
+| Replace Database Table to xsl TD Tag | ^\([A-Z0-9_]+\)$ | \t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td class="TransLabel" width="40%"&gt;\1:&lt;/td&gt;\n\t\t\t\t\t\t&lt;td&gt;\n\t\t\t\t\t\t\t&lt;xsl:value-of select="\1" /&gt;\n\t\t\t\t\t\t&lt;/td&gt;\n\t\t\t\t\t&lt;/tr&gt; |
+|  |  |  |
+|  |  |  |
+
 
 
 ## Custom IDE color
