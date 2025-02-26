@@ -65,12 +65,16 @@
         "statusBarItem.remoteForeground": "#e7e7e7",
         "commandCenter.border": "#e7e7e799",
         "editor.lineHighlightBackground": "#00cccc20",
-        "editor.selectionBackground": "#00ffff60",
+        "editor.selectionBackground": "#00ffff33",
+        "editor.selectionForeground": "#ff0000",
+        "editor.selectionHighlightBackground": "#ffff00ff",
+        "editor.wordHighlightBorder": "#ffff0022",
         "editor.wordHighlightBackground": "#611028",
-        "editor.findMatchHighlightBackground": "#ff7b00a1", // Match with the
+        "editor.wordHighlightStrongBorder": "#ffff0055",
+        "editor.wordHighlightStrongBackground": "#ffff0000",
+        "editor.findMatchHighlightBackground": "#ff7b0088",
         "editor.findRangeHighlightBackground": "#ff0000",
-        "editor.selectionHighlightBackground": "#ffff0060",
-        "editor.inactiveSelectionBackground": "#168b1690",
+        "editor.inactiveSelectionBackground": "#00fc002a",
         "editor.lineHighlightBorder": "#00ffff15"
     },
     "peacock.color": "#5f55aa"
