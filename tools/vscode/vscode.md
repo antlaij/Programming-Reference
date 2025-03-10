@@ -35,6 +35,7 @@
 
 
 ## Custom IDE color
+[Theme Color](https://code.visualstudio.com/api/references/theme-color)
 ### Purple theme - Web app
 ```json
 {
