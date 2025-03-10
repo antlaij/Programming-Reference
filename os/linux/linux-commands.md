@@ -44,7 +44,7 @@
 
 
 ### Hardware
-#### Storage
+#### Storage include USB drive
 How to get sd card info from raspberry pi 5?
 To get information about the SD card on your Raspberry Pi 5, you can use a few different methods. Here are some steps you can follow:
 
@@ -72,6 +72,36 @@ mmcblk0           0x35654e4e
 ├─mmcblk0p1
 └─mmcblk0p2
 ```
+
+##### Mount USB drive
+```sh
+lsblk
+
+# Create a usb folder
+sudo mkdir /mnt/usb
+
+# Mount USB device to the folder
+sudo mount /dev/sda1 /mnt/usb
+
+# Unmount a USB drive
+sudo umount /mnt/usb
+```
+Output:
+```txt
+NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+sda           8:0    1 476.7G  0 disk
+└─sda1        8:1    1 476.7G  0 part
+mmcblk0     179:0    0  58.9G  0 disk
+├─mmcblk0p1 179:1    0   512M  0 part /boot/firmware
+└─mmcblk0p2 179:2    0  58.4G  0 part /
+```
+
+##### Copy file to USB folder
+```sh
+cp ~/ls/development/raspberry-pi/data/*.mp4 /mnt/usb/RaspberryPi/
+
+```
+
 
 ##### Command: df
 This will display the disk space usage of all mounted filesystems. Look for the entry corresponding to your SD card, usually labeled /dev/mmcblk0p1 or similar.
@@ -262,6 +292,44 @@ udp6       0      0 :::5353                 :::*                                
 ###### Kill the process by PID
 ```sh
 kill <PID>
+```
+
+###### Change IP address
+```sh
+# show connections
+nmcli con show
+
+sudo nmcli con mod "Wired connection 1" ipv4.addresses 192.168.0.152/24
+sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.0.254
+sudo nmcli con mod "Wired connection 1" ipv4.method manual
+sudo nmcli con mod "Wired connection 1" ipv4.dns 192.168.0.254
+
+# Restart Connection: Apply the changes by restarting the connection:
+sudo nmcli con up "Wired connection 1"
+
+```
+
+###### Error:
+WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+open known_hosts from your user .ssh folder
+Remove that hostname
+
+
+
+```sh
+sudo nano /etc/dhcpcd.conf
+```
+
+```txt
+interface eth0
+static ip_address=192.168.0.152/255.255.255.0
+static routers=192.168.0.254
+static domain_name_servers=192.168.0.254
+```
+
+###### Restart dhcp
+```sh
+sudo systemctl restart dhcpcd
 ```
 
 
