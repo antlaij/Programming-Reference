@@ -25,4 +25,41 @@
 { email : { '$regex' : 'test', '$options' : 'i' } }
 ```
 
+## Add Field
+### Convert _id to Datetime
+```js
+{
+  dateAdded: {
+    $toDate: "$_id"
+  }
+}
+```
 
+## Group
+### Find duplicate record
+```js
+[
+  {
+    $group: {
+      _id: "$_id",
+      name: {
+        $first: "$name"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        count: {
+          $gt: 1
+        }
+      }
+  }
+]
+```
