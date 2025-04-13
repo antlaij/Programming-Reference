@@ -33,6 +33,7 @@ const userObject = {
 ## String literal types
 ### Use array of string to hold the values for a string literal types. 
 - This made the logic easy to get all values from the type
+Theme = (property) WebConfig.Theme: "dark" | "light" | "os-default"
 ```ts
 const ThemeMOdes = ['dark', 'light', 'os-default'] as const;
 type ThemeMode = typeof ThemeMOdes[number];
@@ -162,6 +163,20 @@ const myEnumArray: Array<{display: string, value: string}> = Object.values(myEnu
 
 ```
 
+### Dynamically reference an ENUM by a string in typescript
+```ts
+enum myEnum {
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
+}
+
+// myEnumRef = myEnum.one
+const myEnumRef = myEnum['1' as keyof typeof myEnum];
+
+```
+
 
 ## Model which accept another model
 ```ts
@@ -174,7 +189,8 @@ export class ApiPagingResponse<TList> {
 ```
 
 
-## Conditional Typescript type with generic
+## Narrowing
+### Conditional Typescript type with generic
 ```ts
 type ApiResponse<T> = 
 | { status: 'success'; data: T; timestamp: Date}
@@ -194,7 +210,8 @@ let res2: ApiResponse<number> = {
 ```
 
 
-## Discriminated union and Intersection types
+### Discriminated union and Intersection types
+[Discriminated unions](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)
 ```ts
 type FileFilterOption = {
   DirectoryType: 'Folder' | 'File' | 'Extension',
@@ -209,4 +226,54 @@ type FileFilterOption = {
     Filter: RegExp,
   }
 )
+```
+
+
+## Utility Types
+### Exclude types from another type and create a new type
+[Omit<Type, Keys>](https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys)
+```ts
+export type JobsAnalysis = {
+  name: string;
+  target: string;
+  tasks: Array<string>;
+  numberOfTask: number;
+  options: Options;
+}
+
+export type NewJobsAnalysis = Omit<JobsAnalysis, "tasks" | "numberOfTask">;
+/**
+ * NewJobsAnalysis
+type NewJobsAnalysis = {
+  name: string;
+  target: string;
+  options: Options;
+}
+ */
+```
+
+
+### Add new types to existing
+```ts
+export type JobsAnalysis = {
+  name: string;
+  target: string;
+  tasks: Array<string>;
+  numberOfTask: number;
+  options: Options;
+}
+
+export type NewJobsAnalysis = JobsAnalysis & {
+  key: string
+};
+/*
+type NewJobsAnalysis = {
+    name: string;
+    target: string;
+    tasks: Array<string>;
+    numberOfTask: number;
+    options: Options;
+    key: string;
+}
+*/
 ```
