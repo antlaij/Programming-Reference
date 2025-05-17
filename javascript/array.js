@@ -263,3 +263,123 @@ testCase.endTest();
   console.log(JSON.stringify(testArray, null, 2));
 })();
 
+
+/**
+ * Use spread operator to clone array
+ */
+(() => {
+  
+  // Use spread operator on primitive type
+  console.log(`\n\nArray of primitive type can clone by spread operator:\n`);
+
+  let originalArrayOfPrimitiveType = [1,2,3];
+  let cloneArrayOfPrimitiveType = [...originalArrayOfPrimitiveType];
+  
+  console.log(`initial value:\n`);
+  console.log('originalArrayOfPrimitiveType: ', originalArrayOfPrimitiveType);
+  console.log('cloneArrayOfPrimitiveType:    ', cloneArrayOfPrimitiveType);
+
+  originalArrayOfPrimitiveType[0] = 333;
+
+  console.log(`\nchanged value:\n`);
+  console.log('originalArrayOfPrimitiveType: ', originalArrayOfPrimitiveType);
+  console.log('cloneArrayOfPrimitiveType:    ', cloneArrayOfPrimitiveType);
+  
+/* Output:
+initial value:
+
+originalArrayOfPrimitiveType:  [ 1, 2, 3 ]
+cloneArrayOfPrimitiveType:     [ 1, 2, 3 ]
+
+changed value:
+
+originalArrayOfPrimitiveType:  [ 333, 2, 3 ]
+cloneArrayOfPrimitiveType:     [ 1, 2, 3 ]
+*/
+  
+  // Use spread operator on primitive type
+  console.log(`\n\nArray of primitive type can clone by spread operator:\n`);
+
+  let originalArrayOfPrimitiveType02 = ['1','2','3'];
+  let cloneArrayOfPrimitiveType02 = [...originalArrayOfPrimitiveType02];
+  
+  console.log(`initial value:\n`);
+  console.log('originalArrayOfPrimitiveType02: ', originalArrayOfPrimitiveType02);
+  console.log('cloneArrayOfPrimitiveType02:    ', cloneArrayOfPrimitiveType02);
+
+  originalArrayOfPrimitiveType02[0] = '333';
+
+  console.log(`\nchanged value:\n`);
+  console.log('originalArrayOfPrimitiveType02: ', originalArrayOfPrimitiveType02);
+  console.log('cloneArrayOfPrimitiveType02:    ', cloneArrayOfPrimitiveType02);
+
+/* Output:
+initial value:
+
+originalArrayOfPrimitiveType02:  [ '1', '2', '3' ]
+cloneArrayOfPrimitiveType02:     [ '1', '2', '3' ]
+
+changed value:
+
+originalArrayOfPrimitiveType02:  [ '333', '2', '3' ]
+cloneArrayOfPrimitiveType02:     [ '1', '2', '3' ]
+*/
+
+  // Use spread operator on object type
+  console.log(`\n\nArray of object type cannot clone by spread operator:\n`);
+
+  let originalObj = [ {id: 1, name: 'Peter' }, ];
+  let cloneObj = [...originalObj];
+  
+  console.log(`initial value:\n`);
+  console.log('originalObj: ', originalObj);
+  console.log('cloneObj:    ', cloneObj);
+
+  originalObj[0].name = 'John';
+
+  console.log(`\nchanged value:\n`);
+  console.log('originalObj: ', originalObj);
+  console.log('cloneObj:    ', cloneObj);
+
+/* Output:
+initial value:
+
+originalObj:  [ { id: 1, name: 'Peter' } ]
+cloneObj:     [ { id: 1, name: 'Peter' } ]
+
+changed value:
+
+originalObj:  [ { id: 1, name: 'John' } ]
+cloneObj:     [ { id: 1, name: 'John' } ]
+*/
+
+  // Use structuredClone
+  console.log(`\n\nArray of primitive type can clone by structuredClone:\n`);
+  
+  let originalArrayOfPrimitiveType01 = [ {id: 1, name: 'Peter' }, ];
+  let cloneArrayOfPrimitiveType01 = structuredClone(originalArrayOfPrimitiveType01);
+  
+  console.log(`initial value:\n`);
+  console.log('originalArrayOfPrimitiveType01: ', originalArrayOfPrimitiveType01);
+  console.log('cloneArrayOfPrimitiveType01:    ', cloneArrayOfPrimitiveType01);
+  
+  originalArrayOfPrimitiveType01[0].name = 'John';
+  
+  console.log(`\nchanged value:\n`);
+  console.log('originalArrayOfPrimitiveType01: ', originalArrayOfPrimitiveType01);
+  console.log('cloneArrayOfPrimitiveType01:    ', cloneArrayOfPrimitiveType01);
+
+/* Output:
+initial value:
+
+originalArrayOfPrimitiveType01:  [ { id: 1, name: 'Peter' } ]
+cloneArrayOfPrimitiveType01:     [ { id: 1, name: 'Peter' } ]
+
+changed value:
+
+originalArrayOfPrimitiveType01:  [ { id: 1, name: 'John' } ]
+cloneArrayOfPrimitiveType01:     [ { id: 1, name: 'Peter' } ]
+*/
+
+})();
+
