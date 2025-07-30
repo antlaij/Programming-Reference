@@ -146,7 +146,7 @@
       "editor.lineHighlightBackground": "#00cccc20",
       "editor.selectionBackground": "#00ffff60",
       "editor.wordHighlightBackground": "#611028",
-      "editor.findMatchHighlightBackground": "#ff7b00a1", // Match with the
+      "editor.findMatchHighlightBackground": "#118cff6b", // When Find Match
       "editor.findRangeHighlightBackground": "#ff0000",
       "editor.selectionHighlightBackground": "#ffff0060",
       "editor.inactiveSelectionBackground": "#168b1690",
