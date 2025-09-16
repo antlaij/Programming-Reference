@@ -7,6 +7,8 @@
   1. [Reset Server Side data](#Reset-Server-Side-data)
       1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
       1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
+  1. [Column](#Column)
+      1. [Scroll to a column](#Scroll-to-a-column)
   1. [Filter](#Filter)
       1. [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
       1. [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
@@ -19,6 +21,8 @@
           1. [onClick Event](#onClick-Event)
       1. [Cell Button](#Cell-Button)
           1. [Button call parent component](#Button-call-parent-component)
+  1. [Master and Detail grid](#Master-and-Detail-grid)
+      1. [Change detail grid height](#Change-detail-grid-height)
 
 ***
 
@@ -156,8 +160,16 @@ public get filteredRowCount() {
 ```
 
 
-## Filter
 ---
+## Column
+### Scroll to a column
+```ts
+this.gridApi.ensureColumnVisible('columnName');
+```
+
+
+---
+## Filter
 
 ### Hide Filter Icon from floating bar
 ```ts
@@ -333,5 +345,15 @@ export class CustomButtonComponent implements ICellRendererAngularComp {
   }
 }
 
+```
+
+
+---
+## Master and Detail grid
+### Change detail grid height
+```ts
+this.gridOption = {
+  detailRowHeight: 555
+}
 ```
 
