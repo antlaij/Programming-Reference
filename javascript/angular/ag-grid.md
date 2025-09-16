@@ -1,28 +1,34 @@
 # Angular Ag Grid
 ## Table of Contents
-  1. [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
-  1. [Renderer](#Renderer)
-      1. [Boolean Cell Renderer](#Boolean-Cell-Renderer)
-      1. [Router Link Cell Renderer](#Router-Link-Cell-Renderer)
-  1. [Reset Server Side data](#Reset-Server-Side-data)
-      1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
-      1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
-  1. [Column](#Column)
-      1. [Scroll to a column](#Scroll-to-a-column)
-  1. [Filter](#Filter)
-      1. [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
-      1. [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
-  1. [Data Summary](#Data-Summary)
-      1. [Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid](#Show-Total-row-count,-Filtered-row-count-...-in-ag-grid.-Add-status-bar-to-Ag-Grid)
-      1. [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
-      1. [Center Align column with css](#Center-Align-column-with-css)
-  1. [Cell](#Cell)
-      1. [Cell Event](#Cell-Event)
-          1. [onClick Event](#onClick-Event)
-      1. [Cell Button](#Cell-Button)
-          1. [Button call parent component](#Button-call-parent-component)
-  1. [Master and Detail grid](#Master-and-Detail-grid)
-      1. [Change detail grid height](#Change-detail-grid-height)
+1. [AgGrid - Boolean Cell editor](#AgGrid---Boolean-Cell-editor)
+1. [Renderer](#Renderer)
+    1. [cellRenderer](#cellRenderer)
+        1. [Link](#Link)
+        1. [Image](#Image)
+    1. [Boolean Cell Renderer](#Boolean-Cell-Renderer)
+    1. [Router Link Cell Renderer](#Router-Link-Cell-Renderer)
+1. [Reset Server Side data](#Reset-Server-Side-data)
+    1. [Get Displayed Row Count](#Get-Displayed-Row-Count)
+    1. [Get Filtered Row Count](#Get-Filtered-Row-Count)
+1. [Column](#Column)
+    1. [Scroll to a column](#Scroll-to-a-column)
+1. [Filter](#Filter)
+    1. [Hide Filter Icon from floating bar](#Hide-Filter-Icon-from-floating-bar)
+    1. [Filter by cellRenderer value instead of column value](#Filter-by-cellRenderer-value-instead-of-column-value)
+1. [Data Summary](#Data-Summary)
+    1. [Show Total row count, Filtered row count ... in ag grid. Add status bar to Ag Grid](#Show-Total-row-count,-Filtered-row-count-...-in-ag-grid.-Add-status-bar-to-Ag-Grid)
+    1. [Turning On Infinite Scrolling without ag-Grid Enterprise](#Turning-On-Infinite-Scrolling-without-ag-Grid-Enterprise)
+    1. [Center Align column with css](#Center-Align-column-with-css)
+1. [Cell](#Cell)
+    1. [Cell Event](#Cell-Event)
+        1. [onClick Event](#onClick-Event)
+    1. [Cell Button](#Cell-Button)
+        1. [Button call parent component](#Button-call-parent-component)
+            1. [HTML template](#HTML-template)
+            1. [Ag Grid Component](#Ag-Grid-Component)
+            1. [Custom Button Component](#Custom-Button-Component)
+1. [Master and Detail grid](#Master-and-Detail-grid)
+    1. [Change detail grid height](#Change-detail-grid-height)
 
 ***
 
@@ -74,6 +80,20 @@ export class AgGridBooleanCellEditor implements ICellEditorAngularComp, AfterVie
 
 ---
 ## Renderer
+
+### cellRenderer
+#### Link
+```ts
+  colDefs: ColDef[] = [
+    { field: "name", cellRenderer: (params: ICellRendererParams) => `<a href="${baseUrl}/${params.data.id}" target="_blank" rel="noopener noreferrer">${params.value}</a>`, },
+  ];
+```
+#### Image
+```ts
+  colDefs: ColDef[] = [
+    { field: "imageUrl", cellRenderer: (p: ICellRendererParams) => (p.value)?`<img src="${baseUrl}/${p.value}" style="height: 90px; width: auto;" alt="icon">`:'' },
+  ];
+```
 
 ### Boolean Cell Renderer
 ```ts
@@ -299,7 +319,7 @@ whenCellClicked = (event: CellClickedEvent) => {
 ### Cell Button
 #### Button call parent component
 
-HTML template
+##### HTML template
 ```html
 <ag-grid-angular
   #myGrid
@@ -310,7 +330,7 @@ HTML template
 </ag-grid-angular>
 ```
 
-Ag Grid Component
+##### Ag Grid Component
 ```ts
 export class MyAgGridComponent implements OnInit, OnDestroy {
 
@@ -324,7 +344,7 @@ export class MyAgGridComponent implements OnInit, OnDestroy {
 }
 ```
 
-Custom Button Component
+##### Custom Button Component
 ```ts
 
 @Component({

@@ -79,19 +79,16 @@
 
 ## configuration
 ### list config
-
 ```bash
 git config --list
 ```
 
 ### set default push to current
-
 ```bash
 git config --global push.default current
 ```
 
 ### get remote url
-
 ```bash
 git config --get remote.origin.url
 ```
