@@ -146,3 +146,20 @@ FOR /f "tokens=*" %x IN ( 'DIR /B /S /A:D' ) DO ECHO MKDIR "%x" >> E:\Buffer\1.t
 ```bat
 dir /b /a-d
 ```
+
+## Command - forfiles
+### Copy file by date
+```bat
+REM Set target date variable to 7 days ago
+for /f %i in ('powershell -command "((Get-Date).AddDays(-7)).ToString('MM/dd/yyyy')"') do set SevenDaysAgo=%i
+
+REM Set date variable manually
+set SevenDaysAgo=2025-09-09
+echo %SevenDaysAgo%
+
+forfiles /P "D:\Temp" /S /D +%SevenDaysAgo% /C "cmd /c copy @path E:\Temp"
+
+```
+
+
+
