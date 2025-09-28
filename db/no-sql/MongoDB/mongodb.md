@@ -63,3 +63,66 @@
   }
 ]
 ```
+
+## Array
+### Sort item in a n array
+```js
+{
+  _id: 0,
+  result: {
+    input: "$nestedArray",
+    srotBy: {
+      messageDate: 1,
+      messageId: 1
+    }
+  }
+}
+```
+
+### Remove null value from array
+```js
+{
+  $project: {
+    nestedArray: {
+      $filter: {
+        input: "$nestedArray", 
+        cond: {
+          $ne: ["$$this", null]
+        }
+      }
+    }
+  }
+}
+```
+
+## Opterator
+### $unwind
+Split an array field from the input documents into a new document for each element.
+```json
+[
+  {
+    key: 123,
+    myArray: [
+      { name: "Peter", age: 22 },
+      { name: "John", age: 33 }
+    ]
+  }
+]
+```
+```js
+{
+  $unwind: "myArray"
+}
+```
+```json
+[
+  {
+    key: 123,
+    myArray: { name: "Peter", age: 22 }
+  },
+  {
+    key: 123,
+    myArray: { name: "John", age: 33 }
+  }
+]
+```
