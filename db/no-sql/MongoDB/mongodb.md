@@ -65,7 +65,7 @@
 ```
 
 ## Array
-### Sort item in a n array
+### Sort item in an array
 ```js
 {
   _id: 0,
@@ -91,6 +91,15 @@
         }
       }
     }
+  }
+}
+```
+
+### Get all data with item in an array > 0
+```js
+{
+  $expr: {
+    $gt: [{ $size: "$albums" }, 0]
   }
 }
 ```
