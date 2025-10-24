@@ -88,3 +88,15 @@
   }
 ]
 ```
+
+### Remove one field from document by javascript
+```js
+db.download_manager.updateMany(
+  {},
+  [
+    {
+      $unset: "POSTED_DATE"
+    }
+  ]
+)
+```

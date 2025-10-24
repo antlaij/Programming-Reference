@@ -15,6 +15,19 @@
 { 'submissionId' : { '$exists' : true }}
 ```
 
+## Get the first record from an array
+### Project
+```json
+{
+  "albums.photos": { $slice: 1 }
+}
+```
+
+## Get record with array size greater than 2
+```json
+{ $expr: { $gt: [{ $size: "$albums.photos" }, 2] } }
+```
+
 ## Field contains
 ```json
 
