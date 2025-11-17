@@ -1,34 +1,36 @@
-## Pull Docker image from Docker Hub
+## Docker images
+
+### Pull Docker image from Docker Hub
 ```sh
 docker pull image-name
 ```
 
-## Push Docker image to Docker Hub
+### Push Docker image to Docker Hub
 ```sh
 docker push image-name:tag
 ```
 
-## Tag Docker image
+### Tag Docker image
 ```sh
 docker tag image-name:tag repository-path
 ```
 
-
-## Show all images
+### Show all images
 ```sh
 docker images
 ```
 
-
-## Delete a docker image
-### To delete an image, delete the container from the image first
+### Delete a docker image
+#### To delete an image, delete the container from the image first
 ```sh
 docker rmi image-id
 ```
 
 
-## List all containers
+## Docker containers
+### List all containers
 ```sh
+# running containers only
 docker ps
 
 # List all containers wheather it is running or stoped
@@ -36,36 +38,41 @@ docker ps -a
 ```
 
 
-## Start and Stop container
+### Start and Stop container
 ```sh
 docker start container-id
 docker stop container-id
 ```
 
 
-## Delete a docker container
-### To delete a docker container, stop the container first
+### Delete a docker container
+#### To delete a docker container, stop the container first
 ```sh
 docker rm container-id
 ```
 
 
-## Run container
-### bind port 6379 from container to host port 6000
+### Run container
+#### bind port 6379 from container to host port 6000
 ```sh
 docker run -p 6000:6379 redis
 ```
-### Run container in a new name
+#### Run container in a new name
 ```sh
 docker run -d -p 6000:6379 ==name new-container-name redis
 ```
 
-### Run container in detach mode then you can use the terminal again
+#### Run container in detach mode then you can use the terminal again
 ```sh
 docker run -d redis
 ```
 ```sh
 docker run -d image-name:1.0
+```
+
+### Inspect container
+```sh
+docker inspect <container_name_or_id> --format='{{.Path}} {{range .Args}}{{.}} {{end}}'
 ```
 
 
@@ -100,7 +107,24 @@ docker run -p 27017:27017 -d mongo
 
 ## Docker Run
 ```sh
-docker run -d --name my-mongo 
+docker run -d --name my-mongo
+```
+### Start container when system restart
+| Policy           | Behavior                                           |
+| ---------------- | -------------------------------------------------- |
+| `no`             | Never restart the container (default).             |
+| `always`         | Always restart the container if it stops.          |
+| `unless-stopped` | Restart unless you manually stop it (most common). |
+| `on-failure`     | Restart only if it exits with an error.            |
+
+```sh
+docker run -d --restart unless-stopped --name mycontainer myimage
+# To apply this to an existing container, update it:
+docker update --restart unless-stopped mycontainer
+```
+# Check if container will run at system startup
+```sh
+docker inspect -f '{{.HostConfig.RestartPolicy.Name}}' mycontainer
 ```
 
 
