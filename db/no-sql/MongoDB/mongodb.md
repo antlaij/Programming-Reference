@@ -1,31 +1,82 @@
 # Query Data
 
-## Check date between
+## DateTime Operation
+### Show EST time with timezone in the document
+```js
+{
+  estTime: {
+    $dateToString: {
+      date: "$OriginalDate",
+      timezone: "$timezone",
+      format: "%Y-%m-%d %H:%M:%S"
+    }
+  }
+}
+```
+
+### Check date between
 ```json
 {  updatedAt : { $gt:ISODate('2019-09-18T21:07:42.313+00:00'), $lt:ISODate('2019-09-20T21:08:42.313+00:00')  }  }
 ```
 
-## Check date greater than
+### Check date greater than
 ```json
 { updatedAt: { $gt: ISODate('2020-12-01T11:02:18.585+00:00')}}
+```
+
+## String Operation
+### Split string into 2 string
+#### Take the first string and rest of the string in 2 fields
+"This is a test" to "This" and "is a test"
+```js
+[
+  {
+    $addFields: {
+      status: {
+        $substrBytes: [
+          "$title",
+          0,
+          {
+            $indexOfBytes: ["$title", " "]
+          }
+        ]
+      },
+      title: {
+        $substrBytes: [
+          "$title",
+          {
+            $add: [
+              {
+                $indexOfBytes: ["$title", " "]
+              },
+              1
+            ]
+          },
+          {
+            $subtract: [
+              {
+                $strLenBytes: "$title"
+              },
+              {
+                $add: [
+                  {
+                    $indexOfBytes: ["$title", " "]
+                  },
+                  1
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]
 ```
 
 ## Is Property exist
 ```json
 { 'submissionId' : { '$exists' : true }}
-```
-
-## Get the first record from an array
-### Project
-```json
-{
-  "albums.photos": { $slice: 1 }
-}
-```
-
-## Get record with array size greater than 2
-```json
-{ $expr: { $gt: [{ $size: "$albums.photos" }, 2] } }
 ```
 
 ## Field contains
@@ -48,7 +99,7 @@
 }
 ```
 
-## Group
+## $group
 ### Find duplicate record
 ```js
 [
@@ -65,9 +116,6 @@
   },
   {
     $match:
-      /**
-       * query: The query in MQL.
-       */
       {
         count: {
           $gt: 1
@@ -77,7 +125,235 @@
 ]
 ```
 
+```js
+[
+  {
+    $group: {
+      _id: "$title",
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1
+    }
+  }
+]
+```
+
+### Group by Year and Month and count items
+```js
+[
+  {
+    $group: {
+      _id: {
+        year: {
+          $year: "$timestamp"
+        },
+        month: {
+          $month: "$timestamp"
+        }
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      year: "$_id.year",
+      month: "$_id.month",
+      count: 1
+    }
+  },
+  {
+    $sort: {
+      year: -1,
+      month: -1
+    }
+  }
+]
+```
+
+### Group by one field and getting other infomation as an array from the same document
+#### exact match
+```js
+[
+  {
+    $match: {
+      $and: [
+        { name: /.jpg$/i },
+        {
+          name: {
+            $nin: [
+              "Folder.jpg",
+              "back.jpg",
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: "$name",
+      filepaths: {
+        $push: "$filepath"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1,
+      _id: 1,
+    }
+  }
+]
+```
+
+### Using Regular expression
+```js
+[
+  {
+    $match: {
+      $and: [
+        { name: /.jpg$|.png$/i },
+        {
+          name: {
+            $not: {
+              $regex:
+                /icon.png|([0-9]{2}m?.jpg)|^([0-9]{3})|^tab-/i
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: "$name",
+      filepaths: {
+        $push: "$filepath"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1,
+      _id: 1
+    }
+  }
+]
+```
+
 ## Array
+
+### Get record with array size greater than 2
+```json
+{ $expr: { $gt: [{ $size: "$albums.photos" }, 2] } }
+```
+
+### Get the first record from an array
+```json
+{
+  "albums.photos": { $slice: 1 }
+}
+```
+
+### Get only matching item from an array
+```js
+[
+  $addFields: {
+    fieldToRemove: 0,
+    newFieldFromArray: {
+      $filter: {
+        input: "$albums.photos",
+        as: "matchedItems",
+        cond: {
+          $eq: { "$$matchedItems.id", 12345 }
+        }
+      }
+    }
+  }
+]
+```
+
+### List all document if one of the value is not equal to a string in an array of object
+```js
+[
+  {
+    $match:
+    {
+      fieldFromRoot: {
+        $eleMatch: {
+          "objArray.keyName": {
+            $ne: "search value"
+          }
+        }
+      }
+    }
+  }
+]
+```
+
+### Get last item from a split string
+```js
+{
+  $addFields:
+    {
+      extension: {
+        $toLower: {
+          $arrayElemAt: [
+            {
+              $split: ["$name", "."]
+            },
+            {
+              $subtract: [
+                {
+                  $size: {
+                    $split: ["$name", "."]
+                  }
+                },
+                1
+              ]
+            }
+          ]
+        }
+      }
+    }
+}
+```
+
 ### Sort item in an array
 ```js
 {

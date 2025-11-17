@@ -1,24 +1,38 @@
 # Aggregation
 
-## List all document if one of the value is not equal to a string in an array of object
+## Join collection - $lookup
+### Join collection with only the latest data from the child
 ```js
-[
-  {
-    $match:
-    {
-      fieldFromRoot: {
-        $eleMatch: {
-          "objArray.keyName": {
-            $ne: "search value"
+{
+  $lookup: {
+    from: "collectionToJoin", 
+    as: "aliasName",
+    let: {
+      foreignKey: "$keyFromExistingTable"
+    },
+    pipeline: [
+      {
+        $match: {
+          $expr: {
+            $eq: [ "$$foreignKey", "$keyFromJoinCollection"]
           }
         }
+      },
+      {
+        $sort: {
+          "fieldToSort": -1
+        }
+      },
+      {
+        $limit: 1
       }
-    }
+    ]
   }
-]
+}
 ```
 
-## Sort the record and group by multiple fields
+## Sorting
+### Sort the record and group by multiple fields
 ```js
 [
   {
@@ -48,10 +62,6 @@
 [
   {
     $addFields:
-      /**
-       * newField: Using existing field name.
-       * expression: The new field expression.
-       */
       {
         dateStart: {
           $dateFromString: {
@@ -68,8 +78,9 @@
 ]
 ```
 
-## Save changes back to the collection
-### Remove one field from document and save
+## Document Update
+### Save changes back to the collection
+#### Remove one field from document and save
 ```js
 [
   {
