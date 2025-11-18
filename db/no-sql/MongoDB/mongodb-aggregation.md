@@ -31,6 +31,19 @@
 }
 ```
 
+## Field operation
+### Bring all fields from nested array to parent
+```js
+{
+  $unwind: "$customer"
+},
+{
+  $replaceRoot: {
+    newRoot: { $mergeObjects: ["$customer", "$$ROOT"] }
+  }
+}
+```
+
 ## Sorting
 ### Sort the record and group by multiple fields
 ```js
