@@ -3,6 +3,10 @@
 [The MongoDB Database Tools Documentation](https://www.mongodb.com/docs/database-tools/)
 
 
+## Compass
+### Saved Pipelines
+Location: C:\Users\<username>\AppData\Roaming\MongoDB Compass\SavedPipelines
+
 ## mongosh
 [Welcome to MongoDB Shell (mongosh)](https://www.mongodb.com/docs/mongodb-shell/)
 

@@ -56,19 +56,123 @@
             $subtract: [
               {
                 $strLenBytes: "$title"
-              },
-              {
-                $add: [
-                  {
-                    $indexOfBytes: ["$title", " "]
-                  },
-                  1
-                ]
               }
             ]
           }
         ]
       }
+    }
+  }
+]
+```
+
+### Replace a list of string - Regex
+```js
+[
+  {
+    $project:
+    {
+      restaurant: {
+        $reduce: {
+          input: [
+            {
+              find: "text 001",
+              replacement: "TEXT"
+            },
+            {
+              find: "text 002",
+              replacement: "TEXT"
+            }
+          ],
+          initialValue: "$restaurant",
+          in: {
+            $replaceAll: {
+              input: "$$value",
+              find: "$$this.find",
+              replacement: "$$this.replacement"
+            },
+            $cond: [
+              { $regexFind: { input: "$$value", regex: "$$this.find" } },
+              "$$this.replacement",
+              "$$value"
+            ]
+          }
+        }
+      },
+      Amount: 1
+    }
+  }
+]
+```
+
+### Replace a list of string - partial match
+```js
+[
+  {
+    $project:
+    {
+      restaurant: {
+        $reduce: {
+          input: [
+            {
+              find: "text 001",
+              replacement: "TEXT"
+            },
+            {
+              find: "text 002",
+              replacement: "TEXT"
+            }
+          ],
+          initialValue: "$restaurant",
+          in: {
+            $replaceAll: {
+              input: "$$value",
+              find: "$$this.find",
+              replacement: "$$this.replacement"
+            },
+            $cond: [
+              { $eq: ["$$value", "$$this.find"] },
+              "$$this.replacement",
+              "$$value"
+            ]
+          }
+        }
+      },
+      Amount: 1
+    }
+  }
+]
+```
+
+### Replace a list of string - exact match
+```js
+[
+  {
+    $project:
+    {
+      restaurant: {
+        $reduce: {
+          input: [
+            {
+              find: "text 001",
+              replacement: "TEXT"
+            },
+            {
+              find: "text 002",
+              replacement: "TEXT"
+            }
+          ],
+          initialValue: "$restaurant",
+          in: {
+            $cond: [
+              { $eq: ["$$value", "$$this.find"] },
+              "$$this.replacement",
+              "$$value"
+            ]
+          }
+        }
+      },
+      Amount: 1
     }
   }
 ]
@@ -150,17 +254,38 @@
 ]
 ```
 
-### Group by Year and Month and count items
+### Group by multiple fields and push child into an array
 ```js
 [
   {
     $group: {
       _id: {
-        year: {
-          $year: "$timestamp"
-        },
-        month: {
-          $month: "$timestamp"
+        field1: "$field1",
+        field2: "$field2",
+        field3: "$field3"
+      },
+      items: {
+        $push: {
+          item1: "$item1",
+          item2: "$item2",
+          item3: "$item3"
+        }
+      }
+    }
+  }
+]
+  ```
+
+### Group by Year and Month and count items
+```js
+// Use $dateToString
+[
+  {
+    $group: {
+      _id: {
+        $dateToString: {
+          format: "%Y_%m",
+          date: "$pubDate"
         }
       },
       count: {
@@ -171,15 +296,74 @@
   {
     $project: {
       _id: 0,
-      year: "$_id.year",
-      month: "$_id.month",
+      year_month: "$_id",
       count: 1
     }
   },
   {
     $sort: {
-      year: -1,
-      month: -1
+      year_month: -1
+    }
+  }
+]
+
+// Use $dateToString
+[
+  {
+    $group: {
+      _id: {
+        year: {
+          $year: "$pubDate"
+        },
+        month: {
+          $month: "$pubDate"
+        }
+      },
+      count: {
+        $sum: 1
+      },
+      total: {
+        $sum: "$Amount"
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      time: {
+        $concat: [
+          {
+            $toString: "$_id.year"
+          },
+          " ",
+          {
+            $cond: {
+              if: {
+                $lt: ["$_id.month", 10]
+              },
+              then: {
+                $concat: [
+                  "0",
+                  {
+                    $toString: "$_id.month"
+                  }
+                ]
+              },
+              else: {
+                $toString: "$_id.month"
+              }
+            }
+          }
+        ]
+      },
+      count: 1,
+      total: 1
+    }
+  },
+  {
+    $sort: {
+      time: -1,
+      count: -1
     }
   }
 ]
@@ -279,8 +463,17 @@
 ## Array
 
 ### Get record with array size greater than 2
+#### Use find
 ```json
-{ $expr: { $gt: [{ $size: "$albums.photos" }, 2] } }
+db.collection.find({
+  $expr: { $gt: [{ $size: "$albums.photos" }, 2] }
+})
+```
+#### Use aggregation
+```js
+db.collection.aggregate([
+  { $match: { $expr: { $gt: [ { $size: "$albums.photos" }, 2 ] } } }
+])
 ```
 
 ### Get the first record from an array
@@ -290,7 +483,7 @@
 }
 ```
 
-### Get only matching item from an array
+### Get only matching item from an array and add that to a new field
 ```js
 [
   $addFields: {
@@ -424,3 +617,33 @@ Split an array field from the input documents into a new document for each eleme
   }
 ]
 ```
+
+## $cond
+### Check field exist or not using $cond
+```js
+{
+  $addFields:
+    {
+      groupName: {
+        $cond: {
+          if: {
+            $ne: [
+              {
+                $type: "$groupNameRegEx"
+              },
+              "missing"
+            ]
+          },
+          then: {
+            $arrayElemAt: [
+              "$groupNameRegEx.captures",
+              0
+            ]
+          },
+          else: "$name"
+        }
+      }
+    }
+}
+```
+
