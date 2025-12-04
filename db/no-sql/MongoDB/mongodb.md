@@ -460,6 +460,97 @@
 ]
 ```
 
+### Group by Year then group by field name with counter and total
+```js
+
+[
+  {
+    $group: {
+      _id: {
+        year: {
+          $year: "$TransactionDate"
+        },
+        restaurant: "$restaurant"
+      },
+      count: {
+        $sum: 1
+      },
+      total: {
+        $sum: "$Amount"
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      time: {
+        $toString: "$_id.year"
+      },
+      restaurant: "$_id.restaurant",
+      count: 1,
+      total: 1
+    }
+  },
+  {
+    $group: {
+      _id: "$time",
+      counts: {
+        $push: {
+          restaurant: "$restaurant",
+          count: "$count",
+          total: "$total"
+        }
+      }
+    }
+  },
+  {
+    $sort: {
+      _id: -1
+    }
+  },
+  {
+    $project: {
+      counts: {
+        $map: {
+          input: "$counts",
+          as: "i",
+          in: {
+            $mergeObjects: [
+              "$$i",
+              {
+                avg: {
+                  $round: [
+                    {
+                      $divide: [
+                        "$$i.total",
+                        "$$i.count"
+                      ]
+                    },
+                    2
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    $project: {
+      counts: {
+        $sortArray: {
+          input: "$counts",
+          sortBy: {
+            count: -1
+          }
+        }
+      }
+    }
+  }
+]
+```
+
 ## Array
 
 ### Get record with array size greater than 2
