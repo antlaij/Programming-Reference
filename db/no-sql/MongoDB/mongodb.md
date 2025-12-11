@@ -178,6 +178,23 @@
 ]
 ```
 
+## Distinct
+### Get multiple distinct values from 1 or more fields
+```js
+[
+  {
+    $group: {
+      distinctive001: {
+        $addToSet: "$field001"
+      },
+      distinctive002: {
+        $addToSet: "$field002"
+      },
+    }
+  }
+]
+```
+
 ## Is Property exist
 ```json
 { 'submissionId' : { '$exists' : true }}
@@ -203,354 +220,6 @@
 }
 ```
 
-## $group
-### Find duplicate record
-```js
-[
-  {
-    $group: {
-      _id: "$_id",
-      name: {
-        $first: "$name"
-      },
-      count: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $match:
-      {
-        count: {
-          $gt: 1
-        }
-      }
-  }
-]
-```
-
-```js
-[
-  {
-    $group: {
-      _id: "$title",
-      count: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $match: {
-      count: {
-        $gt: 1
-      }
-    }
-  },
-  {
-    $sort: {
-      count: -1
-    }
-  }
-]
-```
-
-### Group by multiple fields and push child into an array
-```js
-[
-  {
-    $group: {
-      _id: {
-        field1: "$field1",
-        field2: "$field2",
-        field3: "$field3"
-      },
-      items: {
-        $push: {
-          item1: "$item1",
-          item2: "$item2",
-          item3: "$item3"
-        }
-      }
-    }
-  }
-]
-  ```
-
-### Group by Year and Month and count items
-```js
-// Use $dateToString
-[
-  {
-    $group: {
-      _id: {
-        $dateToString: {
-          format: "%Y_%m",
-          date: "$pubDate"
-        }
-      },
-      count: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $project: {
-      _id: 0,
-      year_month: "$_id",
-      count: 1
-    }
-  },
-  {
-    $sort: {
-      year_month: -1
-    }
-  }
-]
-
-// Use $dateToString
-[
-  {
-    $group: {
-      _id: {
-        year: {
-          $year: "$pubDate"
-        },
-        month: {
-          $month: "$pubDate"
-        }
-      },
-      count: {
-        $sum: 1
-      },
-      total: {
-        $sum: "$Amount"
-      }
-    }
-  },
-  {
-    $project: {
-      _id: 0,
-      time: {
-        $concat: [
-          {
-            $toString: "$_id.year"
-          },
-          " ",
-          {
-            $cond: {
-              if: {
-                $lt: ["$_id.month", 10]
-              },
-              then: {
-                $concat: [
-                  "0",
-                  {
-                    $toString: "$_id.month"
-                  }
-                ]
-              },
-              else: {
-                $toString: "$_id.month"
-              }
-            }
-          }
-        ]
-      },
-      count: 1,
-      total: 1
-    }
-  },
-  {
-    $sort: {
-      time: -1,
-      count: -1
-    }
-  }
-]
-```
-
-### Group by one field and getting other infomation as an array from the same document
-#### exact match
-```js
-[
-  {
-    $match: {
-      $and: [
-        { name: /.jpg$/i },
-        {
-          name: {
-            $nin: [
-              "Folder.jpg",
-              "back.jpg",
-            ]
-          }
-        }
-      ]
-    }
-  },
-  {
-    $group: {
-      _id: "$name",
-      filepaths: {
-        $push: "$filepath"
-      },
-      count: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $match: {
-      count: {
-        $gt: 1
-      }
-    }
-  },
-  {
-    $sort: {
-      count: -1,
-      _id: 1,
-    }
-  }
-]
-```
-
-### Using Regular expression
-```js
-[
-  {
-    $match: {
-      $and: [
-        { name: /.jpg$|.png$/i },
-        {
-          name: {
-            $not: {
-              $regex:
-                /icon.png|([0-9]{2}m?.jpg)|^([0-9]{3})|^tab-/i
-            }
-          }
-        }
-      ]
-    }
-  },
-  {
-    $group: {
-      _id: "$name",
-      filepaths: {
-        $push: "$filepath"
-      },
-      count: {
-        $sum: 1
-      }
-    }
-  },
-  {
-    $match: {
-      count: {
-        $gt: 1
-      }
-    }
-  },
-  {
-    $sort: {
-      count: -1,
-      _id: 1
-    }
-  }
-]
-```
-
-### Group by Year then group by field name with counter and total
-```js
-
-[
-  {
-    $group: {
-      _id: {
-        year: {
-          $year: "$TransactionDate"
-        },
-        restaurant: "$restaurant"
-      },
-      count: {
-        $sum: 1
-      },
-      total: {
-        $sum: "$Amount"
-      }
-    }
-  },
-  {
-    $project: {
-      _id: 0,
-      time: {
-        $toString: "$_id.year"
-      },
-      restaurant: "$_id.restaurant",
-      count: 1,
-      total: 1
-    }
-  },
-  {
-    $group: {
-      _id: "$time",
-      counts: {
-        $push: {
-          restaurant: "$restaurant",
-          count: "$count",
-          total: "$total"
-        }
-      }
-    }
-  },
-  {
-    $sort: {
-      _id: -1
-    }
-  },
-  {
-    $project: {
-      counts: {
-        $map: {
-          input: "$counts",
-          as: "i",
-          in: {
-            $mergeObjects: [
-              "$$i",
-              {
-                avg: {
-                  $round: [
-                    {
-                      $divide: [
-                        "$$i.total",
-                        "$$i.count"
-                      ]
-                    },
-                    2
-                  ]
-                }
-              }
-            ]
-          }
-        }
-      }
-    }
-  },
-  {
-    $project: {
-      counts: {
-        $sortArray: {
-          input: "$counts",
-          sortBy: {
-            count: -1
-          }
-        }
-      }
-    }
-  }
-]
-```
-
 ## Array
 
 ### Get record with array size greater than 2
@@ -564,6 +233,22 @@ db.collection.find({
 ```js
 db.collection.aggregate([
   { $match: { $expr: { $gt: [ { $size: "$albums.photos" }, 2 ] } } }
+])
+```
+##### Handle null array
+```js
+db.collection.aggregate([
+  {
+    $match: {
+      $expr: {
+        $gt: [{
+          $size: {
+            $ifNull: ["$albums.photos", []]
+          }
+        }, 2]
+      }
+    }
+  }
 ])
 ```
 
@@ -677,7 +362,435 @@ db.collection.aggregate([
 }
 ```
 
-## Opterator
+## Operators
+
+### $dateDiff
+```js
+{
+  $dateDiff:
+  {
+      startDate: "$purchased",
+      endDate: "$delivered",
+      unit: "day"
+  }
+}
+```
+#### Calculate time duration for version not supporting $dateDiff
+```js
+[
+  $addFields: {
+    durationInSecond: {
+      $divide: [
+        {
+          $subtract: ["$EndTime", "$StartTime"]
+        },
+        1000
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      avgDurationInSecond: {
+        $avg: "$durationInSecond"
+      }
+    }
+  }
+]
+```
+##### use in find
+```js
+{
+  $expr: {
+    $gt: [
+      {
+        $subtract: [
+          "$EndTime", "$StartTime"
+        ]
+      },
+      1000
+    ]
+  }
+}
+```
+
+### $cond
+#### Check field exist or not using $cond
+```js
+{
+  $addFields:
+    {
+      groupName: {
+        $cond: {
+          if: {
+            $ne: [
+              {
+                $type: "$groupNameRegEx"
+              },
+              "missing"
+            ]
+          },
+          then: {
+            $arrayElemAt: [
+              "$groupNameRegEx.captures",
+              0
+            ]
+          },
+          else: "$name"
+        }
+      }
+    }
+}
+```
+
+### $group
+#### Find duplicate record
+```js
+[
+  {
+    $group: {
+      _id: "$_id",
+      name: {
+        $first: "$name"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match:
+      {
+        count: {
+          $gt: 1
+        }
+      }
+  }
+]
+```
+
+```js
+[
+  {
+    $group: {
+      _id: "$title",
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1
+    }
+  }
+]
+```
+
+#### Group by multiple fields and push child into an array
+```js
+[
+  {
+    $group: {
+      _id: {
+        field1: "$field1",
+        field2: "$field2",
+        field3: "$field3"
+      },
+      items: {
+        $push: {
+          item1: "$item1",
+          item2: "$item2",
+          item3: "$item3"
+        }
+      }
+    }
+  }
+]
+```
+
+#### Group by Year and Month and count items
+```js
+// Use $dateToString
+[
+  {
+    $group: {
+      _id: {
+        $dateToString: {
+          format: "%Y_%m",
+          date: "$pubDate"
+        }
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      year_month: "$_id",
+      count: 1
+    }
+  },
+  {
+    $sort: {
+      year_month: -1
+    }
+  }
+]
+
+// Use $dateToString
+[
+  {
+    $group: {
+      _id: {
+        year: {
+          $year: "$pubDate"
+        },
+        month: {
+          $month: "$pubDate"
+        }
+      },
+      count: {
+        $sum: 1
+      },
+      total: {
+        $sum: "$Amount"
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      time: {
+        $concat: [
+          {
+            $toString: "$_id.year"
+          },
+          " ",
+          {
+            $cond: {
+              if: {
+                $lt: ["$_id.month", 10]
+              },
+              then: {
+                $concat: [
+                  "0",
+                  {
+                    $toString: "$_id.month"
+                  }
+                ]
+              },
+              else: {
+                $toString: "$_id.month"
+              }
+            }
+          }
+        ]
+      },
+      count: 1,
+      total: 1
+    }
+  },
+  {
+    $sort: {
+      time: -1,
+      count: -1
+    }
+  }
+]
+```
+
+#### Group by one field and getting other infomation as an array from the same document
+##### exact match
+```js
+[
+  {
+    $match: {
+      $and: [
+        { name: /.jpg$/i },
+        {
+          name: {
+            $nin: [
+              "Folder.jpg",
+              "back.jpg",
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: "$name",
+      filepaths: {
+        $push: "$filepath"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1,
+      _id: 1,
+    }
+  }
+]
+```
+
+#### Using Regular expression
+```js
+[
+  {
+    $match: {
+      $and: [
+        { name: /.jpg$|.png$/i },
+        {
+          name: {
+            $not: {
+              $regex:
+                /icon.png|([0-9]{2}m?.jpg)|^([0-9]{3})|^tab-/i
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    $group: {
+      _id: "$name",
+      filepaths: {
+        $push: "$filepath"
+      },
+      count: {
+        $sum: 1
+      }
+    }
+  },
+  {
+    $match: {
+      count: {
+        $gt: 1
+      }
+    }
+  },
+  {
+    $sort: {
+      count: -1,
+      _id: 1
+    }
+  }
+]
+```
+
+#### Group by Year then group by field name with counter and total
+```js
+
+[
+  {
+    $group: {
+      _id: {
+        year: {
+          $year: "$TransactionDate"
+        },
+        restaurant: "$restaurant"
+      },
+      count: {
+        $sum: 1
+      },
+      total: {
+        $sum: "$Amount"
+      }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      time: {
+        $toString: "$_id.year"
+      },
+      restaurant: "$_id.restaurant",
+      count: 1,
+      total: 1
+    }
+  },
+  {
+    $group: {
+      _id: "$time",
+      counts: {
+        $push: {
+          restaurant: "$restaurant",
+          count: "$count",
+          total: "$total"
+        }
+      }
+    }
+  },
+  {
+    $sort: {
+      _id: -1
+    }
+  },
+  {
+    $project: {
+      counts: {
+        $map: {
+          input: "$counts",
+          as: "i",
+          in: {
+            $mergeObjects: [
+              "$$i",
+              {
+                avg: {
+                  $round: [
+                    {
+                      $divide: [
+                        "$$i.total",
+                        "$$i.count"
+                      ]
+                    },
+                    2
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    $project: {
+      counts: {
+        $sortArray: {
+          input: "$counts",
+          sortBy: {
+            count: -1
+          }
+        }
+      }
+    }
+  }
+]
+```
+
 ### $unwind
 Split an array field from the input documents into a new document for each element.
 ```json
@@ -707,34 +820,5 @@ Split an array field from the input documents into a new document for each eleme
     myArray: { name: "John", age: 33 }
   }
 ]
-```
-
-## $cond
-### Check field exist or not using $cond
-```js
-{
-  $addFields:
-    {
-      groupName: {
-        $cond: {
-          if: {
-            $ne: [
-              {
-                $type: "$groupNameRegEx"
-              },
-              "missing"
-            ]
-          },
-          then: {
-            $arrayElemAt: [
-              "$groupNameRegEx.captures",
-              0
-            ]
-          },
-          else: "$name"
-        }
-      }
-    }
-}
 ```
 
