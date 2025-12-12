@@ -220,6 +220,62 @@
 }
 ```
 
+### Calculate value from a nested array
+```js
+[
+  {
+    $addFields: {
+      isTrue: {
+        $allElementsTrue: [
+          {
+            $map: {
+              input: "$arrays",
+              as: "arys",
+              in: {
+                $or: [
+                  {
+                    $and: [
+                      {
+                        $eq: [
+                          "$$arys.field001",
+                          "target value"
+                        ]
+                      },
+                      {
+                        $eq: [
+                          "$$arys.field002",
+                          "another value"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    $and: [
+                      {
+                        $eq: [
+                          "$$arys.field001",
+                          "target value"
+                        ]
+                      },
+                      {
+                        $eq: [
+                          "$$arys.field002",
+                          "another value"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]
+```
+
 ## Array
 
 ### Get record with array size greater than 2
