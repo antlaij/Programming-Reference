@@ -313,7 +313,7 @@ db.collection.aggregate([
 ```
 
 ### Get the first record from an array
-```json
+```js
 {
   "albums.photos": { $slice: 1 }
 }
@@ -853,7 +853,7 @@ db.collection.aggregate([
 
 ### $unwind
 Split an array field from the input documents into a new document for each element.
-```json
+```js
 [
   {
     key: 123,
@@ -869,7 +869,7 @@ Split an array field from the input documents into a new document for each eleme
   $unwind: "myArray"
 }
 ```
-```json
+```js
 [
   {
     key: 123,
