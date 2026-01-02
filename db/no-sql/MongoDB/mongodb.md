@@ -882,3 +882,25 @@ Split an array field from the input documents into a new document for each eleme
 ]
 ```
 
+# Update Data
+
+```js
+db.file_organizer.updateMany(
+  { 
+    DestinationFolder: /M:\\Radio\\RTHK/i
+  },
+  [
+    {
+      $set: {
+        DestinationFolder: {
+          $replaceOne: {
+            input: "$DestinationFolder",
+            find: "M:\\Radio\\RTHK",
+            replacement: "%RTHK%"
+          }
+        }
+      }
+    }
+  ]
+)
+```
