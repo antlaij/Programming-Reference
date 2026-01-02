@@ -206,6 +206,9 @@ git ls-files --others --exclude-standard
 
 echo "Ignored files:"
 git ls-files --others --ignored --exclude-standard
+
+echo "search files in git repo"
+git ls-files -v | grep "mongo"
 ```
 
 ---
