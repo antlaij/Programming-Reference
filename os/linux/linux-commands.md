@@ -42,8 +42,32 @@
 
 ## System Infomation
 
-
 ### Hardware
+
+#### Check disk space
+```sh
+# show folder usages
+dr -h
+
+sudo fdisk -l
+```
+
+#### list folder size
+```sh
+# show folder usages
+du -h --max-depth=1
+
+# count how many file in a folder
+ls /folderName | wc -l
+```
+```
+Output:
+```txt
+Device         Boot   Start      End  Sectors  Size Id Type
+/dev/mmcblk0p1         8192  1056767  1048576  512M  c W95 FAT32 (LBA)
+/dev/mmcblk0p2      1056768 61407231 60350464 28.8G 83 Linux
+```
+
 #### Storage include USB drive
 How to get sd card info from raspberry pi 5?
 To get information about the SD card on your Raspberry Pi 5, you can use a few different methods. Here are some steps you can follow:
