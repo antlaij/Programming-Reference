@@ -554,3 +554,19 @@ sudo dd if=/dev/sda of=/home/docker/RaspberryPi_5-headless.img bs=4M status=prog
 ```
 
 
+## Run Script
+### Run python3 in background and survive terminal close (nohup)
+Keeps running after logout
+Output goes to output.log
+Very common on Raspberry Pi servers
+```bash
+cd ~/data
+nohup python3 ~/development/python/script.py > streaming_from_PiCam.log 2>&1 &
+```
+
+#### Stop process:
+```bash
+ps aux | grep script.py
+kill PID
+```
+
