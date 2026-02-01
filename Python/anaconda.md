@@ -40,3 +40,11 @@ conda env remove --prefix /path/to/your/environment
 conda activate opencv
 ```
 
+
+# jupyter notebook
+## Start notebook
+```sh
+jupyter notebook
+```
+
+

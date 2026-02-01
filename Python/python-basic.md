@@ -35,9 +35,37 @@ python3 -m pip3 install --upgrade pip3
 ```python
 # Global details
 globals()
+# Output
+{
+  '__name__': '__main__',
+  '__doc__': None,
+  '__package__': None,
+  '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
+  '__spec__': None,
+  '__builtins__': <module 'builtins' (built-in)>,
+  '__annotate__': <function __annotate__ at 0x0000020E4A10FA00>,
+  '__conditional_annotations__': {
+    0
+  },
+  'myString': 'hello'
+}
 
 # Local details
 locals()
+# Output
+{
+  '__name__': '__main__',
+  '__doc__': None,
+  '__package__': None,
+  '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
+  '__spec__': None,
+  '__builtins__': <module 'builtins' (built-in)>,
+  '__annotate__': <function __annotate__ at 0x0000020E4A10FA00>,
+  '__conditional_annotations__': {
+    0
+  },
+  'myString': 'hello'
+}
 ```
 
 ### Check system details
@@ -145,14 +173,17 @@ from datetime import datetime
 now: datetime = datetime.now()
 
 print(f'{now:%d.%m.%y (%H:%M:%S)}')
-10.11.24 (10:49:28)
-
 print(f'{now:%c}')
-Sun Nov 10 10:49:28 2024
-
 print(f'{now:%I%P}')
-10am
+print(f'{now:%I%p}')
+```
 
+Output:
+```
+10.11.24 (10:49:28)
+Sun Nov 10 10:49:28 2024
+10am
+10AM
 ```
 
 ## Number
@@ -166,22 +197,13 @@ print(f'myNum: {myNum:.0f}')
 print(f'myNum: {myNum:_.3f}')
 print(f'myNum: {myNum:,.3f}')
 ```
+
 Output
 ```txt
-
-myNum: 123.46
->>> print(f'myNum: {myNum:.0f}')
-myNum: 123
->>> myNum: float = 123456.78901234
->>> print(f'myNum: {myNum:.2f}')
 myNum: 123456.79
->>> print(f'myNum: {myNum:.0f}')
 myNum: 123457
->>> print(f'myNum: {myNum:_.3f}')
 myNum: 123_456.789
->>> print(f'myNum: {myNum:,.3f}')
 myNum: 123,456.789
-
 ```
 
 
