@@ -208,10 +208,10 @@
 ## Field contains
 ```js
 // MongoDB Filter:
-{email: /Tst2/i}
-{email: /.*share.*/}
-{email : {$regex : "son"}
-{ email : { '$regex' : 'test', '$options' : 'i' } }
+{ email: /Tst2/i}
+{ email: /.*share.*/}
+{ email: {$regex : "son"}
+{ email: { '$regex' : 'test', '$options' : 'i' } }
 ```
 
 ## Add Field
@@ -424,6 +424,23 @@ db.collection.aggregate([
 
 ## Operators
 
+### $and
+```js
+{
+  $and: {
+    {message: /"id": 12345,/i},
+    {message: /"type": "pending",/i},
+  }
+}
+```
+
+### Use Regex to perform and operation
+```js
+{
+  message: { $regex: '(?=."id": 12345,*)("type": "pending",)', $options: "i" }
+}
+```
+
 ### $dateDiff
 ```js
 {
@@ -500,6 +517,42 @@ db.collection.aggregate([
         }
       }
     }
+}
+```
+
+#### Recalculate value based on conditions
+```js
+{
+  $addFields: {
+    NewStatus: {
+      $cond: {
+        if: {
+          $or: [
+            {
+              $eq: [
+                "$field01",
+                "test value"
+              ]
+            },
+            {
+              $eq: [
+                "$field02",
+                "test value 0002"
+              ]
+            },
+            {
+              $regexFind: {
+                input: "$field01",
+                regex: /test string/i
+              }
+            }
+          ]
+        },
+        then: "New value",
+        else: "else value"
+      }
+    }
+  }
 }
 ```
 

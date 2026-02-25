@@ -32,7 +32,7 @@
 ```
 
 ## Field operation
-### Bring all fields from nested array to parent
+### Bring all fields from nested array to parent and keep the fields from parent
 ```js
 {
   $unwind: "$customer"
