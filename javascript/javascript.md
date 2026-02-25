@@ -100,7 +100,19 @@ export const formatDateTimeToString = (inDateTime, dateformat) => {
 ```
 
 
-## Array.Map changed the original array
+## Array
+
+### Format Array to conjunction
+```js
+console.log(new Intl. ListFormat("en-GB", { type: "conjunction" }).format(["a", "b", "c"]));
+```
+#### Output
+```
+a, b and c
+```
+
+
+### Array.Map changed the original array
 ```js
 const testArray = [{ name: '001' }, { name: '002' }, { name: '003' }, { name: '004' }];
 
@@ -163,7 +175,8 @@ length: 4[[Prototype]]: Array(0)
 mapWithArrayMap (4) [{…}, {…}, {…}, {…}]
 */
 ```
-## Convert Array of object to entity
+
+### Convert Array of object to entity
 ```js
 [
   { id: 1, name: 'a' },
@@ -188,7 +201,8 @@ Output:
 ```
 
 ---
-## Convert entity array back to Array
+
+### Convert entity array back to Array
 ```js
 var entities = {
   "1": { "id": 1, "name": "a" },
@@ -208,7 +222,7 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 */
 ```
 ---
-## Group By Key on an Array of object
+### Group By Key on an Array of object
 
 ```js
 [
@@ -240,7 +254,7 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
   */
 ```
 ---
-## Concatinate the value from Array of objects to Key value pair
+### Concatinate the value from Array of objects to Key value pair
 ```js
 [
   { id: 1, name: 'a' },
@@ -270,9 +284,9 @@ var ary = Object.keys(entities).map(id => entities[parseInt(id, 10)]);
 */
 ```
 ---
-## Remove duplicate from Array
-### Using new ES6 Set Data structure
-### Set only allow unique value
+### Remove duplicate from Array
+#### Using new ES6 Set Data structure
+#### Set only allow unique value
 
 ```js
 var myArray = [1,2,3,3,4,4,5,5,3,2,2,1];
@@ -341,6 +355,7 @@ console.log(JSON.stringify(finalOutput, null, 2));
 ]
 */
 ```
+
 ---
 ## object
 ### Check object is empty or not
