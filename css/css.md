@@ -64,6 +64,42 @@
 }
 ```
 
+## Color
+### Relative color by using "from"
+```css
+:root {
+  --color: rgb(255, 0, 255)
+}
+
+.box-1 {
+  background: rgb(from var(--color) r g b)
+}
+```
+#### Remove Red from the color variable 
+```css
+.box-1 {
+  background: rgb(from var(--color) 0 g b)
+}
+```
+#### Calculation = add 200 to Red and multiply 0.5 to blue
+```css
+.box-1 {
+  background: rgb(from var(--color) calc(r + 200) g calc(b * 0.5))
+}
+```
+#### Transparent effect
+```css
+.box-1 {
+  background: rgb(from var(--color) r g b / 0.25)
+}
+```
+#### Add more Transparent to the color
+```css
+.box-1 {
+  background: rgb(from var(--color) r g b / calc(alpha + 0.2))
+}
+```
+
 ## CSS Grid
 ### Change element order responsively
 #### When screen size between 800px to 1000px then put the first and second element at the end. Element without order add first.
