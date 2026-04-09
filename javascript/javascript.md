@@ -104,7 +104,7 @@ export const formatDateTimeToString = (inDateTime, dateformat) => {
 
 ### Format Array to conjunction
 ```js
-console.log(new Intl. ListFormat("en-GB", { type: "conjunction" }).format(["a", "b", "c"]));
+console.log(new Intl.ListFormat("en-GB", { type: "conjunction" }).format(["a", "b", "c"]));
 ```
 #### Output
 ```
@@ -358,6 +358,13 @@ console.log(JSON.stringify(finalOutput, null, 2));
 
 ---
 ## object
+### JSON string to JSON object
+#### When JSON string has no quotation on porperty name
+```js
+let jsonString = '{a: 1, b: 2}';
+let jsonObject = Function(`"use strict"; return (${jsonString})`)()
+let porperJsonString = JSON.stringify(jsonObject);
+```
 ### Check object is empty or not
 ```js
   isObjectEmpty(inputObject) {
