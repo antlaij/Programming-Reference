@@ -147,6 +147,12 @@ FOR /f "tokens=*" %x IN ( 'DIR /B /S /A:D' ) DO ECHO MKDIR "%x" >> E:\Buffer\1.t
 dir /b /a-d
 ```
 
+## Command - DOSKEY
+### Set command history to just 1
+```bat
+doskey /listsize=1
+```
+
 ## Command - forfiles
 ### Copy file by date
 ```bat
