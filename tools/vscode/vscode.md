@@ -143,14 +143,20 @@
       "sash.hoverBorder": "#778dbb",
       "statusBarItem.remoteBackground": "#55aa96",
       "statusBarItem.remoteForeground": "#000000",
-      "editor.lineHighlightBackground": "#00cccc20",
-      "editor.selectionBackground": "#00ffff60",
-      "editor.wordHighlightBackground": "#611028",
-      "editor.findMatchHighlightBackground": "#118cff6b", // When Find Match
-      "editor.findRangeHighlightBackground": "#ff0000",
+      "editor.lineHighlightBackground": "#00cccc30",
+      "editor.selectionForeground": "#000000", 
+      "editor.selectionBackground": "#00ffffaa",
+      "editor.wordHighlightBackground": "#611028fe",
+      "editor.findMatchBorder": "#008cff00",
+      "editor.findMatchForeground": "#000000",
+      "editor.findMatchBackground": "#ffff00ee", // Current match
+      "editor.findMatchHighlightForeground": "#000000f1",
+      "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
+      "editor.findRangeHighlightBackground": "#ff0000fe",
       "editor.selectionHighlightBackground": "#ffff0060",
       "editor.inactiveSelectionBackground": "#168b1690",
-      "editor.lineHighlightBorder": "#00ffff15"
+      "editor.linkedEditingBackground": "#ff00fffe",
+      "editor.lineHighlightBorder": "#00ffff00"
     },
     "peacock.color": "#5570aa"  
   }
