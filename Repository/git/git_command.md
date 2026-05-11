@@ -466,8 +466,13 @@ git log --since="2016-06-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/u
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > /c/temp/git.log
 ```
 
-### For MAC
+### How to get the last number of commits worked on a file
+```bash
+git log -1 -- apps/project/README.md > /c/temp/git.log
+git log -1 --pretty=format:"%an <%ae>" -- apps/project/README.md
+```
 
+### For MAC
 ```bash
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/xxxxx/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
 git log --since="2016-08-01" --pretty=format:"%cD%n- [[%h](http://mydomain.com/ute-client-modules/${PWD##*/}/commit/%H)] - **%s** (%aN)%n%n" > ~/ls/temp/git.log
