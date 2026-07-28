@@ -65,18 +65,20 @@
         "statusBarItem.remoteBackground": "#5f55aa",
         "statusBarItem.remoteForeground": "#e7e7e7",
         "commandCenter.border": "#e7e7e799",
-        "editor.lineHighlightBackground": "#00cccc20",
-        "editor.selectionBackground": "#00ffff33",
-        "editor.selectionForeground": "#ff0000",
-        "editor.selectionHighlightBackground": "#ffff00ff",
-        "editor.wordHighlightBorder": "#ffff0022",
-        "editor.wordHighlightBackground": "#611028",
-        "editor.wordHighlightStrongBorder": "#ffff0055",
-        "editor.wordHighlightStrongBackground": "#ffff0000",
-        "editor.findMatchHighlightBackground": "#ff7b0088",
-        "editor.findRangeHighlightBackground": "#ff0000",
-        "editor.inactiveSelectionBackground": "#00fc002a",
-        "editor.lineHighlightBorder": "#00ffff15"
+        "editor.lineHighlightBackground": "#00cccc30",
+        "editor.selectionForeground": "#000000aa",
+        "editor.selectionBackground": "#0099ff86",
+        "editor.inactiveSelectionBackground": "#168b16cc",
+        "editor.wordHighlightBackground": "#850e32fe",
+        "editor.findMatchBorder": "#008cff00",
+        "editor.findMatchForeground": "#000000",
+        "editor.findMatchBackground": "#ffff00ee", // Current match
+        "editor.findMatchHighlightForeground": "#000000f1",
+        "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
+        "editor.findRangeHighlightBackground": "#ff0000fe",
+        "editor.selectionHighlightBackground": "#ffff0060",
+        "editor.linkedEditingBackground": "#ff00fffe",
+        "editor.lineHighlightBorder": "#00ffff00"
     },
     "peacock.color": "#5f55aa"
   }
@@ -109,7 +111,21 @@
       "statusBar.foreground": "#e7e7e7",
       "sash.hoverBorder": "#779fbb",
       "statusBarItem.remoteBackground": "#5570aa",
-      "statusBarItem.remoteForeground": "#e7e7e7"
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "editor.lineHighlightBackground": "#00cccc30",
+      "editor.selectionForeground": "#000000aa",
+      "editor.selectionBackground": "#0099ff86",
+      "editor.inactiveSelectionBackground": "#168b16cc",
+      "editor.wordHighlightBackground": "#850e32fe",
+      "editor.findMatchBorder": "#008cff00",
+      "editor.findMatchForeground": "#000000",
+      "editor.findMatchBackground": "#ffff00ee", // Current match
+      "editor.findMatchHighlightForeground": "#000000f1",
+      "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
+      "editor.findRangeHighlightBackground": "#ff0000fe",
+      "editor.selectionHighlightBackground": "#ffff0060",
+      "editor.linkedEditingBackground": "#ff00fffe",
+      "editor.lineHighlightBorder": "#00ffff00"
     },
     "peacock.color": "#5570aa"  
   }
@@ -144,9 +160,10 @@
       "statusBarItem.remoteBackground": "#55aa96",
       "statusBarItem.remoteForeground": "#000000",
       "editor.lineHighlightBackground": "#00cccc30",
-      "editor.selectionForeground": "#000000", 
-      "editor.selectionBackground": "#00ffffaa",
-      "editor.wordHighlightBackground": "#611028fe",
+      "editor.selectionForeground": "#000000aa",
+      "editor.selectionBackground": "#0099ff86",
+      "editor.inactiveSelectionBackground": "#168b16cc",
+      "editor.wordHighlightBackground": "#850e32fe",
       "editor.findMatchBorder": "#008cff00",
       "editor.findMatchForeground": "#000000",
       "editor.findMatchBackground": "#ffff00ee", // Current match
@@ -154,7 +171,6 @@
       "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
       "editor.findRangeHighlightBackground": "#ff0000fe",
       "editor.selectionHighlightBackground": "#ffff0060",
-      "editor.inactiveSelectionBackground": "#168b1690",
       "editor.linkedEditingBackground": "#ff00fffe",
       "editor.lineHighlightBorder": "#00ffff00"
     },
@@ -190,7 +206,21 @@
       "sash.hoverBorder": "#747400",
       "statusBarItem.remoteBackground": "#414100",
       "statusBarItem.remoteForeground": "#e7e7e7",
-      "commandCenter.border": "#e7e7e799"
+      "commandCenter.border": "#e7e7e799",
+      "editor.lineHighlightBackground": "#00cccc30",
+      "editor.selectionForeground": "#000000aa",
+      "editor.selectionBackground": "#0099ff86",
+      "editor.inactiveSelectionBackground": "#168b16cc",
+      "editor.wordHighlightBackground": "#850e32fe",
+      "editor.findMatchBorder": "#008cff00",
+      "editor.findMatchForeground": "#000000",
+      "editor.findMatchBackground": "#ffff00ee", // Current match
+      "editor.findMatchHighlightForeground": "#000000f1",
+      "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
+      "editor.findRangeHighlightBackground": "#ff0000fe",
+      "editor.selectionHighlightBackground": "#ffff0060",
+      "editor.linkedEditingBackground": "#ff00fffe",
+      "editor.lineHighlightBorder": "#00ffff00"
     },
     "peacock.color": "#5570aa"  
   }
@@ -223,7 +253,21 @@
       "statusBar.foreground": "#e7e7e7",
       "sash.hoverBorder": "#747400",
       "statusBarItem.remoteBackground": "#414100",
-      "statusBarItem.remoteForeground": "#e7e7e7"
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "editor.lineHighlightBackground": "#00cccc30",
+      "editor.selectionForeground": "#000000aa",
+      "editor.selectionBackground": "#0099ff86",
+      "editor.inactiveSelectionBackground": "#168b16cc",
+      "editor.wordHighlightBackground": "#850e32fe",
+      "editor.findMatchBorder": "#008cff00",
+      "editor.findMatchForeground": "#000000",
+      "editor.findMatchBackground": "#ffff00ee", // Current match
+      "editor.findMatchHighlightForeground": "#000000f1",
+      "editor.findMatchHighlightBackground": "#ffff0077", // When Find Match
+      "editor.findRangeHighlightBackground": "#ff0000fe",
+      "editor.selectionHighlightBackground": "#ffff0060",
+      "editor.linkedEditingBackground": "#ff00fffe",
+      "editor.lineHighlightBorder": "#00ffff00"
     },
     "peacock.color": "#5570aa"  
   }
