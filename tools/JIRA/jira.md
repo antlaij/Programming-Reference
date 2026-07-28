@@ -4,6 +4,12 @@
 h1.Heading 1 text
 h2.Heading 2 text
 
+### Highlight with color
+#### Blue
+h1.{color:#0747a6}Heading 1 text{color}
+#### Green
+h1.{color:#00875a}Heading 1 text{color}
+
 ## Crate a JIRA table
 ||Name||Age||
 |Peter|30|
