@@ -31,6 +31,26 @@
 }
 ```
 
+## $match
+### Match multiple fields not in multiple values
+```js
+{
+  $match: {
+    $expr: {
+      $not: {
+        $in: [
+          ["$field1", "$field2"],
+          [
+            ["field1.value1", "field2.value1"],
+            ["field1.value2", "field2.value2"]
+          ]
+        ]
+      }
+    }
+  }
+}
+```
+
 ## Field operation
 ### Bring all fields from nested array to parent and keep the fields from parent
 ```js
