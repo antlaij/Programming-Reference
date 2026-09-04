@@ -169,3 +169,29 @@ forfiles /P "D:\Temp" /S /D +%SevenDaysAgo% /C "cmd /c copy @path E:\Temp"
 
 
 
+## Command - for loop
+### Delete all folder sets buy keeping the latest 2 copies
+```bat
+setlocal enabledelayedexpansion
+
+set "PATH_TO_CLEAN=D:\Dump"
+
+for %%G in (folder_001 folder_002 folder_003) do (
+    set COUNT=0
+
+    for /f "delims=" %%D in ('
+        dir /ad /b /o-n "%PATH_TO_CLEAN%\my_backup-%%G-*"
+    ') do (
+        set /a COUNT+=1
+
+        if !COUNT! GTR 2 (
+            echo Deleting %%D
+            rd /s /q "%%D"
+        )
+    )
+)
+
+```
+
+
+
